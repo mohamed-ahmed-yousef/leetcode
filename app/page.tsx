@@ -4,6 +4,6 @@ export default function Home() {
     <div>
                   initial commit
             </div>
-
+        
   );
 }
