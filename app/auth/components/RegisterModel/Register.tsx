@@ -1,8 +1,13 @@
-import Button from "@/components/Button/Button";
-import InputField from "@/components/InputField/Input";
-import Link from "next/link";
+import Button from '@/components/Button/Button'
+import InputField from '@/components/InputField/Input'
+import { useRecoilState } from 'recoil'
+import { useAuthAtom } from '../../atoms/authAtom'
 
 export default function Register() {
+  const [authAtom, setAuthAtom] = useRecoilState(useAuthAtom)
+  const handleClick = (targetPage: 'login' | 'register' | 'forgetPassword') => {
+    setAuthAtom({ ...authAtom, targetPage })
+  }
   return (
     <div>
       <h1 className="text-white text-2xl">Register to leetcode</h1>
@@ -16,10 +21,13 @@ export default function Register() {
       />
       <div className="flex mt-4 items-center">
         <p className="mr-1 text-white">Already have an account?</p>
-        <Link href="#" className="text-brand-orange">
+        <button
+          className="text-brand-orange"
+          onClick={() => handleClick('login')}
+        >
           Login
-        </Link>
+        </button>
       </div>
     </div>
-  );
+  )
 }

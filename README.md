@@ -6,4 +6,9 @@
     npm run dev
 ```
 
-##
+## Technoloy Used
+
+- Recoil : statemanagment system
+- tailwind
+- react hook form
+- zod

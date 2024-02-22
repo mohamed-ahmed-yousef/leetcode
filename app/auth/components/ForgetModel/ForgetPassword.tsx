@@ -1,5 +1,5 @@
-import Button from "@/components/Button/Button";
-import InputField from "@/components/InputField/Input";
+import Button from '@/components/Button/Button'
+import InputField from '@/components/InputField/Input'
 
 export default function ForgetPassword() {
   return (
@@ -16,5 +16,5 @@ export default function ForgetPassword() {
         className="mt-4 w-full text-md text-center"
       />
     </div>
-  );
+  )
 }

@@ -1,8 +1,8 @@
 type InputFieldProps = {
-  name: string;
-  type: "email" | "password" | "text";
-  placeholder: string;
-};
+  name: string
+  type: 'email' | 'password' | 'text'
+  placeholder: string
+}
 
 export default function InputField({
   name,
@@ -27,5 +27,5 @@ export default function InputField({
         placeholder={placeholder}
       />
     </>
-  );
+  )
 }
