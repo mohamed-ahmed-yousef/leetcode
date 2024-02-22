@@ -1,6 +1,6 @@
 export default function Home() {
   return <div>
-fix lintStage
+fix lintStaged
     
     initial commit</div>;
 }
