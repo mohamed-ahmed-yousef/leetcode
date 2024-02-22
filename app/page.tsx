@@ -1,3 +1,3 @@
 export default function Home() {
-  return <div>fix lintSta g ed test initial commit</div>;
+  return <div className="">Home page</div>;
 }
