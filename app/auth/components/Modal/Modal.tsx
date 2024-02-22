@@ -1,5 +1,7 @@
 import { MdClose } from "react-icons/md";
 import Login from "../LoginModel/login";
+import Register from "../RegisterModel/Register";
+import ForgetPassword from "../ForgetModel/ForgetPassword";
 export default function Modal() {
   return (
     <>
@@ -13,7 +15,9 @@ export default function Modal() {
           <MdClose className="w-7 h-7 p-1 rounded-md hover:bg-zinc-900 transistion duration-300 cursor-pointer" />
         </button>
         <div className="p-3">
-          <Login />
+          {/* <Login /> */}
+          {/* <Register /> */}
+          <ForgetPassword />
         </div>
       </div>
     </>
