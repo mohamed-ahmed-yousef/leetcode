@@ -14,7 +14,6 @@
     "*.{js,jsx,ts,tsx,css,scss,md}": "prettier . --write",
     ".{ts,tsx}": "tsc --noEmit"
   },
-
   "dependencies": {
     "next": "14.1.0",
     "react": "^18",
