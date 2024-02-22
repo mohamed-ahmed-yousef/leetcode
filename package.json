@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "git config --local core.hooksPath .githook || echo 'Can not set git hooks'"
+    "prepare": "git config --local core.hooksPath .githooks || echo 'Can not set git hooks'"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",
