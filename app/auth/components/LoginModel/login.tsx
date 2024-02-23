@@ -68,7 +68,7 @@ export default function Login() {
       <Button
         type="submit"
         name={loading ? 'Loading...' : 'Login'}
-        className="mt-4 w-full text-md text-center"
+        className="mt-4 w-full text-md text-center  text-white py-3 px-4  gap-x-2"
         disabled={loading}
       />
 

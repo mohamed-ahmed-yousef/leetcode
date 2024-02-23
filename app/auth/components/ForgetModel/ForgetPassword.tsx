@@ -39,7 +39,7 @@ export default function ForgetPassword() {
       <Button
         type="submit"
         name="Reset password"
-        className="mt-4 w-full text-md text-center"
+        className="mt-4 w-full text-md text-center text-white py-3 px-4  gap-x-2"
       />
       <DevTool control={control} />
     </form>

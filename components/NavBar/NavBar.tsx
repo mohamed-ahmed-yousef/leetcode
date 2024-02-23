@@ -11,8 +11,9 @@ export default function NavBar({}: NavBarProps) {
   }
   return (
     <div
-      className="flex items-center justify-between w-full h-[70px] px-5  
-            "
+      className={`flex items-center justify-between w-full h-[70px] px-5  
+
+            `}
     >
       <div className="w-[140px] cursor-pointer">
         <Link href="/">

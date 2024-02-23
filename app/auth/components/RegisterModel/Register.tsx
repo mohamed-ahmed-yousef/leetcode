@@ -89,7 +89,7 @@ export default function Register() {
       <Button
         type="submit"
         name={loading ? 'loading...' : 'Register'}
-        className="mt-4 w-full text-md text-center"
+        className="mt-4 w-full text-md text-center text-white py-3 px-4  gap-x-2"
         disabled={loading}
       />
       <div className="flex mt-4 items-center">
