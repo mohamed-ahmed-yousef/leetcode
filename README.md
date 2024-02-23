@@ -12,3 +12,5 @@
 - tailwind
 - react hook form
 - zod
+- firebase
+- react firebase hooks

@@ -7,7 +7,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-
     "prepare": "git config --local core.hooksPath .githooks || echo 'Can not set git hooks'"
   },
   "lint-staged": {
@@ -16,11 +15,17 @@
     ".{ts,tsx}": "tsc --noEmit"
   },
   "dependencies": {
+    "@hookform/devtools": "^4.3.1",
+    "@hookform/resolvers": "^3.3.4",
+    "firebase": "^10.8.0",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-firebase-hooks": "^5.1.1",
+    "react-hook-form": "^7.50.1",
     "react-icons": "^5.0.1",
-    "recoil": "^0.7.7"
+    "recoil": "^0.7.7",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -2,8 +2,14 @@ type ButtonProps = {
   name: string
   type: 'button' | 'submit'
   className: string
+  onClick?: (e: any, data: any) => void
 }
-export default function Button({ name, type, className }: ButtonProps) {
+export default function Button({
+  name,
+  type,
+  className,
+  onClick,
+}: ButtonProps) {
   return (
     <button
       type={type}
