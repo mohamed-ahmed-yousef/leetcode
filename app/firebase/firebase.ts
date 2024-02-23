@@ -1,5 +1,7 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from 'firebase/app'
+import { initializeApp, getApp, getApps } from 'firebase/app'
+import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth'
+import { getFirestore, collection } from 'firebase/firestore'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -12,6 +14,9 @@ const firebaseConfig = {
   messagingSenderId: process.env.NEXT_PUBLIC_API_messagingSenderId,
   appId: process.env.NEXT_PUBLIC_API_appId,
 }
-
 // Initialize Firebase
-const app = initializeApp(firebaseConfig)
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp()
+const auth = getAuth(app)
+const fireStore = getFirestore(app)
+
+export { auth, fireStore, app }

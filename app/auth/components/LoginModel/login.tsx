@@ -1,4 +1,3 @@
-'use client'
 import Button from '@/components/Button/Button'
 import InputField from '@/components/InputField/Input'
 import { useRecoilState } from 'recoil'
@@ -6,9 +5,15 @@ import { useAuthAtom } from '../../atoms/authAtom'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth'
+import { auth } from '@/app/firebase/firebase'
+import { useRouter } from 'next/navigation'
 
 export default function Login() {
   const [authAtom, setAuthAtom] = useRecoilState(useAuthAtom)
+  const router = useRouter()
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth)
   const handleClick = (targetPage: 'login' | 'register' | 'forgetPassword') => {
     setAuthAtom({ ...authAtom, targetPage })
   }
@@ -18,11 +23,6 @@ export default function Login() {
     password: z
       .string()
       .min(8, 'Password must be at least 8 characters long')
-      .max(32, 'Password must be less than 32 characters long')
-      // .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
-      // .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
-      // .regex(/[0-9]/, 'Password must contain at least one number')
-      // .regex(/[^A-Za-z0-9 ]/, 'Password may contain special characters (e.g., !@#$%^&*)')
       .trim(),
   })
 
@@ -33,15 +33,22 @@ export default function Login() {
   } = useForm({
     resolver: zodResolver(scheme),
   })
-  const handleSubmitLogin = (data: any) => {
+  const handleSubmitLogin = async (data: any) => {
     console.log(data)
+    const singup = await signInWithEmailAndPassword(data.email, data.password)
+    if (!singup) return
+    router.push('/')
   }
-
-  console.log(errors)
 
   return (
     <form onSubmit={handleSubmit(handleSubmitLogin)} noValidate>
       <h1 className="text-white text-2xl">Login to leetcode</h1>
+      <p
+        className={`text-sm text-zinc-950 text-center bg-red-500 rounded-lg mx-auto w-fit p-2 
+       ${error?.message ? '' : 'invisible'} `}
+      >
+        {error?.message ? 'Invalid Email or Password' : ''}
+      </p>
       <InputField
         name="Email"
         type="email"
@@ -60,8 +67,9 @@ export default function Login() {
       />
       <Button
         type="submit"
-        name="Login"
+        name={loading ? 'Loading...' : 'Login'}
         className="mt-4 w-full text-md text-center"
+        disabled={loading}
       />
 
       <div className="text-right text-brand-orange mt-4">

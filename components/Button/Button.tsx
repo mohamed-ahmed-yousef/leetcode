@@ -3,12 +3,14 @@ type ButtonProps = {
   type: 'button' | 'submit'
   className: string
   onClick?: (e: any, data: any) => void
+  disabled?: boolean
 }
 export default function Button({
   name,
   type,
   className,
   onClick,
+  disabled,
 }: ButtonProps) {
   return (
     <button
@@ -18,6 +20,7 @@ export default function Button({
             transition duration-300 ease-in-out text-center 
             ${className}
             `}
+      disabled={disabled}
     >
       {name}
     </button>

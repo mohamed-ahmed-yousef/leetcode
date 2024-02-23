@@ -5,9 +5,17 @@ import { useAuthAtom } from '../../atoms/authAtom'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
+import { auth } from '@/app/firebase/firebase'
+
+import { useRouter } from 'next/navigation'
 
 export default function Register() {
   const [authAtom, setAuthAtom] = useRecoilState(useAuthAtom)
+  const router = useRouter()
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth)
+
   const handleClick = (targetPage: 'login' | 'register' | 'forgetPassword') => {
     setAuthAtom({ ...authAtom, targetPage })
   }
@@ -31,12 +39,29 @@ export default function Register() {
   } = useForm({
     resolver: zodResolver(scheme),
   })
-  const handleRegisterSubmit = (data: any) => {
-    console.log(data)
+  const handleRegisterSubmit = async (data: any) => {
+    console.log(data.email, data.password)
+    try {
+      const newUser = await createUserWithEmailAndPassword(
+        data.email,
+        data.password
+      )
+      if (!newUser) return
+      setAuthAtom({ ...authAtom, targetPage: 'login' })
+    } catch (error: any) {
+      console.log(error.message)
+    }
   }
+  console.log(error?.message)
   return (
     <form noValidate onSubmit={handleSubmit(handleRegisterSubmit)}>
       <h1 className="text-white text-2xl">Register to leetcode</h1>
+      <p
+        className={`text-sm text-zinc-950 text-center bg-red-500 rounded-lg mx-auto w-fit p-2 
+      ${error?.message ? '' : 'invisible'} `}
+      >
+        {error?.message ? 'Email Already Exist' : ''}
+      </p>
       <InputField
         name="Email"
         type="email"
@@ -63,8 +88,9 @@ export default function Register() {
       />
       <Button
         type="submit"
-        name="Register"
+        name={loading ? 'loading...' : 'Register'}
         className="mt-4 w-full text-md text-center"
+        disabled={loading}
       />
       <div className="flex mt-4 items-center">
         <p className="mr-1 text-white">Already have an account?</p>
