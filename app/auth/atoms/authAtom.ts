@@ -1,5 +1,4 @@
 'use client'
-
 import { atom } from 'recoil'
 
 type defaultValueProps = {
@@ -11,6 +10,7 @@ const defaultValues: defaultValueProps = {
   isOpen: false,
   targetPage: 'login',
 }
+
 export const useAuthAtom = atom({
   key: 'authAtom',
   default: defaultValues,

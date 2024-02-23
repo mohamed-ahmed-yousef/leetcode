@@ -1,11 +1,11 @@
 'use client'
-
 import Button from '@/components/Button/Button'
 import InputField from '@/components/InputField/Input'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { DevTool } from '@hookform/devtools'
+
 export default function ForgetPassword() {
   const scheme = z.object({
     email: z.string().email('Invalid email'),
