@@ -4,6 +4,8 @@
 // import { Inter } from "next/font/google";
 import './globals.css'
 import { RecoilRoot } from 'recoil'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 // export const metadata: Metadata = {
 //   title: 'leetcode',
@@ -19,6 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <RecoilRoot>{children}</RecoilRoot>
+        <ToastContainer />
       </body>
     </html>
   )

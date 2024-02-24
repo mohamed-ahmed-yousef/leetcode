@@ -7,12 +7,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
 import { auth } from '@/app/firebase/firebase'
-
-import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
+import { AuthToasterError } from '@/components/Toast/Toast'
 
 export default function Register() {
   const [authAtom, setAuthAtom] = useRecoilState(useAuthAtom)
-  const router = useRouter()
+
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth)
 
@@ -52,16 +52,15 @@ export default function Register() {
       console.log(error.message)
     }
   }
-  console.log(error?.message)
+  useEffect(() => {
+    if (error?.message) {
+      AuthToasterError('Email Already Exist')
+    }
+  }, [error])
   return (
     <form noValidate onSubmit={handleSubmit(handleRegisterSubmit)}>
       <h1 className="text-white text-2xl">Register to leetcode</h1>
-      <p
-        className={`text-sm text-zinc-950 text-center bg-red-500 rounded-lg mx-auto w-fit p-2 
-      ${error?.message ? '' : 'invisible'} `}
-      >
-        {error?.message ? 'Email Already Exist' : ''}
-      </p>
+
       <InputField
         name="Email"
         type="email"

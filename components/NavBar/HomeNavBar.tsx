@@ -17,7 +17,7 @@ export default function HomeNavBar() {
   const [authAtoms, setAuthAtoms] = useRecoilState(useAuthAtom)
   const handleOnGoToLogin = () => {
     console.log(authAtoms)
-    setAuthAtoms((prev) => ({ ...prev, targetPage: 'register', isOpen: true }))
+    setAuthAtoms((prev) => ({ ...prev, targetPage: 'login', isOpen: true }))
     console.log(authAtoms)
     router.push('/auth')
   }
