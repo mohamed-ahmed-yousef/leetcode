@@ -14,11 +14,14 @@ import { useRouter } from 'next/navigation'
 export default function HomeNavBar() {
   const [user] = useAuthState(auth)
   const router = useRouter()
+  const [authAtoms, setAuthAtoms] = useRecoilState(useAuthAtom)
   const handleOnGoToLogin = () => {
-    console.log('got to auth')
-
+    console.log(authAtoms)
+    setAuthAtoms((prev) => ({ ...prev, targetPage: 'register', isOpen: true }))
+    console.log(authAtoms)
     router.push('/auth')
   }
+
   return (
     <div className="flex items-center justify-between bg-dark-layer-1 h-[60px] px-12">
       <div className="flex items-center w-[100px]">
