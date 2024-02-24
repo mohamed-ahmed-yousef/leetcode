@@ -10,8 +10,14 @@ import Logout from '@/components/Logout/Logout'
 import { useRecoilState } from 'recoil'
 import { useAuthAtom } from '@/app/auth/atoms/authAtom'
 import { useRouter } from 'next/navigation'
+import ProblemNavBar from './ProblemNavBar'
+import Timer from './Timer/Timer'
 
-export default function HomeNavBar() {
+type HomeNavBarProps = {
+  homePage?: boolean
+}
+
+export default function HomeNavBar({ homePage }: HomeNavBarProps) {
   const [user] = useAuthState(auth)
   const router = useRouter()
   const [authAtoms, setAuthAtoms] = useRecoilState(useAuthAtom)
@@ -29,6 +35,12 @@ export default function HomeNavBar() {
           <Image src={navBarImage} alt="navbar image" className="w-full" />
         </Link>
       </div>
+      {homePage && (
+        <div className="flex items-center gap-x-6">
+          <ProblemNavBar />
+          <Timer />
+        </div>
+      )}
       <div className="flex items-center">
         <Link href="https://github.com/mohamedahmed-cloud" target="_blank">
           <Button
@@ -37,6 +49,7 @@ export default function HomeNavBar() {
             type="button"
           />
         </Link>
+
         {!user ? (
           <Button
             name="Sing in"
