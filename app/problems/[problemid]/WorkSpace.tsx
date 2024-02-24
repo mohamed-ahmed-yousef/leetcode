@@ -3,7 +3,7 @@ import Problem from '../components/Problem'
 
 export default function WorkSpace() {
   const giveStyle = {
-    minHeight: 'calc(100vh - 60px)',
+    minHeight: 'calc(100vh - 106px)',
   }
   return (
     <Split className="split  " style={giveStyle} minSize={0}>

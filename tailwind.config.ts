@@ -31,6 +31,8 @@ const config: Config = {
         olive: 'rgb(0, 184, 163)',
         'dark-green-s': 'rgb(44 187 93)',
         'dark-blue-s': 'rgb(10 132 255)',
+        'code-dark-1': 'hsla(0, 0%, 100%, 0.07)',
+        'code-dark-2': 'rgba(247, 250, 255, 0.12)',
       },
     },
   },

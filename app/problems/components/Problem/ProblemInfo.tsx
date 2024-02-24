@@ -20,7 +20,7 @@ export default function ProblemInfo({
         : 'text-dark-pink bg-dark-pink'
   console.log(difficultyLevel)
   return (
-    <div className="flex items-center gap-x-2 ">
+    <div className="flex items-center gap-x-2 mt-3">
       <div
         className={`${difficultyLevel} px-1 py-1 bg-opacity-30 rounded-lg font-medium`}
       >
