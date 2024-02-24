@@ -6,10 +6,10 @@ import { FaChevronLeft } from 'react-icons/fa6'
 import { FaPause } from 'react-icons/fa6'
 import { FaPlay } from 'react-icons/fa'
 export default function TimerComponent() {
-  const [isShow, setIsShow] = useState(true)
+  const [isShow, setIsShow] = useState(false)
   const [timer, setTimer] = useState(0)
-  const [isPlay, setIsPlay] = useState(true)
-  const [formatedTime, setFormatedTime] = useState('')
+  const [isPlay, setIsPlay] = useState(false)
+  const [formatedTime, setFormatedTime] = useState('00:00:00')
   const toDigits = (time: number) => {
     return time < 10 ? `0${time}` : time
   }

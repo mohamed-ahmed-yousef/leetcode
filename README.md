@@ -17,6 +17,7 @@
 - Recoil: Recoil provides a lightweight and reactive approach to managing application state in React.
 - react youtube
 - toastor
+- React split
 
 ### Backend:
 

@@ -17,7 +17,7 @@ export default function TableContent() {
       {problems.map((problem, indx) => {
         const difficultyLevel =
           problem.difficulty === 'Easy'
-            ? 'text-dark-green-5'
+            ? 'text-dark-green-s'
             : problem.difficulty === 'Medium'
               ? 'text-dark-yellow'
               : 'text-dark-pink'
