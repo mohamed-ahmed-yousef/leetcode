@@ -4,12 +4,18 @@ import InputField from '@/components/InputField/Input'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { DevTool } from '@hookform/devtools'
+import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth'
+import { auth } from '@/app/firebase/firebase'
+import { useEffect } from 'react'
+import { toast } from 'react-toastify'
+import { AuthToasterError, AuthToasterSuccess } from '@/components/Toast/Toast'
 
 export default function ForgetPassword() {
   const scheme = z.object({
     email: z.string().email('Invalid email'),
   })
+  const [sendPasswordResetEmail, sending, error] =
+    useSendPasswordResetEmail(auth)
   const {
     register,
     handleSubmit,
@@ -18,9 +24,14 @@ export default function ForgetPassword() {
   } = useForm({
     resolver: zodResolver(scheme),
   })
-  const handleSubmitForgetPassword = (data: any) => {
-    console.log(data)
+  const handleSubmitForgetPassword = async (data: any) => {
+    const success = await sendPasswordResetEmail(data.email)
+    if (success) AuthToasterSuccess('Email Send to your account')
   }
+  useEffect(() => {
+    if (error) AuthToasterError('There is an Error')
+  }, [error])
+
   return (
     <form onSubmit={handleSubmit(handleSubmitForgetPassword)} noValidate>
       <h1 className="text-white text-2xl">Reset password</h1>
@@ -38,10 +49,10 @@ export default function ForgetPassword() {
       />
       <Button
         type="submit"
-        name="Reset password"
-        className="mt-4 w-full text-md text-center"
+        name={sending ? 'Loading' : 'Reset password'}
+        className="mt-4 w-full text-md text-center text-white py-3 px-4  gap-x-2"
+        disabled={sending}
       />
-      <DevTool control={control} />
     </form>
   )
 }

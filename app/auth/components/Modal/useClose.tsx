@@ -8,14 +8,14 @@ export const HandleCloseModal = () => {
     setAuthAtom((prev) => ({ ...prev, isOpen: false, targetPage: 'login' }))
   }
   useEffect(() => {
-    const listenToKey = (e: { key: string }) => {
+    const handleESC = (e: { key: string }) => {
       if (e.key == 'Escape') {
         handleCloseModal()
       }
     }
-    addEventListener('keydown', listenToKey)
+    addEventListener('keydown', handleESC)
     return () => {
-      removeEventListener('keydown', listenToKey)
+      removeEventListener('keydown', handleESC)
     }
   }, [])
   return handleCloseModal

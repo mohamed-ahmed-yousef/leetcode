@@ -15,6 +15,7 @@
 - React Hook Form: A library for handling forms and validation, built specifically for React hooks.
 - Zod: A powerful validation library for ensuring data integrity and preventing runtime errors.
 - Recoil: Recoil provides a lightweight and reactive approach to managing application state in React.
+- React-hook
 
 ### Backend:
 

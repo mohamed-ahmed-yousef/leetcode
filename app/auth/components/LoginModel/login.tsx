@@ -8,6 +8,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth'
 import { auth } from '@/app/firebase/firebase'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
+import { AuthToasterError } from '@/components/Toast/Toast'
 
 export default function Login() {
   const [authAtom, setAuthAtom] = useRecoilState(useAuthAtom)
@@ -39,16 +41,15 @@ export default function Login() {
     if (!singup) return
     router.push('/')
   }
+  useEffect(() => {
+    if (error?.message) {
+      AuthToasterError('Email or password is incorrect')
+    }
+  }, [error])
 
   return (
     <form onSubmit={handleSubmit(handleSubmitLogin)} noValidate>
       <h1 className="text-white text-2xl">Login to leetcode</h1>
-      <p
-        className={`text-sm text-zinc-950 text-center bg-red-500 rounded-lg mx-auto w-fit p-2 
-       ${error?.message ? '' : 'invisible'} `}
-      >
-        {error?.message ? 'Invalid Email or Password' : ''}
-      </p>
       <InputField
         name="Email"
         type="email"
@@ -68,7 +69,7 @@ export default function Login() {
       <Button
         type="submit"
         name={loading ? 'Loading...' : 'Login'}
-        className="mt-4 w-full text-md text-center"
+        className="mt-4 w-full text-md text-center  text-white py-3 px-4  gap-x-2"
         disabled={loading}
       />
 
