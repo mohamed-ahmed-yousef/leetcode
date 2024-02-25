@@ -17,7 +17,7 @@ export default function TableContent() {
       {problems.map((problem, indx) => {
         const difficultyLevel =
           problem.difficulty === 'Easy'
-            ? 'text-dark-green-5'
+            ? 'text-dark-green-s'
             : problem.difficulty === 'Medium'
               ? 'text-dark-yellow'
               : 'text-dark-pink'
@@ -32,7 +32,7 @@ export default function TableContent() {
               <BsCheckCircle className="text-dark-green-s" />{' '}
             </p>
             <Link
-              href={`/${problem.id}`}
+              href={`/problems/${problem.id}`}
               className="col-span-3 text-[14px] hover:text-blue-500"
             >
               {problem.title}
