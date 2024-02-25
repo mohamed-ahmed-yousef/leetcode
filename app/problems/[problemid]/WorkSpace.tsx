@@ -1,11 +1,15 @@
 import Split from 'react-split'
-import Problem from '../components/Problem'
+import ProblemContainer from '../components/Problem'
 import PlayGround from '../components/PlayGround/PlayGround'
+import { Problem } from '@/utils/types/problem'
 
-export default function WorkSpace({ problem }) {
+type WorkSpaceProps = {
+  problem: Problem
+}
+export default function WorkSpace({ problem }: WorkSpaceProps) {
   return (
     <Split className="split min-h-[calc(100vh-106px)]" minSize={0}>
-      <Problem problem={problem} />
+      <ProblemContainer problem={problem} />
       <PlayGround />
     </Split>
   )

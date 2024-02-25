@@ -3,8 +3,11 @@ import ProblemInfo from './Problem/ProblemInfo'
 import Description from './Problem/Description'
 import Example from './Problem/Example'
 import Constraints from './Problem/Constraints'
+import { Problem } from '@/utils/types/problem'
 
-type ProblemDescriptionProps = {}
+type ProblemDescriptionProps = {
+  problem: Problem
+}
 
 const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
   const { constraints, problemStatement, examples, id, title } = problem
