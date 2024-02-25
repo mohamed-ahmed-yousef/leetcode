@@ -9,10 +9,10 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = () => {
   return (
     <div className="bg-dark-layer-1  ">
       <div className=" bg-dark-layer-2  ">
-        <div className="bg-dark-layer-1  h-[calc(100vh-60px)] overflow-y-auto">
+        <div className="bg-dark-layer-1  ">
           <Tabs text={'Description'} />
-          <div className="p-2 lg:p-4  pb-7">
-            <div className="max-w-[800px]">
+          <div className="  pb-7 h-[calc(100vh-60px)] overflow-y-auto">
+            <div className="max-w-[800px] p-2 lg:p-4">
               <h1 className="text-xl text-white font-bold">1.Two Sum</h1>
               <ProblemInfo like={23} dislike={4} difficulty="Easy" />
               <div className="mt-5 ">
