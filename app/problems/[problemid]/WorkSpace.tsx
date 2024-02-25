@@ -1,14 +1,11 @@
 import Split from 'react-split'
 import Problem from '../components/Problem'
-
+import PlayGround from '../components/PlayGround/PlayGround'
 export default function WorkSpace() {
-  const giveStyle = {
-    minHeight: 'calc(100vh - 106px)',
-  }
   return (
-    <Split className="split  " style={giveStyle} minSize={0}>
+    <Split className="split min-h-[calc(100vh-106px)]" minSize={0}>
       <Problem />
-      <div className="overflow-auto">Text editor here </div>
+      <PlayGround />
     </Split>
   )
 }

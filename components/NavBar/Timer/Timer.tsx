@@ -9,7 +9,7 @@ export default function TimerComponent() {
   const [isShow, setIsShow] = useState(false)
   const [timer, setTimer] = useState(0)
   const [isPlay, setIsPlay] = useState(false)
-  const [formatedTime, setFormatedTime] = useState('00:00:00')
+  const [formatedTime, setFormatedTime] = useState('00: 00: 00')
   const toDigits = (time: number) => {
     return time < 10 ? `0${time}` : time
   }
