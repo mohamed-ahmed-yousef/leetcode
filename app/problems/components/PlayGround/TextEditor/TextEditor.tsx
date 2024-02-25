@@ -7,8 +7,9 @@ export default function TextEditor() {
     <div className="overflow-y-auto">
       <CodeMirror
         height="h-full"
-        extensions={[javascript({ jsx: true })]}
+        extensions={[javascript()]}
         theme={vscodeDark}
+        value={'Mohamed Yousef here 😂'}
       />
     </div>
   )

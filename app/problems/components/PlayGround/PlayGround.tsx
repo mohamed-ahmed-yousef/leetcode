@@ -12,7 +12,7 @@ export default function PlayGround() {
         className="h-[calc(100vh-106px)]  overflow-y-hidden"
         direction="vertical"
         sizes={[60, 40]}
-        minSize={10}
+        minSize={100}
       >
         <TextEditor />
         <TestCase />
