@@ -5,7 +5,7 @@ type OneTestCaseProps = {
 
 export default function OneTestCase({ input, output }: OneTestCaseProps) {
   return (
-    <div className="text-gray-300">
+    <div className="text-gray-300 ">
       <div>
         <h3 className="text-gray-100 font-medium text-base mb-1 ml-1">Input</h3>
         <pre className="bg-dark-fill-2  rounded-md p-2 lg:p-3 whitespace-pre-wrap">

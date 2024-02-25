@@ -1,9 +1,10 @@
 import TestCaseTab from './TestCaseTab'
 import TestCaseHeader from './TestCaseHeader'
-import CaseButton from './CaseButton'
+import Footer from './Footer'
+
 export default function TestCase() {
   return (
-    <div className="overflow-y-auto">
+    <div className="overflow-y-auto relative">
       <div className="px-4 py-2">
         <TestCaseHeader />
         <TestCaseTab
@@ -13,6 +14,7 @@ export default function TestCase() {
             ['Input 3', 'output 3'],
           ]}
         />
+        <Footer />
       </div>
     </div>
   )
