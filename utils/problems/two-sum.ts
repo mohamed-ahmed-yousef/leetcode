@@ -7,6 +7,7 @@ const starterCodeTwoSum = `function twoSum(nums,target){
 export const twoSum: Problem = {
   id: 'two-sum',
   title: '1. Two Sum',
+  difficulty: 'Easy',
   problemStatement: [
     [
       { text: ' Given an array of integers', code: 'nums' },

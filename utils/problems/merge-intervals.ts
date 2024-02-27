@@ -1,3 +1,5 @@
+import { Problem } from '../types/problem'
+
 export const MergeIntervals = {
   id: 'merge-intervals',
   title: 'Merge Intervals',

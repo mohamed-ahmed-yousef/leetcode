@@ -1,6 +1,9 @@
-export const ValidParentheses = {
+import { Problem } from '../types/problem'
+
+export const ValidParentheses: Problem = {
   id: 'valid-parentheses',
   title: 'Valid Parentheses',
+  difficulty: 'Easy',
   problemStatement: [
     [
       { text: 'Given a string', code: 's' },

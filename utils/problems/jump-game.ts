@@ -1,4 +1,6 @@
-export const jumpGame = {
+import { Problem } from '../types/problem'
+
+export const jumpGame: Problem = {
   id: 'jump-game',
   title: 'Jump Game',
   difficulty: 'Medium',

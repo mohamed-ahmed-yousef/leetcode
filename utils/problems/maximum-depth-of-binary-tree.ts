@@ -1,3 +1,5 @@
+import { Problem } from '../types/problem'
+
 import MaximumDepthofBinaryTreeImg1 from './images/maximum-depth-of-binary-tree.jpg'
 export const MaximumDepthOfBinaryTree = {
   id: 'maximum-depth-of-binary-tree',

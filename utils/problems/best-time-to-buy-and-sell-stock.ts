@@ -1,6 +1,8 @@
-export const BestTimetoBuyandSellStock = {
+import { Problem } from '../types/problem'
+export const BestTimetoBuyandSellStock: Problem = {
   id: 'best-time-to-buy-and-sell-stock',
   title: 'Best Time to Buy and Sell Stock',
+  difficulty: 'Easy',
   problemStatement: [
     [
       { text: 'You are given an array', code: 'prices ' },

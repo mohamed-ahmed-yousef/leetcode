@@ -1,9 +1,21 @@
 import { Problem } from '../types/problem'
+
 import LinkedList from './images/reverse-linked-list-1.jpg'
 export const reverseLinkedList: Problem = {
   id: 'reverse-linked-list',
   title: '2. Reverse Linked List',
-  problemStatement: '',
+  difficulty: 'Hard',
+  problemStatement: [
+    [
+      {
+        text: 'Given the',
+        code: 'head',
+      },
+      {
+        text: 'of a singly linked list, reverse the list, and return the reversed list.',
+      },
+    ],
+  ],
   examples: [
     {
       id: 0,

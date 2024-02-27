@@ -1,8 +1,11 @@
+import { Problem } from '../types/problem'
+
 import ContainerWithMostWaterImg1 from './images/container-with-most-water.jpg'
 
-export const ContainerWithMostWater = {
+export const ContainerWithMostWater: Problem = {
   id: 'container-with-most-water',
   title: 'Container With Most Water',
+  difficulty: 'Medium',
   problemStatement: [
     [
       { text: 'You are given an integer array', code: 'height' },
@@ -48,5 +51,6 @@ export const ContainerWithMostWater = {
       '2 <= n <= 105',
       '0 <= height[i] <= 104',
     ],
+    otherConstraints: [],
   },
 }

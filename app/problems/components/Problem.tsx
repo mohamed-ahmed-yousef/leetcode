@@ -1,6 +1,6 @@
 import Tabs from './Problem/Tabs'
 import ProblemInfo from './Problem/ProblemInfo'
-import Description from './Problem/Description'
+import ProblemStatement from './Problem/problemStatement'
 import Example from './Problem/Example'
 import Constraints from './Problem/Constraints'
 import { Problem } from '@/utils/types/problem'
@@ -10,7 +10,8 @@ type ProblemDescriptionProps = {
 }
 
 const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
-  const { constraints, problemStatement, examples, id, title } = problem
+  const { constraints, problemStatement, examples, id, title, difficulty } =
+    problem
   console.log(problemStatement)
   return (
     <div className="bg-dark-layer-1  ">
@@ -20,18 +21,19 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
           <div className="  pb-7 h-[calc(100vh-106px)] overflow-y-auto">
             <div className="max-w-[800px] p-2 lg:p-4">
               <h1 className="text-xl text-white font-bold">{title}</h1>
-              <ProblemInfo like={23} dislike={4} difficulty="Easy" />
+              <ProblemInfo like={23} dislike={4} difficulty={difficulty} />
               <div className="mt-5">
                 {Array.isArray(problemStatement) &&
-                  problemStatement?.map((items, indx) => (
+                  problemStatement?.map((items) => (
                     <div className="mb-1.5" key={items[0]}>
                       {Array.isArray(items) &&
-                        items?.map((item, indx) => (
-                          <Description
+                        items?.map((item) => (
+                          <ProblemStatement
                             key={id}
                             code={item?.code}
                             text={item?.text}
                             boldText={item?.boldText}
+                            liText={item?.liText}
                           />
                         ))}
                     </div>

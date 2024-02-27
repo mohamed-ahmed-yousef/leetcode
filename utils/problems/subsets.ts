@@ -1,6 +1,9 @@
-export const SubSet = {
+import { Problem } from '../types/problem'
+
+export const SubSet: Problem = {
   id: 'subsets',
   title: 'Subsets',
+  difficulty: 'Medium',
   problemStatement: [
     [
       {
