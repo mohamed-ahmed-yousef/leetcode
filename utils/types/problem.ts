@@ -1,11 +1,12 @@
 import { StaticImageData } from 'next/image'
 
-type Example = {
-  id: number
+export type ExampleProps = {
+  id: number | string
   input: string
   output: string
   explanation?: string
   img?: StaticImageData
+  key?: number | string
 }
 type Constraints = {
   rangeConstraints: string[]
@@ -15,6 +16,6 @@ export type Problem = {
   id: string
   title: string
   problemStatement: any
-  examples: Example[]
+  examples: ExampleProps[]
   constraints: Constraints
 }

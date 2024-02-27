@@ -52,6 +52,6 @@ export const twoSum: Problem = {
       '-10 ≤ nums[i] ≤ 10',
       '-10 ≤ target ≤ 10',
     ],
-    otherConstraints: [[{ textBold: 'Only one valid answer exists.' }]],
+    otherConstraints: [[{ boldText: 'Only one valid answer exists.' }]],
   },
 }

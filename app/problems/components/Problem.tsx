@@ -45,7 +45,8 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
                       indx={indx}
                       input={item.input}
                       output={item.output}
-                      explanation={item.explanation}
+                      explanation={item?.explanation}
+                      img={item?.img}
                     />
                   ))}
               </div>

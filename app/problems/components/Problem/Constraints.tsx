@@ -31,7 +31,7 @@ export default function Constraints({
                     {items.map((item) => (
                       <span key={item.text || item.code}>
                         <p className="mt-[1.5px] text-gray-100 font-semibold inline">
-                          {item?.textBold}
+                          {item?.boldText}
                         </p>
                         <p className="inline">{item.text}</p>
                         {item?.code && <Code text={item?.code} />}
