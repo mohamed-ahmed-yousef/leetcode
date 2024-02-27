@@ -1,13 +1,15 @@
+import { StaticImageData } from 'next/image'
+
 type Example = {
   id: number
   input: string
   output: string
   explanation?: string
-  img?: string
+  img?: StaticImageData
 }
 type Constraints = {
   rangeConstraints: string[]
-  otherConstraints: string[]
+  otherConstraints: any
 }
 export type Problem = {
   id: string

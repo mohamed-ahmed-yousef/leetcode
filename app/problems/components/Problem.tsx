@@ -50,8 +50,8 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
                   ))}
               </div>
               <Constraints
-                rangeConstraints={constraints.rangeConstraints}
-                otherConstraints={constraints.otherConstraints}
+                rangeConstraints={constraints?.rangeConstraints}
+                otherConstraints={constraints?.otherConstraints}
               />
             </div>
           </div>

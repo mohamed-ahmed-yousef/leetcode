@@ -5,7 +5,7 @@ import { getProblems } from '@/utils/problems/index'
 
 type ProblemParamsProps = {
   params: {
-    problemid: 'two-sum' | 'reverse-linked-list'
+    problemid: 'two-sum' | 'reverse-linked-list' | 'reverse-linked-list'
   }
 }
 
