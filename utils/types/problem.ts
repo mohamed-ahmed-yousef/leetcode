@@ -13,6 +13,11 @@ type Constraints = {
   rangeConstraints: string[]
   otherConstraints: any
 }
+type StarterCode = {
+  javascript: string
+  python: string
+  typescript: string
+}
 export type Problem = {
   id: string
   title: string
@@ -20,4 +25,5 @@ export type Problem = {
   examples: ExampleProps[]
   constraints: Constraints
   difficulty: string
+  starterCode?: StarterCode
 }

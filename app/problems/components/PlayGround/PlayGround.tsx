@@ -2,7 +2,6 @@ import PlayGroundNav from './PlayGroundNav/PlayGroundNav'
 import Split from 'react-split'
 import TestCase from './TestCase/TestCaseContainer'
 import TextEditor from './TextEditor/TextEditor'
-// import Footer from './TestCase/Footer'
 
 export default function PlayGround() {
   return (

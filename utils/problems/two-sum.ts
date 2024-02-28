@@ -1,9 +1,17 @@
 import { Problem } from '../types/problem'
 
-const starterCodeTwoSum = `function twoSum(nums,target){
+const JSStarterCodeTwoSum = `function twoSum(nums,target){
   // Write your code here
 };`
 
+const PyStarterCodeTwoSum = `class Solution:
+  def twoSum(self, nums: List[int], target: int) -> List[int]:
+
+`
+const TSStarterCodeTwoSum = `function twoSum(nums: number[], target: number): number[] {
+    
+};
+`
 export const twoSum: Problem = {
   id: 'two-sum',
   title: '1. Two Sum',
@@ -54,5 +62,10 @@ export const twoSum: Problem = {
       '-10 ≤ target ≤ 10',
     ],
     otherConstraints: [[{ boldText: 'Only one valid answer exists.' }]],
+  },
+  starterCode: {
+    javascript: JSStarterCodeTwoSum,
+    python: PyStarterCodeTwoSum,
+    typescript: TSStarterCodeTwoSum,
   },
 }
