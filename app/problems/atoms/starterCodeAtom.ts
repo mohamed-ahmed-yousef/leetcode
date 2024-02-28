@@ -1,12 +1,17 @@
 import { atom } from 'recoil'
 
+import { StarterCode } from '@/utils/types/problem'
 type defaultValue = {
-  starterCode: string[]
+  starterCode: StarterCode
 }
 
 export const starterCodeAtom = atom<defaultValue>({
   key: 'starterCodeAtom',
   default: {
-    starterCode: [],
+    starterCode: {
+      javascript: '',
+      python: '',
+      typescript: '',
+    },
   },
 })

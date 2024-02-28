@@ -13,7 +13,7 @@ type Constraints = {
   rangeConstraints: string[]
   otherConstraints: any
 }
-type StarterCode = {
+export type StarterCode = {
   javascript: string
   python: string
   typescript: string
