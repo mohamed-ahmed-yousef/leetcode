@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { StaticImageData } from 'next/image'
 type ExampleProps = {
   input: string
-  output: string
+  output: string | boolean
   explanation?: string
   indx: number
   img?: StaticImageData

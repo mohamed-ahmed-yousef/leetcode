@@ -7,12 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "git config --local core.hooksPath .githooks || echo 'Can not set git hooks'"
+    "prepare": "git config --local core.hooksPath .githooks || echo 'Can not set git hooks'",
+    "typecheck":"tsc --noEmit"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",
-    "*.{js,jsx,ts,tsx,css,scss,md}": "prettier . --write",
-    ".{ts,tsx}": "tsc --noEmit"
+    "*.{js,jsx,ts,tsx,css,scss,md}": "prettier . --write"
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.2",
