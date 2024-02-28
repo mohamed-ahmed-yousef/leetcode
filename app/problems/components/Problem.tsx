@@ -5,6 +5,7 @@ import Example from './Problem/Example'
 import Constraints from './Problem/Constraints'
 import { Problem } from '@/utils/types/problem'
 import Hints from './Problem/Hints'
+import Topics from './Problem/Topics'
 
 type ProblemDescriptionProps = {
   problem: Problem
@@ -14,6 +15,7 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
   const { constraints, problemStatement, examples, id, title, difficulty } =
     problem
   console.log(problemStatement)
+
   return (
     <div className="bg-dark-layer-1  ">
       <div className=" bg-dark-layer-2  ">
@@ -57,6 +59,7 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
                 rangeConstraints={constraints?.rangeConstraints}
                 otherConstraints={constraints?.otherConstraints}
               />
+              <Topics />
               <Hints />
             </div>
           </div>

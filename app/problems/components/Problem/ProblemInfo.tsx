@@ -1,5 +1,9 @@
 import { AiFillLike, AiFillDislike } from 'react-icons/ai'
 import { TiStarOutline } from 'react-icons/ti'
+import { useRefAtom } from '../../atoms/RefAtom'
+import { useRecoilValue } from 'recoil'
+import { FaTag } from 'react-icons/fa'
+import { FaRegLightbulb } from 'react-icons/fa6'
 
 type ProblemInfoProps = {
   like: number
@@ -12,17 +16,26 @@ export default function ProblemInfo({
   dislike,
   difficulty,
 }: ProblemInfoProps) {
+  const { hintRef } = useRecoilValue(useRefAtom)
   const difficultyLevel =
     difficulty === 'Easy'
-      ? 'text-olive bg-olive  '
+      ? 'text-olive   '
       : difficulty === 'Medium'
-        ? 'text-dark-yellow bg-dark-yellow'
-        : 'text-dark-pink bg-dark-pink'
-  console.log(difficultyLevel)
+        ? 'text-dark-yellow '
+        : 'text-dark-pink '
+  const handleScrollDown = () => {
+    if (hintRef) {
+      hintRef?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    }
+  }
+
   return (
-    <div className="flex items-center gap-x-2 mt-3">
+    <div className="flex items-center gap-x-2 mt-3 text-gray-300">
       <div
-        className={`${difficultyLevel} px-1 py-1 bg-opacity-30 rounded-lg font-medium`}
+        className={`${difficultyLevel} bg-dark-fill-3 px-3 py-1 rounded-full bg-opacity-30  font-medium`}
       >
         {difficulty}
       </div>
@@ -37,6 +50,20 @@ export default function ProblemInfo({
       </div>
       <div>
         <TiStarOutline className="cursor-pointer" />
+      </div>
+      <div
+        className="cursor-pointer flex items-center gap-x-2 bg-dark-fill-3 px-3 py-1 rounded-full hover:text-gray-100"
+        onClick={handleScrollDown}
+      >
+        <FaTag />
+        <p>Hints</p>
+      </div>
+      <div
+        className="cursor-pointer flex items-center gap-x-2 bg-dark-fill-3 px-3 py-1 rounded-full hover:text-gray-100"
+        onClick={handleScrollDown}
+      >
+        <FaRegLightbulb />
+        <p>Topics </p>
       </div>
     </div>
   )
