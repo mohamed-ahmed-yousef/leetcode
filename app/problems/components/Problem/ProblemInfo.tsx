@@ -24,10 +24,12 @@ export default function ProblemInfo({
         ? 'text-dark-yellow '
         : 'text-dark-pink '
   const handleScrollDown = () => {
-    hintRef?.current?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    })
+    if (hintRef) {
+      hintRef?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    }
   }
 
   return (

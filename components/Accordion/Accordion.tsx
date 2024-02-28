@@ -14,8 +14,8 @@ export default function Accordion({ header, content, Icon }: AccordionProps) {
   const setRef = useSetRecoilState(useRefAtom)
   const HintRef = useRef(null)
   useEffect(() => {
-    setRef((prev) => ({ ...prev, hintRef: HintRef }))
-  }, [HintRef])
+    setRef((prev) => ({ ...prev, hintRef: HintRef?.current }))
+  }, [HintRef?.current])
 
   const [isActive, setIsActive] = useState(-1)
   const handleOnClick = (indx: number) => {
