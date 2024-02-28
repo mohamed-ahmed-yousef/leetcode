@@ -5,6 +5,7 @@ import {
   TSStarterCodeValidParentheses,
 } from '../starterCode/valid-parentheses'
 import { topics } from '../TopicsAndHints/valid-parentheses'
+import { testCase } from '../testcases/valid-parentheses'
 
 export const ValidParentheses: Problem = {
   id: 'valid-parentheses',
@@ -68,4 +69,5 @@ export const ValidParentheses: Problem = {
     typescript: TSStarterCodeValidParentheses,
   },
   topics,
+  testCase,
 }

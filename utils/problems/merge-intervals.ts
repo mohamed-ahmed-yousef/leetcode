@@ -5,6 +5,7 @@ import {
   TSStarterCodeMergeIntervals,
 } from '../starterCode/merge-intervals'
 import { topics } from '../TopicsAndHints/merge-intervals'
+import { testCase } from '../testcases/merge-intervals'
 export const MergeIntervals: Problem = {
   id: 'merge-intervals',
   title: 'Merge Intervals',
@@ -47,4 +48,5 @@ export const MergeIntervals: Problem = {
     typescript: TSStarterCodeMergeIntervals,
   },
   topics,
+  testCase,
 }

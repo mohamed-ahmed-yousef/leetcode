@@ -44,7 +44,7 @@ export default function Accordion({ header, content, Icon }: AccordionProps) {
               </div>
               <p>{isActive === indx ? <IoIosArrowDown /> : <IoIosArrowUp />}</p>
             </div>
-            <p
+            <div
               className={`ml-5 mt-2 flex ${isActive === indx ? 'block mb-[4px]' : 'hidden'}`}
             >
               {item == 'Topics'
@@ -59,7 +59,7 @@ export default function Accordion({ header, content, Icon }: AccordionProps) {
                   ))
                 : content[indx]}
               {}{' '}
-            </p>
+            </div>
           </div>
         </div>
       ))}

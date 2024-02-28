@@ -5,6 +5,7 @@ import {
   TSStarterCodeTwoSum,
 } from '../starterCode/two-sum'
 import { topics, hints } from '../TopicsAndHints/two-sum'
+import { testCase } from '../testcases/two-sum'
 
 export const twoSum: Problem = {
   id: 'two-sum',
@@ -64,4 +65,5 @@ export const twoSum: Problem = {
   },
   topics: topics,
   hints: hints,
+  testCase: testCase,
 }

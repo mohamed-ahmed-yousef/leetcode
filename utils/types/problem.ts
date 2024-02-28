@@ -29,4 +29,5 @@ export type Problem = {
   starterCode: StarterCode
   topics: string[]
   hints?: string[]
+  testCase: string[][]
 }

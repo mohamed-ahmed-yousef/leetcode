@@ -8,6 +8,7 @@ import Hints from './Problem/Hints'
 import Topics from './Problem/Topics'
 import { useSetRecoilState } from 'recoil'
 import { starterCodeAtom } from '@/app/problems/atoms/starterCodeAtom'
+import { testCaseAtom } from '../atoms/testCaseAtom'
 
 type ProblemDescriptionProps = {
   problem: Problem
@@ -24,9 +25,12 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
     starterCode,
     hints,
     topics,
+    testCase,
   } = problem
   const setStarterCode = useSetRecoilState(starterCodeAtom)
+  const steTestCase = useSetRecoilState(testCaseAtom)
   setStarterCode((prev) => ({ ...prev, starterCode: starterCode }))
+  steTestCase((prev) => ({ ...prev, testCase: testCase }))
 
   return (
     <div className="bg-dark-layer-1  ">

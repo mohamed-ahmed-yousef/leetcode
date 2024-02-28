@@ -7,7 +7,7 @@ import {
   TSStarterCodeContainerWithMostWater,
 } from '../starterCode/container-with-most-water'
 import { topics, hints } from '../TopicsAndHints/container-with-most-water'
-
+import { testCase } from '../testcases/container-with-most-water'
 export const ContainerWithMostWater: Problem = {
   id: 'container-with-most-water',
   title: 'Container With Most Water',
@@ -66,4 +66,5 @@ export const ContainerWithMostWater: Problem = {
   },
   topics,
   hints,
+  testCase,
 }

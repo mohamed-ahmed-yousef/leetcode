@@ -7,12 +7,13 @@ type TestCaseEditorProps = {
 }
 export default function TestCaseEditor({ components }: TestCaseEditorProps) {
   const [targetTest, setTargetTest] = useState(0)
+  console.log(components)
   return (
-    <div>
+    <div className="">
       <div className="flex gap-x-2 mb-3">
         {components.map((item, indx) => (
           <button key={item[0]} onClick={() => setTargetTest(indx)}>
-            <CaseButton number={indx + 1} />
+            <CaseButton number={indx + 1} selectedTest={targetTest === indx} />
           </button>
         ))}
       </div>

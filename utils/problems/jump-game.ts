@@ -5,6 +5,7 @@ import {
   TSStarterCodeJumpGame,
 } from '../starterCode/jump-game'
 import { topics } from '../TopicsAndHints/jump-game'
+import { testCase } from '../testcases/jump-game'
 
 export const jumpGame: Problem = {
   id: 'jump-game',
@@ -51,4 +52,5 @@ export const jumpGame: Problem = {
     typescript: TSStarterCodeJumpGame,
   },
   topics,
+  testCase,
 }

@@ -6,7 +6,7 @@ import {
 } from '../starterCode/maximum-depth-of-binary-tree'
 import MaximumDepthofBinaryTreeImg1 from './images/maximum-depth-of-binary-tree.jpg'
 import { topics } from '../TopicsAndHints/maximum-depth-of-binary-tree'
-
+import { testCase } from '../testcases/maximum-depth-of-binary-tree'
 export const MaximumDepthOfBinaryTree: Problem = {
   id: 'maximum-depth-of-binary-tree',
   title: 'Maximum Depth of Binary Tree',
@@ -64,4 +64,5 @@ export const MaximumDepthOfBinaryTree: Problem = {
     typescript: TSStarterCodeMaximumDepthOfBinaryTree,
   },
   topics,
+  testCase,
 }

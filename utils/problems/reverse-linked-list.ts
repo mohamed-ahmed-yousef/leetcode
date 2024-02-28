@@ -6,6 +6,7 @@ import {
   TSStarterCodeReverseLinkedList,
 } from '../starterCode/reverse-linked-list'
 import { topics } from '../TopicsAndHints/reverse-linked-list'
+import { testCase } from '../testcases/reverse-linked-list'
 export const reverseLinkedList: Problem = {
   id: 'reverse-linked-list',
   title: '2. Reverse Linked List',
@@ -58,4 +59,5 @@ export const reverseLinkedList: Problem = {
     typescript: TSStarterCodeReverseLinkedList,
   },
   topics: topics,
+  testCase,
 }
