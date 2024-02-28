@@ -25,5 +25,5 @@ export type Problem = {
   examples: ExampleProps[]
   constraints: Constraints
   difficulty: string
-  starterCode?: StarterCode
+  starterCode: StarterCode
 }

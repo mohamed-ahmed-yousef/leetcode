@@ -1,10 +1,15 @@
 import { Problem } from '../types/problem'
-
 import LinkedList from './images/reverse-linked-list-1.jpg'
+import {
+  JSStarterCodeReverseLinkedList,
+  PyStarterCodeReverseLinkedList,
+  TSStarterCodeReverseLinkedList,
+} from '../starterCode/reverse-linked-list'
+
 export const reverseLinkedList: Problem = {
   id: 'reverse-linked-list',
   title: '2. Reverse Linked List',
-  difficulty: 'Hard',
+  difficulty: 'Easy',
   problemStatement: [
     [
       {
@@ -46,5 +51,10 @@ export const reverseLinkedList: Problem = {
       ],
       [{ code: '-5000 <= Node.val <= 5000' }],
     ],
+  },
+  starterCode: {
+    javascript: JSStarterCodeReverseLinkedList,
+    python: PyStarterCodeReverseLinkedList,
+    typescript: TSStarterCodeReverseLinkedList,
   },
 }

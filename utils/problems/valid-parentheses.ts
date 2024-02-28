@@ -1,4 +1,9 @@
 import { Problem } from '../types/problem'
+import {
+  JSStarterCodeValidParentheses,
+  PyStarterCodeValidParentheses,
+  TSStarterCodeValidParentheses,
+} from '../starterCode/valid-parentheses'
 
 export const ValidParentheses: Problem = {
   id: 'valid-parentheses',
@@ -54,5 +59,10 @@ export const ValidParentheses: Problem = {
         { text: '.' },
       ],
     ],
+  },
+  starterCode: {
+    javascript: JSStarterCodeValidParentheses,
+    python: PyStarterCodeValidParentheses,
+    typescript: TSStarterCodeValidParentheses,
   },
 }

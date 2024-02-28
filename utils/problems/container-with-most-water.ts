@@ -1,6 +1,11 @@
 import { Problem } from '../types/problem'
 
 import ContainerWithMostWaterImg1 from './images/container-with-most-water.jpg'
+import {
+  JSStarterCodeContainerWithMostWater,
+  PyStarterCodeContainerWithMostWater,
+  TSStarterCodeContainerWithMostWater,
+} from '../starterCode/container-with-most-water'
 
 export const ContainerWithMostWater: Problem = {
   id: 'container-with-most-water',
@@ -52,5 +57,10 @@ export const ContainerWithMostWater: Problem = {
       '0 <= height[i] <= 104',
     ],
     otherConstraints: [],
+  },
+  starterCode: {
+    javascript: JSStarterCodeContainerWithMostWater,
+    python: PyStarterCodeContainerWithMostWater,
+    typescript: TSStarterCodeContainerWithMostWater,
   },
 }

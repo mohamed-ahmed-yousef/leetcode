@@ -1,17 +1,10 @@
 import { Problem } from '../types/problem'
+import {
+  JSStarterCodeTwoSum,
+  PyStarterCodeTwoSum,
+  TSStarterCodeTwoSum,
+} from '../starterCode/two-sum'
 
-const JSStarterCodeTwoSum = `function twoSum(nums,target){
-  // Write your code here
-};`
-
-const PyStarterCodeTwoSum = `class Solution:
-  def twoSum(self, nums: List[int], target: int) -> List[int]:
-
-`
-const TSStarterCodeTwoSum = `function twoSum(nums: number[], target: number): number[] {
-    
-};
-`
 export const twoSum: Problem = {
   id: 'two-sum',
   title: '1. Two Sum',
