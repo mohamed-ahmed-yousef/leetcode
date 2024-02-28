@@ -18,6 +18,7 @@ export type StarterCode = {
   python: string
   typescript: string
 }
+
 export type Problem = {
   id: string
   title: string
@@ -26,4 +27,6 @@ export type Problem = {
   constraints: Constraints
   difficulty: string
   starterCode: StarterCode
+  topics: string[]
+  hints?: string[]
 }

@@ -4,6 +4,7 @@ import {
   PyStarterCodeSubsets,
   TSStarterCodeSubsets,
 } from '../starterCode/subsets'
+import { topics } from '../TopicsAndHints/subsets'
 export const SubSet: Problem = {
   id: 'subsets',
   title: 'Subsets',
@@ -72,4 +73,5 @@ export const SubSet: Problem = {
     python: PyStarterCodeSubsets,
     typescript: TSStarterCodeSubsets,
   },
+  topics,
 }

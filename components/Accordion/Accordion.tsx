@@ -45,9 +45,20 @@ export default function Accordion({ header, content, Icon }: AccordionProps) {
               <p>{isActive === indx ? <IoIosArrowDown /> : <IoIosArrowUp />}</p>
             </div>
             <p
-              className={`ml-5 mt-2  ${isActive === indx ? 'block mb-[4px]' : 'hidden'}`}
+              className={`ml-5 mt-2 flex ${isActive === indx ? 'block mb-[4px]' : 'hidden'}`}
             >
-              {content[indx]}{' '}
+              {item == 'Topics'
+                ? content.map((item) => (
+                    <p
+                      className="bg-dark-fill-2 px-3 py-1 rounded-lg ml-[10px]"
+                      key={item}
+                    >
+                      {' '}
+                      {item}
+                    </p>
+                  ))
+                : content[indx]}
+              {}{' '}
             </p>
           </div>
         </div>

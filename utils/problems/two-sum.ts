@@ -4,6 +4,7 @@ import {
   PyStarterCodeTwoSum,
   TSStarterCodeTwoSum,
 } from '../starterCode/two-sum'
+import { topics, hints } from '../TopicsAndHints/two-sum'
 
 export const twoSum: Problem = {
   id: 'two-sum',
@@ -61,4 +62,6 @@ export const twoSum: Problem = {
     python: PyStarterCodeTwoSum,
     typescript: TSStarterCodeTwoSum,
   },
+  topics: topics,
+  hints: hints,
 }

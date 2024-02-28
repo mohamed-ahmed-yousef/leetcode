@@ -7,7 +7,7 @@ import {
   PyStarterCodeSearchA2DMatrix,
   TSStarterCodeSearchA2DMatrix,
 } from '../starterCode/search-a-2d-matrix'
-
+import { topics } from '../TopicsAndHints/search-a-2d-matrix'
 export const SearchA2DMatrix: Problem = {
   id: 'search-a-2d-matrix',
   title: 'Search a 2D Matrix',
@@ -72,4 +72,5 @@ export const SearchA2DMatrix: Problem = {
     python: PyStarterCodeSearchA2DMatrix,
     typescript: TSStarterCodeSearchA2DMatrix,
   },
+  topics,
 }

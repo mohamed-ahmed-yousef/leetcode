@@ -4,6 +4,7 @@ import {
   PyStarterCodeBestTimeToBuyAndSell,
   TSStarterCodeBestTimeToBuyAndSell,
 } from '../starterCode/best-time-to-buy-and-sell-stock'
+import { topics } from '../TopicsAndHints/best-time-to-buy-and-sell-stock'
 export const BestTimetoBuyandSellStock: Problem = {
   id: 'best-time-to-buy-and-sell-stock',
   title: 'Best Time to Buy and Sell Stock',
@@ -59,4 +60,5 @@ export const BestTimetoBuyandSellStock: Problem = {
     python: PyStarterCodeBestTimeToBuyAndSell,
     typescript: TSStarterCodeBestTimeToBuyAndSell,
   },
+  topics,
 }

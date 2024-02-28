@@ -4,11 +4,13 @@ import {
   PyStarterCodeValidParentheses,
   TSStarterCodeValidParentheses,
 } from '../starterCode/valid-parentheses'
+import { topics } from '../TopicsAndHints/valid-parentheses'
 
 export const ValidParentheses: Problem = {
   id: 'valid-parentheses',
   title: 'Valid Parentheses',
   difficulty: 'Easy',
+
   problemStatement: [
     [
       { text: 'Given a string', code: 's' },
@@ -65,4 +67,5 @@ export const ValidParentheses: Problem = {
     python: PyStarterCodeValidParentheses,
     typescript: TSStarterCodeValidParentheses,
   },
+  topics,
 }

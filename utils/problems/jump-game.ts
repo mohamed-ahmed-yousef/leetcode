@@ -4,6 +4,7 @@ import {
   PyStarterCodeJumpGame,
   TSStarterCodeJumpGame,
 } from '../starterCode/jump-game'
+import { topics } from '../TopicsAndHints/jump-game'
 
 export const jumpGame: Problem = {
   id: 'jump-game',
@@ -49,4 +50,5 @@ export const jumpGame: Problem = {
     python: PyStarterCodeJumpGame,
     typescript: TSStarterCodeJumpGame,
   },
+  topics,
 }

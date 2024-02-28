@@ -4,6 +4,7 @@ import {
   PyStarterCodeMergeIntervals,
   TSStarterCodeMergeIntervals,
 } from '../starterCode/merge-intervals'
+import { topics } from '../TopicsAndHints/merge-intervals'
 export const MergeIntervals: Problem = {
   id: 'merge-intervals',
   title: 'Merge Intervals',
@@ -45,4 +46,5 @@ export const MergeIntervals: Problem = {
     python: PyStarterCodeMergeIntervals,
     typescript: TSStarterCodeMergeIntervals,
   },
+  topics,
 }

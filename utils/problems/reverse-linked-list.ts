@@ -5,7 +5,7 @@ import {
   PyStarterCodeReverseLinkedList,
   TSStarterCodeReverseLinkedList,
 } from '../starterCode/reverse-linked-list'
-
+import { topics } from '../TopicsAndHints/reverse-linked-list'
 export const reverseLinkedList: Problem = {
   id: 'reverse-linked-list',
   title: '2. Reverse Linked List',
@@ -57,4 +57,5 @@ export const reverseLinkedList: Problem = {
     python: PyStarterCodeReverseLinkedList,
     typescript: TSStarterCodeReverseLinkedList,
   },
+  topics: topics,
 }

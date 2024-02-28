@@ -6,6 +6,7 @@ import {
   PyStarterCodeContainerWithMostWater,
   TSStarterCodeContainerWithMostWater,
 } from '../starterCode/container-with-most-water'
+import { topics, hints } from '../TopicsAndHints/container-with-most-water'
 
 export const ContainerWithMostWater: Problem = {
   id: 'container-with-most-water',
@@ -63,4 +64,6 @@ export const ContainerWithMostWater: Problem = {
     python: PyStarterCodeContainerWithMostWater,
     typescript: TSStarterCodeContainerWithMostWater,
   },
+  topics,
+  hints,
 }

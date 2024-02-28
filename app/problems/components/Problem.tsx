@@ -22,6 +22,8 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
     title,
     difficulty,
     starterCode,
+    hints,
+    topics,
   } = problem
   const setStarterCode = useSetRecoilState(starterCodeAtom)
   setStarterCode((prev) => ({ ...prev, starterCode: starterCode }))
@@ -69,8 +71,8 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
                 rangeConstraints={constraints?.rangeConstraints}
                 otherConstraints={constraints?.otherConstraints}
               />
-              <Topics />
-              <Hints />
+              <Topics topics={topics} />
+              <Hints hints={hints} />
             </div>
           </div>
         </div>
