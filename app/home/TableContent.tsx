@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { AiFillYoutube } from 'react-icons/ai'
 import YoutubeModal from './YoutubeModal'
 import { useState } from 'react'
+
 export default function TableContent() {
   const [isOpen, setIsOpen] = useState(false)
   const [videoId, setVideoId] = useState<string | undefined>('')
@@ -25,7 +26,7 @@ export default function TableContent() {
           <div
             key={problem.id}
             className={`grid grid-cols-11
-                 ${indx % 2 == 1 ? 'bg-dark-layer-1' : ''} rounded-lg px-2 py-4`}
+                  ${indx % 2 == 1 ? 'bg-dark-layer-1' : ''} rounded-lg px-2 py-4`}
           >
             <p className="col-span-1">
               {' '}

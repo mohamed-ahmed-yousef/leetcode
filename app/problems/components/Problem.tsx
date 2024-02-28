@@ -1,73 +1,63 @@
 import Tabs from './Problem/Tabs'
 import ProblemInfo from './Problem/ProblemInfo'
-import Description from './Problem/Description'
+import ProblemStatement from './Problem/problemStatement'
 import Example from './Problem/Example'
 import Constraints from './Problem/Constraints'
-type ProblemDescriptionProps = {}
+import { Problem } from '@/utils/types/problem'
+import Hints from './Problem/Hints'
 
-const ProblemDescription: React.FC<ProblemDescriptionProps> = () => {
+type ProblemDescriptionProps = {
+  problem: Problem
+}
+
+const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
+  const { constraints, problemStatement, examples, id, title, difficulty } =
+    problem
+  console.log(problemStatement)
   return (
     <div className="bg-dark-layer-1  ">
       <div className=" bg-dark-layer-2  ">
         <div className="bg-dark-layer-1  ">
           <Tabs text={'Description'} />
-          <div className="  pb-7 h-[calc(100vh-60px)] overflow-y-auto">
+          <div className="  pb-7 h-[calc(100vh-106px)] overflow-y-auto">
             <div className="max-w-[800px] p-2 lg:p-4">
-              <h1 className="text-xl text-white font-bold">1.Two Sum</h1>
-              <ProblemInfo like={23} dislike={4} difficulty="Easy" />
-              <div className="mt-5 ">
-                <Description
-                  code={['nums', 'target', 'target']}
-                  text={[
-                    'Given an array of integers ',
-                    'and an integer',
-                    'return indices of the two numbers such that they add up to',
-                  ]}
-                />
-                <Description
-                  boldText={['exactly one solution']}
-                  text={[
-                    'You may assume that each input would have ',
-                    ', and you may not use thesame element twice.',
-                  ]}
-                />
-                <Description
-                  text={['You can return the answer in any order.']}
-                />
+              <h1 className="text-xl text-white font-bold">{title}</h1>
+              <ProblemInfo like={23} dislike={4} difficulty={difficulty} />
+              <div className="mt-5">
+                {Array.isArray(problemStatement) &&
+                  problemStatement?.map((items) => (
+                    <div className="mb-1.5" key={items[0]}>
+                      {Array.isArray(items) &&
+                        items?.map((item) => (
+                          <ProblemStatement
+                            key={id}
+                            code={item?.code}
+                            text={item?.text}
+                            boldText={item?.boldText}
+                            liText={item?.liText}
+                          />
+                        ))}
+                    </div>
+                  ))}
               </div>
               <div>
-                <Example
-                  header="Example 1 :"
-                  input="nums = [2,7,11,15], target = 9 "
-                  output="[0,1] "
-                  explanation="Because nums[0] + nums[1] == 9, we return [0, 1]."
-                />
-                <Example
-                  header="Example 2 :"
-                  input="nums = [2,7,11,15], target = 9 "
-                  output="[0,1] "
-                  explanation="Because nums[0] + nums[1] == 9, we return [0, 1]."
-                />
-                <Example
-                  header="Example 3 :"
-                  input="nums = [2,7,11,15], target = 9 "
-                  output="[0,1] "
-                  explanation="Because nums[0] + nums[1] == 9, we return [0, 1]."
-                />
+                {Array.isArray(examples) &&
+                  examples?.map((item, indx) => (
+                    <Example
+                      key={item.id}
+                      indx={indx}
+                      input={item.input}
+                      output={item.output}
+                      explanation={item?.explanation}
+                      img={item?.img}
+                    />
+                  ))}
               </div>
-
               <Constraints
-                rangeConstraints={[
-                  '2 <= nums.length <= 10^4',
-                  '-10^9 <= nums[i] <= 10^9',
-                  '-10^9 <= target <= 10^9',
-                  'Only one valid answer exists.',
-                ]}
-                otherConstraints={[
-                  'You can return the answer in any order.',
-                  'You may assume that each input would have exactly one solution.',
-                ]}
+                rangeConstraints={constraints?.rangeConstraints}
+                otherConstraints={constraints?.otherConstraints}
               />
+              <Hints />
             </div>
           </div>
         </div>

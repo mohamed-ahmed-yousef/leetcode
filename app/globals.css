@@ -7,23 +7,38 @@ body {
   padding: 0px;
   box-sizing: border-box;
 }
+/* splitter */
 .split {
   display: flex;
   flex-direction: row;
 }
 
 .gutter {
-  background-color: rgb(40, 40, 40);
+  background-color: rgb(26, 26, 26);
   background-repeat: no-repeat;
   background-position: 50%;
 }
 .gutter:hover {
-  background-color: rgb(26, 26, 26);
+  background-color: #444;
 }
 
 .gutter.gutter-horizontal {
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
   cursor: col-resize;
+}
+
+.gutter.gutter-vertical {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
+  cursor: row-resize;
+}
+
+/* code editor */
+.cm-scroller,
+.cm-gutters {
+  background-color: #282828 !important;
+}
+.cm-focused {
+  outline: none !important;
 }
 
 /* scroll bar */
@@ -34,16 +49,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #222222;
+  background-color: #4444;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #333333;
+  background-color: #6666;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #444444;
+  background-color: #8888;
 }
 
 /* For Safari compatibility */

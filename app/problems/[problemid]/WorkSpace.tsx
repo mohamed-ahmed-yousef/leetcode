@@ -1,14 +1,16 @@
 import Split from 'react-split'
-import Problem from '../components/Problem'
+import ProblemContainer from '../components/Problem'
+import PlayGround from '../components/PlayGround/PlayGround'
+import { Problem } from '@/utils/types/problem'
 
-export default function WorkSpace() {
-  const giveStyle = {
-    minHeight: 'calc(100vh - 106px)',
-  }
+type WorkSpaceProps = {
+  problem: Problem
+}
+export default function WorkSpace({ problem }: WorkSpaceProps) {
   return (
-    <Split className="split  " style={giveStyle} minSize={0}>
-      <Problem />
-      <div className="overflow-auto">Text editor here </div>
+    <Split className="split min-h-[calc(100vh-106px)]" minSize={0}>
+      <ProblemContainer problem={problem} />
+      <PlayGround />
     </Split>
   )
 }
