@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "git config --local core.hooksPath .githooks || echo 'Can not set git hooks'",
-    "typecheck":"tsc --noEmit"
+    "typecheck": "tsc --noEmit"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",
