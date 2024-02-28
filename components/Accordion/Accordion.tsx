@@ -1,6 +1,8 @@
 'use client'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
+import { useRefAtom } from '@/app/problems/atoms/RefAtom'
+import { useSetRecoilState } from 'recoil'
 
 type AccordionProps = {
   header: string[]
@@ -9,13 +11,19 @@ type AccordionProps = {
 }
 
 export default function Accordion({ header, content, Icon }: AccordionProps) {
+  const setRef = useSetRecoilState(useRefAtom)
+  const HintRef = useRef(null)
+  useEffect(() => {
+    setRef((prev) => ({ ...prev, hintRef: HintRef }))
+  }, [HintRef])
+
   const [isActive, setIsActive] = useState(-1)
   const handleOnClick = (indx: number) => {
     if (isActive == indx) setIsActive(-1)
     else setIsActive(indx)
   }
   return (
-    <div className=" mt-5">
+    <div className=" mt-5" ref={HintRef}>
       {header.map((item, indx) => (
         <div
           className="w-fulll border-t-[2px] border-dark-fill-2  px-[10px] mt-4"
