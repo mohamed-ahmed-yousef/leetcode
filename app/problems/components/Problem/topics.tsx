@@ -5,3 +5,4 @@ export default function Topics() {
   const header = ['Topics']
   return <Accordion content={['content1']} header={header} Icon={<FaTag />} />
 }
+
