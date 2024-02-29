@@ -78,42 +78,53 @@ export default function ProblemInfo({ problemId }: ProblemInfoProps) {
   return (
     <div className="flex items-center gap-x-2 mt-3 text-gray-300">
       <div className="rounded-full font-medium w-[70px] text-center">
-        {isLoading ? (
-          <Rectangle />
-        ) : (
+        {isLoading && <Rectangle />}
+        {!isLoading && (
           <p
             className={`${difficultyLevel} rounded-full px-3 py-1 bg-dark-fill-3`}
           >
+            {' '}
             {problemInfo?.difficulty}{' '}
           </p>
         )}
       </div>
-
-      <div className="w-5">
-        {isLoading ? (
-          <CircleSkeleton />
-        ) : (
-          <LuCheckCircle className="text-dark-green-s" />
+      <div>
+        {isLoading && (
+          <div className="w-5">
+            {' '}
+            <CircleSkeleton />
+          </div>
+        )}
+        {userProblemInfo.solved && !isLoading && (
+          <LuCheckCircle className="text-dark-green-s w-5" />
         )}
       </div>
 
       <div className="flex items-center w-8">
-        {isLoading ? (
-          <Rectangle />
-        ) : (
+        {isLoading && <Rectangle />}
+        {!isLoading && (
           <>
-            <AiFillLike className="cursor-pointer mr-[2px]" />
+            {!userProblemInfo.likes && (
+              <AiFillLike className="cursor-pointer mr-[2px]" />
+            )}
+            {userProblemInfo.likes && (
+              <AiFillLike className="cursor-pointer mr-[2px] text-dark-blue-s" />
+            )}
             <p>{problemInfo?.likes} </p>
           </>
         )}
       </div>
 
       <div className="flex items-center w-8 ">
-        {isLoading ? (
-          <Rectangle />
-        ) : (
+        {isLoading && <Rectangle />}
+        {!isLoading && (
           <>
-            <AiFillDislike className="cursor-pointer mr-[2px]" />
+            {!userProblemInfo.dislikes && (
+              <AiFillDislike className="cursor-pointer mr-[2px]" />
+            )}
+            {userProblemInfo.dislikes && (
+              <AiFillDislike className="cursor-pointer mr-[2px] text-dark-blue-s" />
+            )}
             <p>{problemInfo?.dislikes} </p>
           </>
         )}
