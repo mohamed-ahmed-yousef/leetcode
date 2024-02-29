@@ -12,6 +12,10 @@ import { DBProblems } from '@/types/problem'
 import CircleSkeleton from './skeleton/Circle'
 import Rectangle from './skeleton/Rectangle'
 
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { auth, fireStore } from '@/app/firebase/firebase'
+import { doc, getDoc } from 'firebase/firestore'
+
 type ProblemInfoProps = {
   problemId: string
 }
@@ -20,6 +24,33 @@ export default function ProblemInfo({ problemId }: ProblemInfoProps) {
   const { hintRef } = useRecoilValue(useRefAtom)
   const [problemInfo, setProblemInfo] = useState<DBProblems | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [user] = useAuthState(auth)
+  console.log(user)
+  const [userProblemInfo, setUserProblemInfo] = useState({
+    likes: false,
+    dislikes: false,
+    starred: false,
+    solved: false,
+  })
+
+  useEffect(() => {
+    const getData = async () => {
+      const docRef = doc(fireStore, 'users', user?.uid!)
+      const docSnap = await getDoc(docRef)
+      let userInfo = null
+      if (docSnap.exists()) {
+        userInfo = docSnap.data()
+      }
+      setUserProblemInfo({
+        likes: userInfo?.likedProblems?.includes(problemId),
+        dislikes: userInfo?.dislikedProblems?.includes(problemId),
+        starred: userInfo?.starredProblems?.includes(problemId),
+        solved: userInfo?.solvedProblems?.includes(problemId),
+      })
+    }
+    if (user !== null) getData()
+  }, [problemId, user])
+
   useEffect(() => {
     const getProblemInfo = async () => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -27,8 +58,7 @@ export default function ProblemInfo({ problemId }: ProblemInfoProps) {
       setProblemInfo(currentProblem[0])
     }
     getProblemInfo()
-    return () => {}
-  }, [])
+  }, [problemId])
 
   const difficultyLevel =
     problemInfo?.difficulty === 'Easy'

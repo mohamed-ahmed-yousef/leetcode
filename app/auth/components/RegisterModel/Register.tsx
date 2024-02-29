@@ -61,6 +61,7 @@ export default function Register() {
         solvedProblems: [],
         createdAt: new Date(),
         updatedAt: new Date(),
+        uid: newUser.user.uid,
       })
     } catch (error: any) {
       toast.dismiss('loading')
