@@ -40,7 +40,7 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
           <div className="  pb-7 h-[calc(100vh-106px)] overflow-y-auto">
             <div className="max-w-[800px] p-2 lg:p-4">
               <h1 className="text-xl text-white font-bold">{title}</h1>
-              <ProblemInfo like={23} dislike={4} difficulty={difficulty} />
+              <ProblemInfo problemId={id} />
               <div className="mt-5">
                 {Array.isArray(problemStatement) &&
                   problemStatement?.map((items) => (

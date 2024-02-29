@@ -12,7 +12,7 @@ type ProblemParamsProps = {
 export default function Problem({ params }: ProblemParamsProps) {
   const { problemid } = params
   const problem = getProblems[problemid]
-  console.log(problem)
+  // console.log(problem)
   return (
     <div className=" w-full h-screen">
       <HomeNavBar homePage />

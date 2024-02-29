@@ -7,7 +7,7 @@ type TestCaseEditorProps = {
 }
 export default function TestCaseEditor({ components }: TestCaseEditorProps) {
   const [targetTest, setTargetTest] = useState(0)
-  console.log(components)
+  // console.log(components)
   return (
     <div className="">
       <div className="flex gap-x-2 mb-3">

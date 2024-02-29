@@ -1,6 +1,6 @@
 'use client'
 // import { problems } from '@/components/problem/problem.mock'
-import { BsCheckCircle } from 'react-icons/bs'
+import { LuCheckCircle } from 'react-icons/lu'
 import Link from 'next/link'
 import { AiFillYoutube } from 'react-icons/ai'
 import YoutubeModal from './YoutubeModal'
@@ -39,7 +39,7 @@ export default function TableContent({
             >
               <p className="col-span-1">
                 {' '}
-                <BsCheckCircle className="text-dark-green-s" />{' '}
+                <LuCheckCircle className="text-dark-green-s" />{' '}
               </p>
               <Link
                 href={`/problems/${problem?.id}`}
