@@ -1,6 +1,6 @@
 import { atom } from 'recoil'
 
-import { StarterCode } from '@/utils/types/problem'
+import { StarterCode } from '@/types/problem'
 type defaultValue = {
   starterCode: StarterCode
 }

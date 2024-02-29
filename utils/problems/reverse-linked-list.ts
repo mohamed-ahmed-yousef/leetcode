@@ -1,4 +1,4 @@
-import { Problem } from '../types/problem'
+import { Problem } from '../../types/problem'
 import LinkedList from './images/reverse-linked-list-1.jpg'
 import {
   JSStarterCodeReverseLinkedList,

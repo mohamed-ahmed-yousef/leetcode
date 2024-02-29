@@ -1,4 +1,4 @@
-import { Problem } from '../types/problem'
+import { Problem } from '../../types/problem'
 
 import ContainerWithMostWaterImg1 from './images/container-with-most-water.jpg'
 import {
