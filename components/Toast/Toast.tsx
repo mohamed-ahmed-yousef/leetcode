@@ -24,4 +24,11 @@ const AuthToastLoading = (message: string, id: string) => {
   })
 }
 
-export { AuthToasterError, AuthToasterSuccess, AuthToastLoading }
+const notLogin = (message: string) => {
+  return toast.error(`Login to be able to ${message} a problem`, {
+    theme: 'dark',
+    position: 'top-left',
+    autoClose: 2000,
+  })
+}
+export { AuthToasterError, AuthToasterSuccess, AuthToastLoading, notLogin }

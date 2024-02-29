@@ -11,10 +11,12 @@ import useGetOneProblem from './hooks/getOneProblem'
 import { DBProblems } from '@/types/problem'
 import CircleSkeleton from './skeleton/Circle'
 import Rectangle from './skeleton/Rectangle'
-
+import { runTransaction } from 'firebase/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth, fireStore } from '@/app/firebase/firebase'
 import { doc, getDoc } from 'firebase/firestore'
+import { notLogin } from '@/components/Toast/Toast'
+import Spinner from './skeleton/Spinner'
 
 type ProblemInfoProps = {
   problemId: string
@@ -24,11 +26,12 @@ export default function ProblemInfo({ problemId }: ProblemInfoProps) {
   const { hintRef } = useRecoilValue(useRefAtom)
   const [problemInfo, setProblemInfo] = useState<DBProblems | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [isChangingState, setIsChangingState] = useState(false)
   const [user] = useAuthState(auth)
   console.log(user)
   const [userProblemInfo, setUserProblemInfo] = useState({
-    likes: false,
-    dislikes: false,
+    liked: false,
+    disliked: false,
     starred: false,
     solved: false,
   })
@@ -42,10 +45,10 @@ export default function ProblemInfo({ problemId }: ProblemInfoProps) {
         userInfo = docSnap.data()
       }
       setUserProblemInfo({
-        likes: userInfo?.likedProblems?.includes(problemId),
-        dislikes: userInfo?.dislikedProblems?.includes(problemId),
-        starred: userInfo?.starredProblems?.includes(problemId),
-        solved: userInfo?.solvedProblems?.includes(problemId),
+        liked: userInfo?.likedProblems.includes(problemId),
+        disliked: userInfo?.dislikedProblems.includes(problemId),
+        starred: userInfo?.starredProblems.includes(problemId),
+        solved: userInfo?.solvedProblems.includes(problemId),
       })
     }
     if (user !== null) getData()
@@ -75,6 +78,78 @@ export default function ProblemInfo({ problemId }: ProblemInfoProps) {
     }
   }
 
+  const handleLikeClick = async () => {
+    if (!user) {
+      notLogin('Like')
+      return
+    }
+    setIsChangingState(true)
+    await runTransaction(fireStore, async (transaction) => {
+      const userRef = doc(fireStore, 'users', user?.uid!)
+      const problemRef = doc(fireStore, 'problems', problemId)
+      const userDoc = await transaction.get(userRef)
+      const problemDoc = await transaction.get(problemRef)
+      if (userDoc.exists() && problemDoc.exists()) {
+        console.log(userDoc.data())
+        if (userProblemInfo?.liked) {
+          console.log('enterer here')
+          transaction.update(userRef, {
+            likedProblems: userDoc
+              .data()
+              .likedProblems?.filter((id: string) => id !== problemId),
+          })
+          transaction.update(problemRef, {
+            likes: problemDoc.data().likes - 1,
+          })
+          setProblemInfo((prev) =>
+            prev ? { ...prev, likes: prev.likes - 1 } : null
+          )
+          setUserProblemInfo((prev) => ({ ...prev, liked: false }))
+        } else if (userProblemInfo?.disliked) {
+          transaction.update(userRef, {
+            dislikedProblems: userDoc
+              .data()
+              .dislikedProblems?.filter((id: string) => id !== problemId),
+            likedProblems: [...userDoc.data()?.likedProblems, problemId],
+          })
+          transaction.update(problemRef, {
+            dislikes: problemDoc.data().dislikes - 1,
+            likes: problemDoc.data().likes + 1,
+          })
+          setProblemInfo((prev) =>
+            prev
+              ? {
+                  ...prev,
+                  likes: prev?.likes + 1,
+                  dislikes: prev?.dislikes - 1,
+                }
+              : null
+          )
+          setUserProblemInfo((prev) => ({
+            ...prev,
+            liked: true,
+            disliked: false,
+          }))
+        } else {
+          transaction.update(userRef, {
+            likedProblems: [...userDoc.data().likedProblems, problemId],
+          })
+          transaction.update(problemRef, {
+            likes: problemDoc.data().likes + 1,
+          })
+          setUserProblemInfo({
+            ...userProblemInfo,
+            liked: !userProblemInfo.liked,
+          })
+          setProblemInfo((prev) =>
+            prev ? { ...prev, likes: prev?.likes + 1 } : null
+          )
+        }
+      }
+    })
+    setIsChangingState(false)
+  }
+
   return (
     <div className="flex items-center gap-x-2 mt-3 text-gray-300">
       <div className="rounded-full font-medium w-[70px] text-center">
@@ -102,13 +177,20 @@ export default function ProblemInfo({ problemId }: ProblemInfoProps) {
 
       <div className="flex items-center w-8">
         {isLoading && <Rectangle />}
-        {!isLoading && (
+        {isChangingState && <Spinner />}
+        {!isLoading && !isChangingState && (
           <>
-            {!userProblemInfo.likes && (
-              <AiFillLike className="cursor-pointer mr-[2px]" />
+            {!userProblemInfo.liked && (
+              <AiFillLike
+                className="cursor-pointer mr-[2px]"
+                onClick={() => handleLikeClick()}
+              />
             )}
-            {userProblemInfo.likes && (
-              <AiFillLike className="cursor-pointer mr-[2px] text-dark-blue-s" />
+            {userProblemInfo.liked && (
+              <AiFillLike
+                className="cursor-pointer mr-[2px] text-dark-blue-s"
+                onClick={() => handleLikeClick()}
+              />
             )}
             <p>{problemInfo?.likes} </p>
           </>
@@ -119,10 +201,10 @@ export default function ProblemInfo({ problemId }: ProblemInfoProps) {
         {isLoading && <Rectangle />}
         {!isLoading && (
           <>
-            {!userProblemInfo.dislikes && (
+            {!userProblemInfo.disliked && (
               <AiFillDislike className="cursor-pointer mr-[2px]" />
             )}
-            {userProblemInfo.dislikes && (
+            {userProblemInfo.disliked && (
               <AiFillDislike className="cursor-pointer mr-[2px] text-dark-blue-s" />
             )}
             <p>{problemInfo?.dislikes} </p>
