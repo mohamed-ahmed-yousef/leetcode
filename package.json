@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.2",
+    "@codemirror/lang-python": "^6.1.4",
     "@hookform/devtools": "^4.3.1",
     "@hookform/resolvers": "^3.3.4",
     "@uiw/codemirror-theme-vscode": "^4.21.24",

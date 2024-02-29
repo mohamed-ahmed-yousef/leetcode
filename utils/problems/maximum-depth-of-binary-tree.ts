@@ -1,9 +1,16 @@
 import { Problem } from '../types/problem'
-
+import {
+  JSStarterCodeMaximumDepthOfBinaryTree,
+  PyStarterCodeMaximumDepthOfBinaryTree,
+  TSStarterCodeMaximumDepthOfBinaryTree,
+} from '../starterCode/maximum-depth-of-binary-tree'
 import MaximumDepthofBinaryTreeImg1 from './images/maximum-depth-of-binary-tree.jpg'
-export const MaximumDepthOfBinaryTree = {
+import { topics } from '../TopicsAndHints/maximum-depth-of-binary-tree'
+import { testCase } from '../testcases/maximum-depth-of-binary-tree'
+export const MaximumDepthOfBinaryTree: Problem = {
   id: 'maximum-depth-of-binary-tree',
   title: 'Maximum Depth of Binary Tree',
+  difficulty: 'Easy',
   problemStatement: [
     [
       { text: 'Given the ', code: 'root' },
@@ -51,4 +58,11 @@ export const MaximumDepthOfBinaryTree = {
       ],
     ],
   },
+  starterCode: {
+    javascript: JSStarterCodeMaximumDepthOfBinaryTree,
+    python: PyStarterCodeMaximumDepthOfBinaryTree,
+    typescript: TSStarterCodeMaximumDepthOfBinaryTree,
+  },
+  topics,
+  testCase,
 }

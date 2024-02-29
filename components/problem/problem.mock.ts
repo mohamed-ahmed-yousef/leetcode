@@ -19,7 +19,7 @@ export const problems: Problem[] = [
   {
     id: 'reverse-linked-list',
     title: 'Reverse Linked List',
-    difficulty: 'Hard',
+    difficulty: 'Easy',
     category: 'Linked List',
     order: 2,
     videoId: '',

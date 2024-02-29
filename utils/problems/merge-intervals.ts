@@ -1,8 +1,15 @@
 import { Problem } from '../types/problem'
-
-export const MergeIntervals = {
+import {
+  JSStarterCodeMergeIntervals,
+  PyStarterCodeMergeIntervals,
+  TSStarterCodeMergeIntervals,
+} from '../starterCode/merge-intervals'
+import { topics } from '../TopicsAndHints/merge-intervals'
+import { testCase } from '../testcases/merge-intervals'
+export const MergeIntervals: Problem = {
   id: 'merge-intervals',
   title: 'Merge Intervals',
+  difficulty: 'Medium',
   problemStatement: [
     [
       { text: 'Given an array of', code: 'intervals' },
@@ -33,5 +40,13 @@ export const MergeIntervals = {
       'intervals[i].length == 2',
       '0 <= starti <= endi <= 104',
     ],
+    otherConstraints: [],
   },
+  starterCode: {
+    javascript: JSStarterCodeMergeIntervals,
+    python: PyStarterCodeMergeIntervals,
+    typescript: TSStarterCodeMergeIntervals,
+  },
+  topics,
+  testCase,
 }

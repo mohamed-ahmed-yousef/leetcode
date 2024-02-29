@@ -1,4 +1,11 @@
 import { Problem } from '../types/problem'
+import {
+  JSStarterCodeJumpGame,
+  PyStarterCodeJumpGame,
+  TSStarterCodeJumpGame,
+} from '../starterCode/jump-game'
+import { topics } from '../TopicsAndHints/jump-game'
+import { testCase } from '../testcases/jump-game'
 
 export const jumpGame: Problem = {
   id: 'jump-game',
@@ -39,4 +46,11 @@ export const jumpGame: Problem = {
     rangeConstraints: ['1 <= nums.length <= 10^4', '0 <= nums[i] <= 10^5'],
     otherConstraints: [],
   },
+  starterCode: {
+    javascript: JSStarterCodeJumpGame,
+    python: PyStarterCodeJumpGame,
+    typescript: TSStarterCodeJumpGame,
+  },
+  topics,
+  testCase,
 }

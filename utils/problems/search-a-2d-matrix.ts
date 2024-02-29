@@ -2,6 +2,14 @@ import { Problem } from '../types/problem'
 
 import SearchImgOne from './images/search-a-2d-1.jpg'
 import SearchImageTwo from './images/search-a-2d-2.jpg'
+import {
+  JSStarterCodeSearchA2DMatrix,
+  PyStarterCodeSearchA2DMatrix,
+  TSStarterCodeSearchA2DMatrix,
+} from '../starterCode/search-a-2d-matrix'
+
+import { topics } from '../TopicsAndHints/search-a-2d-matrix'
+import { testCase } from '../testcases/search-a-2d-matrix'
 
 export const SearchA2DMatrix: Problem = {
   id: 'search-a-2d-matrix',
@@ -62,4 +70,11 @@ export const SearchA2DMatrix: Problem = {
     ],
     otherConstraints: [],
   },
+  starterCode: {
+    javascript: JSStarterCodeSearchA2DMatrix,
+    python: PyStarterCodeSearchA2DMatrix,
+    typescript: TSStarterCodeSearchA2DMatrix,
+  },
+  topics,
+  testCase,
 }

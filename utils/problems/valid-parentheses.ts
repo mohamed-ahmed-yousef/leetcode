@@ -1,9 +1,17 @@
 import { Problem } from '../types/problem'
+import {
+  JSStarterCodeValidParentheses,
+  PyStarterCodeValidParentheses,
+  TSStarterCodeValidParentheses,
+} from '../starterCode/valid-parentheses'
+import { topics } from '../TopicsAndHints/valid-parentheses'
+import { testCase } from '../testcases/valid-parentheses'
 
 export const ValidParentheses: Problem = {
   id: 'valid-parentheses',
   title: 'Valid Parentheses',
   difficulty: 'Easy',
+
   problemStatement: [
     [
       { text: 'Given a string', code: 's' },
@@ -55,4 +63,11 @@ export const ValidParentheses: Problem = {
       ],
     ],
   },
+  starterCode: {
+    javascript: JSStarterCodeValidParentheses,
+    python: PyStarterCodeValidParentheses,
+    typescript: TSStarterCodeValidParentheses,
+  },
+  topics,
+  testCase,
 }

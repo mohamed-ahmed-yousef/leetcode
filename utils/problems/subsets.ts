@@ -1,5 +1,11 @@
 import { Problem } from '../types/problem'
-
+import {
+  JSStarterCodeSubsets,
+  PyStarterCodeSubsets,
+  TSStarterCodeSubsets,
+} from '../starterCode/subsets'
+import { topics } from '../TopicsAndHints/subsets'
+import { testCase } from '../testcases/subsets'
 export const SubSet: Problem = {
   id: 'subsets',
   title: 'Subsets',
@@ -62,4 +68,12 @@ export const SubSet: Problem = {
       ],
     ],
   },
+
+  starterCode: {
+    javascript: JSStarterCodeSubsets,
+    python: PyStarterCodeSubsets,
+    typescript: TSStarterCodeSubsets,
+  },
+  topics,
+  testCase,
 }

@@ -6,15 +6,31 @@ import Constraints from './Problem/Constraints'
 import { Problem } from '@/utils/types/problem'
 import Hints from './Problem/Hints'
 import Topics from './Problem/Topics'
+import { useSetRecoilState } from 'recoil'
+import { starterCodeAtom } from '@/app/problems/atoms/starterCodeAtom'
+import { testCaseAtom } from '../atoms/testCaseAtom'
 
 type ProblemDescriptionProps = {
   problem: Problem
 }
 
 const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
-  const { constraints, problemStatement, examples, id, title, difficulty } =
-    problem
-  console.log(problemStatement)
+  const {
+    constraints,
+    problemStatement,
+    examples,
+    id,
+    title,
+    difficulty,
+    starterCode,
+    hints,
+    topics,
+    testCase,
+  } = problem
+  const setStarterCode = useSetRecoilState(starterCodeAtom)
+  const steTestCase = useSetRecoilState(testCaseAtom)
+  setStarterCode((prev) => ({ ...prev, starterCode: starterCode }))
+  steTestCase((prev) => ({ ...prev, testCase: testCase }))
 
   return (
     <div className="bg-dark-layer-1  ">
@@ -59,8 +75,8 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
                 rangeConstraints={constraints?.rangeConstraints}
                 otherConstraints={constraints?.otherConstraints}
               />
-              <Topics />
-              <Hints />
+              <Topics topics={topics} />
+              <Hints hints={hints} />
             </div>
           </div>
         </div>

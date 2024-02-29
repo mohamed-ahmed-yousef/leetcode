@@ -1,4 +1,11 @@
 import { Problem } from '../types/problem'
+import {
+  JSStarterCodeBestTimeToBuyAndSell,
+  PyStarterCodeBestTimeToBuyAndSell,
+  TSStarterCodeBestTimeToBuyAndSell,
+} from '../starterCode/best-time-to-buy-and-sell-stock'
+import { topics } from '../TopicsAndHints/best-time-to-buy-and-sell-stock'
+import { testCase } from '../testcases/best-time-to-buy-and-sell-stock'
 export const BestTimetoBuyandSellStock: Problem = {
   id: 'best-time-to-buy-and-sell-stock',
   title: 'Best Time to Buy and Sell Stock',
@@ -49,4 +56,11 @@ export const BestTimetoBuyandSellStock: Problem = {
     rangeConstraints: ['1 <= prices.length <= 105', '0 <= prices[i] <= 104'],
     otherConstraints: [],
   },
+  starterCode: {
+    javascript: JSStarterCodeBestTimeToBuyAndSell,
+    python: PyStarterCodeBestTimeToBuyAndSell,
+    typescript: TSStarterCodeBestTimeToBuyAndSell,
+  },
+  topics,
+  testCase,
 }

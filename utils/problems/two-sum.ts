@@ -1,8 +1,11 @@
 import { Problem } from '../types/problem'
-
-const starterCodeTwoSum = `function twoSum(nums,target){
-  // Write your code here
-};`
+import {
+  JSStarterCodeTwoSum,
+  PyStarterCodeTwoSum,
+  TSStarterCodeTwoSum,
+} from '../starterCode/two-sum'
+import { topics, hints } from '../TopicsAndHints/two-sum'
+import { testCase } from '../testcases/two-sum'
 
 export const twoSum: Problem = {
   id: 'two-sum',
@@ -55,4 +58,12 @@ export const twoSum: Problem = {
     ],
     otherConstraints: [[{ boldText: 'Only one valid answer exists.' }]],
   },
+  starterCode: {
+    javascript: JSStarterCodeTwoSum,
+    python: PyStarterCodeTwoSum,
+    typescript: TSStarterCodeTwoSum,
+  },
+  topics: topics,
+  hints: hints,
+  testCase: testCase,
 }
