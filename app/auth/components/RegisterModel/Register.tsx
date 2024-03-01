@@ -6,9 +6,11 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth'
-import { auth } from '@/app/firebase/firebase'
+import { auth, fireStore } from '@/app/firebase/firebase'
 import { useEffect } from 'react'
-import { AuthToasterError } from '@/components/Toast/Toast'
+import { AuthToasterError, AuthToastLoading } from '@/components/Toast/Toast'
+import { doc, setDoc } from 'firebase/firestore'
+import { toast } from 'react-toastify'
 
 export default function Register() {
   const [authAtom, setAuthAtom] = useRecoilState(useAuthAtom)
@@ -48,8 +50,24 @@ export default function Register() {
       )
       if (!newUser) return
       setAuthAtom({ ...authAtom, targetPage: 'login' })
+      AuthToastLoading('creating your account', 'loading')
+      // for some security reason remove password when add user to firestore
+      // let it as it's now for tests.
+      await setDoc(doc(fireStore, 'users', newUser.user.uid), {
+        ...data,
+        likedProblems: [],
+        dislikedProblems: [],
+        starredProblems: [],
+        solvedProblems: [],
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        uid: newUser.user.uid,
+      })
     } catch (error: any) {
+      toast.dismiss('loading')
       console.log(error.message)
+    } finally {
+      toast.dismiss('loading')
     }
   }
   useEffect(() => {

@@ -1,5 +1,5 @@
 'use client'
-import NavBar from '@/components/NavBar/NavBar'
+import NavBar from '@/app/components/NavBar/NavBar'
 import AuthPage from './components/AuthPage'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth } from '@/app/firebase/firebase'

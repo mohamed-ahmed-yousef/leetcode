@@ -1,4 +1,4 @@
-import { Problem } from '../types/problem'
+import { Problem } from '../../types/problem'
 import {
   JSStarterCodeJumpGame,
   PyStarterCodeJumpGame,
@@ -11,6 +11,7 @@ export const jumpGame: Problem = {
   id: 'jump-game',
   title: 'Jump Game',
   difficulty: 'Medium',
+  order: 3,
   problemStatement: [
     [
       { text: 'You are given an integer array ', code: 'nums' },

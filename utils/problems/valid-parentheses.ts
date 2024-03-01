@@ -1,4 +1,4 @@
-import { Problem } from '../types/problem'
+import { Problem } from '../../types/problem'
 import {
   JSStarterCodeValidParentheses,
   PyStarterCodeValidParentheses,
@@ -11,7 +11,7 @@ export const ValidParentheses: Problem = {
   id: 'valid-parentheses',
   title: 'Valid Parentheses',
   difficulty: 'Easy',
-
+  order: 4,
   problemStatement: [
     [
       { text: 'Given a string', code: 's' },

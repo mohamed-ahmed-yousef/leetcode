@@ -1,7 +1,7 @@
 import Split from 'react-split'
 import ProblemContainer from '../components/Problem'
 import PlayGround from '../components/PlayGround/PlayGround'
-import { Problem } from '@/utils/types/problem'
+import { Problem } from '@/types/problem'
 
 type WorkSpaceProps = {
   problem: Problem

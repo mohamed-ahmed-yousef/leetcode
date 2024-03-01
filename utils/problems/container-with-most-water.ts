@@ -1,4 +1,4 @@
-import { Problem } from '../types/problem'
+import { Problem } from '../../types/problem'
 
 import ContainerWithMostWaterImg1 from './images/container-with-most-water.jpg'
 import {
@@ -12,6 +12,7 @@ export const ContainerWithMostWater: Problem = {
   id: 'container-with-most-water',
   title: 'Container With Most Water',
   difficulty: 'Medium',
+  order: 6,
   problemStatement: [
     [
       { text: 'You are given an integer array', code: 'height' },

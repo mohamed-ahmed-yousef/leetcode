@@ -1,7 +1,7 @@
 'use client'
 import navBarImage from '@/public/logo-full.png'
 import Image from 'next/image'
-import Button from '../Button/Button'
+import Button from '@/components/Button/Button'
 import Link from 'next/link'
 import { auth } from '@/app/firebase/firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
@@ -15,9 +15,10 @@ import Timer from './Timer/Timer'
 
 type HomeNavBarProps = {
   homePage?: boolean
+  problemId?: string
 }
 
-export default function HomeNavBar({ homePage }: HomeNavBarProps) {
+export default function HomeNavBar({ homePage, problemId }: HomeNavBarProps) {
   const [user] = useAuthState(auth)
   const router = useRouter()
   const [authAtoms, setAuthAtoms] = useRecoilState(useAuthAtom)
@@ -37,7 +38,7 @@ export default function HomeNavBar({ homePage }: HomeNavBarProps) {
       </div>
       {homePage && (
         <div className="flex items-center gap-x-6">
-          <ProblemNavBar />
+          <ProblemNavBar problemId={problemId} />
           <Timer />
         </div>
       )}

@@ -30,4 +30,17 @@ export type Problem = {
   topics: string[]
   hints?: string[]
   testCase: string[][]
+  order: number
+}
+
+// DB problem
+export type DBProblems = {
+  id: string
+  VideoId: string
+  order: number
+  likes: number
+  dislikes: number
+  title: string
+  difficulty: 'Easy' | 'Medium' | 'Hard'
+  category: string
 }

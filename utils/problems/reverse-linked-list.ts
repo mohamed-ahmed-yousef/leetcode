@@ -1,4 +1,4 @@
-import { Problem } from '../types/problem'
+import { Problem } from '../../types/problem'
 import LinkedList from './images/reverse-linked-list-1.jpg'
 import {
   JSStarterCodeReverseLinkedList,
@@ -11,6 +11,7 @@ export const reverseLinkedList: Problem = {
   id: 'reverse-linked-list',
   title: '2. Reverse Linked List',
   difficulty: 'Easy',
+  order: 2,
   problemStatement: [
     [
       {

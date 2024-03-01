@@ -1,4 +1,4 @@
-import { Problem } from '../types/problem'
+import { Problem } from '../../types/problem'
 
 import SearchImgOne from './images/search-a-2d-1.jpg'
 import SearchImageTwo from './images/search-a-2d-2.jpg'
@@ -15,6 +15,7 @@ export const SearchA2DMatrix: Problem = {
   id: 'search-a-2d-matrix',
   title: 'Search a 2D Matrix',
   difficulty: 'Medium',
+  order: 5,
   problemStatement: [
     [
       {

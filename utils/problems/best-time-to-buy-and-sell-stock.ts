@@ -1,4 +1,4 @@
-import { Problem } from '../types/problem'
+import { Problem } from '../../types/problem'
 import {
   JSStarterCodeBestTimeToBuyAndSell,
   PyStarterCodeBestTimeToBuyAndSell,
@@ -10,6 +10,7 @@ export const BestTimetoBuyandSellStock: Problem = {
   id: 'best-time-to-buy-and-sell-stock',
   title: 'Best Time to Buy and Sell Stock',
   difficulty: 'Easy',
+  order: 9,
   problemStatement: [
     [
       { text: 'You are given an array', code: 'prices ' },
