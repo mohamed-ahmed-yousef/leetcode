@@ -4,7 +4,7 @@ import { BsList } from 'react-icons/bs'
 import { getProblems } from '@/utils/problems/index'
 import { useRouter } from 'next/navigation'
 type ProblemNavBarProps = {
-  problemId: string
+  problemId: string | undefined
 }
 
 export default function ProblemNavBar({ problemId }: ProblemNavBarProps) {

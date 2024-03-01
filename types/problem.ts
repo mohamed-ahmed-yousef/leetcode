@@ -20,7 +20,6 @@ export type StarterCode = {
 }
 
 export type Problem = {
-  [x: string]: number
   id: string
   title: string
   problemStatement: any
@@ -31,6 +30,7 @@ export type Problem = {
   topics: string[]
   hints?: string[]
   testCase: string[][]
+  order: number
 }
 
 // DB problem
