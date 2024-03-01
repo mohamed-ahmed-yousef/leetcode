@@ -149,6 +149,107 @@ export default function ProblemInfo({ problemId }: ProblemInfoProps) {
     })
     setIsChangingState(false)
   }
+  const handleDislikeClick = async () => {
+    if (!user) {
+      notLogin('Dislike')
+      return
+    }
+    setIsChangingState(true)
+    await runTransaction(fireStore, async (transaction) => {
+      const userRef = doc(fireStore, 'users', user?.uid!)
+      const problemRef = doc(fireStore, 'problems', problemId)
+      const userDoc = await transaction.get(userRef)
+      const problemDoc = await transaction.get(problemRef)
+
+      if (userDoc.exists() && problemDoc.exists()) {
+        console.log(userDoc.data())
+        if (userProblemInfo?.liked) {
+          transaction.update(userRef, {
+            likedProblems: userDoc
+              .data()
+              .likedProblems.filter((id: string) => id !== problemId),
+            dislikedProblems: [...userDoc.data().dislikedProblems, problemId],
+          })
+          transaction.update(problemRef, {
+            likes: problemDoc.data().likes - 1,
+            dislikes: problemDoc.data().dislikes + 1,
+          })
+          setProblemInfo((prev) =>
+            prev
+              ? {
+                  ...prev,
+                  likes: prev.likes - 1,
+                  dislikes: prev.dislikes + 1,
+                }
+              : null
+          )
+          setUserProblemInfo((prev) => ({
+            ...prev,
+            liked: false,
+            disliked: true,
+          }))
+        } else if (userProblemInfo?.disliked) {
+          transaction.update(userRef, {
+            dislikedProblems: userDoc
+              .data()
+              .dislikedProblems.filter((id: string) => id !== problemId),
+          })
+          transaction.update(problemRef, {
+            dislikes: problemDoc.data().dislikes - 1,
+          })
+          setProblemInfo((prev) =>
+            prev ? { ...prev, dislikes: prev.dislikes - 1 } : null
+          )
+          setUserProblemInfo((prev) => ({ ...prev, disliked: false }))
+        } else {
+          transaction.update(userRef, {
+            dislikedProblems: [...userDoc.data().dislikedProblems, problemId],
+          })
+          transaction.update(problemRef, {
+            dislikes: problemDoc.data().dislikes + 1,
+          })
+          setUserProblemInfo({
+            ...userProblemInfo,
+            disliked: !userProblemInfo.disliked,
+          })
+          setProblemInfo((prev) =>
+            prev ? { ...prev, dislikes: prev.dislikes + 1 } : null
+          )
+        }
+      }
+    })
+    setIsChangingState(false)
+  }
+
+  const handleStarClick = async () => {
+    if (!user) {
+      notLogin('Star')
+      return
+    }
+    setIsChangingState(true)
+    await runTransaction(fireStore, async (transaction) => {
+      const userRef = doc(fireStore, 'users', user?.uid!)
+      const problemRef = doc(fireStore, 'problems', problemId)
+      const userDoc = await transaction.get(userRef)
+      const problemDoc = await transaction.get(problemRef)
+      if (userDoc.exists() && problemDoc.exists()) {
+        if (userProblemInfo?.starred) {
+          transaction.update(userRef, {
+            starredProblems: userDoc
+              .data()
+              .starredProblems.filter((id: string) => id !== problemId),
+          })
+          setUserProblemInfo((prev) => ({ ...prev, starred: false }))
+        } else {
+          transaction.update(userRef, {
+            starredProblems: [...userDoc.data().starredProblems, problemId],
+          })
+          setUserProblemInfo((prev) => ({ ...prev, starred: true }))
+        }
+      }
+    })
+    setIsChangingState(false)
+  }
 
   return (
     <div className="flex items-center gap-x-2 mt-3 text-gray-300">
@@ -196,25 +297,48 @@ export default function ProblemInfo({ problemId }: ProblemInfoProps) {
           </>
         )}
       </div>
-
-      <div className="flex items-center w-8 ">
+      <div className="flex items-center w-8">
         {isLoading && <Rectangle />}
-        {!isLoading && (
+        {isChangingState && <Spinner />}
+        {!isLoading && !isChangingState && (
           <>
             {!userProblemInfo.disliked && (
-              <AiFillDislike className="cursor-pointer mr-[2px]" />
+              <AiFillDislike
+                className="cursor-pointer mr-[2px]"
+                onClick={() => handleDislikeClick()}
+              />
             )}
             {userProblemInfo.disliked && (
-              <AiFillDislike className="cursor-pointer mr-[2px] text-dark-blue-s" />
+              <AiFillDislike
+                className="cursor-pointer mr-[2px] text-dark-blue-s"
+                onClick={() => handleDislikeClick()}
+              />
             )}
             <p>{problemInfo?.dislikes} </p>
           </>
         )}
       </div>
-
-      <div className="w-8 ">
-        <TiStarOutline className="cursor-pointer" />
+      <div className="flex items-center w-8">
+        {isLoading && <Rectangle />}
+        {isChangingState && <Spinner />}
+        {!isLoading && !isChangingState && (
+          <>
+            {!userProblemInfo.starred && (
+              <TiStarOutline
+                className="cursor-pointer mr-[2px]"
+                onClick={() => handleStarClick()}
+              />
+            )}
+            {userProblemInfo.starred && (
+              <TiStarOutline
+                className="cursor-pointer mr-[2px] text-dark-yellow"
+                onClick={() => handleStarClick()}
+              />
+            )}
+          </>
+        )}
       </div>
+
       <div
         className="cursor-pointer flex items-center gap-x-2 bg-dark-fill-3 px-3 py-1 rounded-full hover:text-gray-100"
         onClick={handleScrollDown}

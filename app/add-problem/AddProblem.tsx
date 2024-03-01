@@ -29,16 +29,12 @@ export default function AddProblem() {
   })
 
   const onSubmit = async (data: any) => {
-    console.log(data)
-    const newData = {
+    // console.log(data)
+    await setDoc(doc(fireStore, 'problems', `${data.id}`), {
       ...data,
       order: Number(data.order),
       likes: Number(data.likes),
       dislikes: Number(data.dislikes),
-    }
-    console.log(newData)
-    await setDoc(doc(fireStore, 'problems', `${data.id}`), {
-      newData,
     })
 
     reset()

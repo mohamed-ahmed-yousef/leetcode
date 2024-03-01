@@ -8,7 +8,7 @@ export const useGetProblems = async (setIsLoading: any) => {
   let data: any = []
 
   querySnapshot.forEach((doc) => {
-    data.push(doc.data().newData)
+    data.push(doc.data())
   })
   data.sort((a: DBProblems, b: DBProblems) => a.order - b.order)
   setIsLoading(false)
