@@ -56,8 +56,13 @@ export default function ProblemInfo({ problemId }: ProblemInfoProps) {
 
   useEffect(() => {
     const getProblemInfo = async () => {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      const currentProblem = await useGetOneProblem(problemId, setIsLoading)
+      const docRef = doc(fireStore, 'problems', problemId)
+      const docSnap = await getDoc(docRef)
+      let currentProblem: any = []
+      if (docSnap.exists()) {
+        currentProblem.push(docSnap.data())
+      }
+      setIsLoading(false)
       setProblemInfo(currentProblem[0])
     }
     getProblemInfo()
@@ -325,13 +330,13 @@ export default function ProblemInfo({ problemId }: ProblemInfoProps) {
           <>
             {!userProblemInfo.starred && (
               <TiStarOutline
-                className="cursor-pointer mr-[2px]"
+                className="w-5 cursor-pointer mr-[2px]"
                 onClick={() => handleStarClick()}
               />
             )}
             {userProblemInfo.starred && (
               <TiStarOutline
-                className="cursor-pointer mr-[2px] text-dark-yellow"
+                className="w-5 cursor-pointer mr-[2px] text-dark-yellow"
                 onClick={() => handleStarClick()}
               />
             )}

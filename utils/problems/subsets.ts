@@ -10,6 +10,7 @@ export const SubSet: Problem = {
   id: 'subsets',
   title: 'Subsets',
   difficulty: 'Medium',
+  order: 10,
   problemStatement: [
     [
       {

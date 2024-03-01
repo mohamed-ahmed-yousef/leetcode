@@ -15,6 +15,7 @@ export const SearchA2DMatrix: Problem = {
   id: 'search-a-2d-matrix',
   title: 'Search a 2D Matrix',
   difficulty: 'Medium',
+  order: 5,
   problemStatement: [
     [
       {

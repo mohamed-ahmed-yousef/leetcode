@@ -1,5 +1,5 @@
 'use client'
-import HomeNavBar from '@/components/NavBar/HomeNavBar'
+import HomeNavBar from '@/app/components/NavBar/HomeNavBar'
 import WorkSpace from './WorkSpace'
 import { getProblems } from '@/utils/problems/index'
 
@@ -12,10 +12,10 @@ type ProblemParamsProps = {
 export default function Problem({ params }: ProblemParamsProps) {
   const { problemid } = params
   const problem = getProblems[problemid]
-  // console.log(problem)
+
   return (
     <div className=" w-full h-screen">
-      <HomeNavBar homePage />
+      <HomeNavBar homePage problemId={problemid} />
       <WorkSpace problem={problem} />
     </div>
   )

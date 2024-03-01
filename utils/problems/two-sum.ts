@@ -11,6 +11,7 @@ export const twoSum: Problem = {
   id: 'two-sum',
   title: '1. Two Sum',
   difficulty: 'Easy',
+  order: 1,
   problemStatement: [
     [
       { text: ' Given an array of integers', code: 'nums' },

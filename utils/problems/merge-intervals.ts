@@ -10,6 +10,7 @@ export const MergeIntervals: Problem = {
   id: 'merge-intervals',
   title: 'Merge Intervals',
   difficulty: 'Medium',
+  order: 7,
   problemStatement: [
     [
       { text: 'Given an array of', code: 'intervals' },

@@ -11,6 +11,7 @@ export const reverseLinkedList: Problem = {
   id: 'reverse-linked-list',
   title: '2. Reverse Linked List',
   difficulty: 'Easy',
+  order: 2,
   problemStatement: [
     [
       {

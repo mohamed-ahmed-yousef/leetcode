@@ -12,6 +12,7 @@ export const ContainerWithMostWater: Problem = {
   id: 'container-with-most-water',
   title: 'Container With Most Water',
   difficulty: 'Medium',
+  order: 6,
   problemStatement: [
     [
       { text: 'You are given an integer array', code: 'height' },

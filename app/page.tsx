@@ -1,5 +1,5 @@
 'use client'
-import HomeNavBar from '@/components/NavBar/HomeNavBar'
+import HomeNavBar from './components/NavBar/HomeNavBar'
 import Title from './home/Title'
 import TableHeader from './home/TableHeader'
 

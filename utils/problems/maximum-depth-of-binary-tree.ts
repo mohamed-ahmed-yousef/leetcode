@@ -11,6 +11,7 @@ export const MaximumDepthOfBinaryTree: Problem = {
   id: 'maximum-depth-of-binary-tree',
   title: 'Maximum Depth of Binary Tree',
   difficulty: 'Easy',
+  order: 8,
   problemStatement: [
     [
       { text: 'Given the ', code: 'root' },

@@ -20,6 +20,7 @@ export type StarterCode = {
 }
 
 export type Problem = {
+  [x: string]: number
   id: string
   title: string
   problemStatement: any
