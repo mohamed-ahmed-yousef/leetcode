@@ -6,25 +6,45 @@ import { vscodeDark } from '@uiw/codemirror-theme-vscode'
 import { useRecoilValue } from 'recoil'
 import { starterCodeAtom } from '@/app/problems/atoms/starterCodeAtom'
 import { selectedLanguageAtom } from '@/app/problems/atoms/selectedLanguage'
+import { OnlineCompiler } from './OnLineCompiler'
+import { useState } from 'react'
 
 export default function TextEditor() {
   const { starterCode } = useRecoilValue(starterCodeAtom)
   const { lang } = useRecoilValue(selectedLanguageAtom)
+  const [code, setCode] = useState<string>('')
+  console.log(starterCode)
   const extensions =
     lang === 'python'
       ? [python()]
       : lang === 'javascript' || lang == 'typescript'
         ? [javascript()]
         : []
+  const handleOnChange = (value: string) => {
+    setCode(value)
+  }
+
+  const handleOnSubmit = () => {
+    console.log('sumbit now', lang)
+    OnlineCompiler(code, lang)
+  }
+
   return (
     <div className="overflow-y-auto">
       <CodeMirror
         height="h-full"
         extensions={extensions}
         theme={vscodeDark}
-        // try to solve the type error here.
+        onChange={handleOnChange}
         value={starterCode[lang as keyof typeof starterCode] as string}
       />
+      <button
+        onClick={handleOnSubmit}
+        className=" w-full  py-2  
+            rounded-b-md text-sm px-2  text-gray-200 bg-zinc-950 cursor-pointer"
+      >
+        Submit
+      </button>
     </div>
   )
 }
