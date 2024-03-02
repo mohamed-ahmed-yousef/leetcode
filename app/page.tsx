@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="bg-dark-layer-2 min-h-screen relative">
       {/*nav height is 60px */}
-      {/* <HomeNavBar /> */}
+      <HomeNavBar />
       <Title />
       <div className="text-slate-200 w-9/12 mx-auto">
         <TableHeader />
