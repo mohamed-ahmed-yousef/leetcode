@@ -1,9 +1,9 @@
 import axios from 'axios'
-
+import { GetWrapperCode } from '../problemsWrapper/two-sum'
 export async function OnlineCompiler(sourceCode: string, lang: string) {
   const API_KEY = process.env.NEXT_PUBLIC_JUDGE0_API
   console.log(sourceCode)
-  sourceCode += "\nfunction('yousef')"
+  sourceCode = GetWrapperCode(sourceCode, lang)
   console.log(sourceCode)
   try {
     const url = 'https://judge0-ce.p.rapidapi.com/submissions'

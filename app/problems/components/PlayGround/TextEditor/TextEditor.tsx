@@ -10,7 +10,7 @@ import { OnlineCompiler } from './OnLineCompiler'
 import { useState } from 'react'
 
 export default function TextEditor() {
-  const { starterCode } = useRecoilValue(starterCodeAtom)
+  const { starterCode, problemId } = useRecoilValue(starterCodeAtom)
   const { lang } = useRecoilValue(selectedLanguageAtom)
   const [code, setCode] = useState<string>('')
   console.log(starterCode)
@@ -22,6 +22,7 @@ export default function TextEditor() {
         : []
   const handleOnChange = (value: string) => {
     setCode(value)
+    console.log(starterCode, 'hi', problemId, 'this is problem id')
   }
 
   const handleOnSubmit = () => {
