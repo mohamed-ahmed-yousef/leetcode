@@ -14,7 +14,8 @@ function GetWrongTestCasesArray(userData: UserWrongAnswerAtomProps) {
   let correctOutputs: string[][] = []
   let userOutputs: string[][] = []
   Array.isArray(userData) &&
-    userData.map(function (item) {
+    userData.forEach(function (item) {
+      console.log(item, 'item')
       testCaseNumbers.push(item.testCaseNumber)
       correctOutputs.push(item.correctOutput)
       userOutputs.push(item.userOutput)
@@ -29,13 +30,14 @@ function GetWrongTestCasesArray(userData: UserWrongAnswerAtomProps) {
 
 export default function TestCaseEditor({ components }: TestCaseEditorProps) {
   const WrongAnswerData = useRecoilValue(userWrongAnswerAtom)
+  console.log('wrong answer from tabs', WrongAnswerData)
   const { type, userWrongAnswer } = WrongAnswerData
+  console.log('type:', type, userWrongAnswer)
   const { testCaseNumbers, correctOutputs, userOutputs } =
-    GetWrongTestCasesArray(WrongAnswerData)
-  console.log('after run', testCaseNumbers, correctOutputs, userOutputs)
-  console.log(WrongAnswerData)
+    GetWrongTestCasesArray(userWrongAnswer)
+  console.log(testCaseNumbers, correctOutputs, userOutputs, 'test 2')
   const [targetTest, setTargetTest] = useState(0)
-  // console.log(components)
+
   return (
     <div className="">
       <div className={`flex gap-x-2 mb-3  `}>
@@ -43,7 +45,7 @@ export default function TestCaseEditor({ components }: TestCaseEditorProps) {
           <button
             key={item[0]}
             onClick={() => setTargetTest(indx)}
-            className={`${type === 'run' && testCaseNumbers.includes(indx + 1) && 'bg-red-600'}`}
+            className={`${type === 'run' && testCaseNumbers.includes(indx + 1) ? 'bg-red-600' : 'bg-green-600'}`}
           >
             <CaseButton number={indx + 1} selectedTest={targetTest === indx} />
           </button>

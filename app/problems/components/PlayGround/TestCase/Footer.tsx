@@ -10,8 +10,9 @@ export default function Footer() {
   const { userLang, userCode } = useRecoilValue(textEditorAtom)
   const setUserWrongAnswer = useSetRecoilState(userWrongAnswerAtom)
 
-  const handleOnRun = () => {
-    const data = OnlineCompiler(userCode, userLang, 'run')
+  const handleOnRun = async () => {
+    const data = await OnlineCompiler(userCode, userLang, 'run')
+    console.log('after await ', data)
     setUserWrongAnswer((prev) => ({ ...prev, ...data }))
     console.log('from run after run', data)
   }
