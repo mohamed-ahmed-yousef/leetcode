@@ -1,10 +1,16 @@
 import axios from 'axios'
 import { GetWrapperCode } from '../problemsWrapper/two-sum'
-export async function OnlineCompiler(sourceCode: string, lang: string) {
+import { CheckUserAnswerForArray } from '../CheckUserAnswer/ArrayAnswer'
+
+export async function OnlineCompiler(
+  sourceCode: string,
+  lang: string,
+  type: string
+) {
   const API_KEY = process.env.NEXT_PUBLIC_JUDGE0_API
-  console.log(sourceCode)
-  sourceCode = GetWrapperCode(sourceCode, lang)
-  console.log(sourceCode)
+  console.log(sourceCode, lang, 'before')
+  sourceCode = GetWrapperCode(sourceCode, lang, type)
+  console.log(sourceCode, lang, type, 'after')
   try {
     const url = 'https://judge0-ce.p.rapidapi.com/submissions'
     const data = {
@@ -44,8 +50,10 @@ export async function OnlineCompiler(sourceCode: string, lang: string) {
     }
 
     console.log(status, 'after')
-    const output = `${status.status.description}\n${status.stdout}`
-    //   console.log(output, "code ouput")
+    const output = status.stdout
+    CheckUserAnswerForArray(output)
+
+    console.log(output, 'code ouput')
   } catch (error) {
     console.error('Error:', error)
   }

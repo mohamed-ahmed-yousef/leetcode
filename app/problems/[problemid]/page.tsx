@@ -15,7 +15,7 @@ export default function Problem({ params }: ProblemParamsProps) {
 
   return (
     <div className=" w-full h-screen">
-      {/* <HomeNavBar homePage problemId={problemid} /> */}
+      <HomeNavBar homePage problemId={problemid} />
       <WorkSpace problem={problem} />
     </div>
   )

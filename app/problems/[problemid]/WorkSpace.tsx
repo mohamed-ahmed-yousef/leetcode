@@ -9,8 +9,7 @@ type WorkSpaceProps = {
 export default function WorkSpace({ problem }: WorkSpaceProps) {
   return (
     <Split className="split min-h-[calc(100vh-106px)]" minSize={0}>
-      {/* <h1>Problem One</h1> */}
-      {/* <ProblemContainer problem={problem} /> */}
+      <ProblemContainer problem={problem} />
       <PlayGround />
     </Split>
   )

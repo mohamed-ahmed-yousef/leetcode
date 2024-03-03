@@ -6,13 +6,13 @@ import { vscodeDark } from '@uiw/codemirror-theme-vscode'
 import { useRecoilValue } from 'recoil'
 import { starterCodeAtom } from '@/app/problems/atoms/starterCodeAtom'
 import { selectedLanguageAtom } from '@/app/problems/atoms/selectedLanguage'
-import { OnlineCompiler } from './OnLineCompiler'
-import { useState } from 'react'
+import { textEditorAtom } from '../../../atoms/TextEditorAtom'
+import { useSetRecoilState } from 'recoil'
 
 export default function TextEditor() {
   const { starterCode, problemId } = useRecoilValue(starterCodeAtom)
   const { lang } = useRecoilValue(selectedLanguageAtom)
-  const [code, setCode] = useState<string>('')
+  const setTextEditor = useSetRecoilState(textEditorAtom)
   console.log(starterCode)
   const extensions =
     lang === 'python'
@@ -21,31 +21,21 @@ export default function TextEditor() {
         ? [javascript()]
         : []
   const handleOnChange = (value: string) => {
-    setCode(value)
+    setTextEditor((prev) => ({ ...prev, userCode: value, userLang: lang }))
     console.log(starterCode, 'hi', problemId, 'this is problem id')
   }
 
-  const handleOnSubmit = () => {
-    console.log('sumbit now', lang)
-    OnlineCompiler(code, lang)
-  }
-
   return (
-    <div className="overflow-y-auto">
-      <CodeMirror
-        height="h-full"
-        extensions={extensions}
-        theme={vscodeDark}
-        onChange={handleOnChange}
-        value={starterCode[lang as keyof typeof starterCode] as string}
-      />
-      <button
-        onClick={handleOnSubmit}
-        className=" w-full  py-2  
-            rounded-b-md text-sm px-2  text-gray-200 bg-zinc-950 cursor-pointer"
-      >
-        Submit
-      </button>
+    <div>
+      <div className="overflow-y-auto">
+        <CodeMirror
+          height="h-full"
+          extensions={extensions}
+          theme={vscodeDark}
+          onChange={handleOnChange}
+          value={starterCode[lang as keyof typeof starterCode] as string}
+        />
+      </div>
     </div>
   )
 }
