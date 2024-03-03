@@ -2,7 +2,7 @@
 import axios from 'axios'
 import { GetWrapperCode } from '../problemsWrapper/two-sum'
 import { CheckArrayAnswer } from '../CheckUserAnswer/CheckArrayAnswer'
-
+import { ErrorTopCenterAuth } from '@/components/Toast/Toast'
 export async function OnlineCompiler(
   sourceCode: string,
   lang: string,
@@ -62,6 +62,8 @@ export async function OnlineCompiler(
       const parsedOutput = JSON.parse(jsonString)
       console.log(output, typeof output, 'from accept')
       wrongAnswer = CheckArrayAnswer(parsedOutput)
+    } else {
+      ErrorTopCenterAuth('please check your code and try again')
     }
 
     console.log(wrongAnswer, 'wrongAnswer')
@@ -70,6 +72,7 @@ export async function OnlineCompiler(
       type: type,
     }
   } catch (error) {
+    ErrorTopCenterAuth('please check your code and try again')
     console.error('Error:', error)
   }
 }

@@ -1,5 +1,5 @@
 import { atom } from 'recoil'
-type UserWrongAnswerAtomProps = {
+export type UserWrongAnswerAtomProps = {
   userWrongAnswer: {
     userOutput: string[]
     correctOutput: string[]
