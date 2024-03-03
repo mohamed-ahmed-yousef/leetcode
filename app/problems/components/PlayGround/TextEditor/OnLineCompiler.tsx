@@ -1,6 +1,7 @@
+'use client'
 import axios from 'axios'
 import { GetWrapperCode } from '../problemsWrapper/two-sum'
-import { CheckUserAnswerForArray } from '../CheckUserAnswer/ArrayAnswer'
+import { CheckArrayAnswer } from '../CheckUserAnswer/CheckArrayAnswer'
 
 export async function OnlineCompiler(
   sourceCode: string,
@@ -11,6 +12,7 @@ export async function OnlineCompiler(
   console.log(sourceCode, lang, 'before')
   sourceCode = GetWrapperCode(sourceCode, lang, type)
   console.log(sourceCode, lang, type, 'after')
+
   try {
     const url = 'https://judge0-ce.p.rapidapi.com/submissions'
     const data = {
@@ -51,9 +53,18 @@ export async function OnlineCompiler(
 
     console.log(status, 'after')
     const output = status.stdout
-    CheckUserAnswerForArray(output)
+    const description = status.status.description
+    console.log('output: ', output, typeof output)
+    let wrongAnswer = null
+    if (description === 'Accepted') {
+      wrongAnswer = CheckArrayAnswer(output)
+    }
 
-    console.log(output, 'code ouput')
+    console.log(wrongAnswer, 'wrongAnswer')
+    return {
+      userWrongAnswer: wrongAnswer,
+      type: type,
+    }
   } catch (error) {
     console.error('Error:', error)
   }

@@ -3,14 +3,20 @@ import { BsChevronUp } from 'react-icons/bs'
 import { useRecoilValue } from 'recoil'
 import { textEditorAtom } from '../../../atoms/TextEditorAtom'
 import { OnlineCompiler } from '../TextEditor/OnLineCompiler'
+import { userWrongAnswerAtom } from '@/app/problems/atoms/UserWrongAnswer'
+import { useSetRecoilState } from 'recoil'
 
 export default function Footer() {
   const { userLang, userCode } = useRecoilValue(textEditorAtom)
+  const setUserWrongAnswer = useSetRecoilState(userWrongAnswerAtom)
+
   const handleOnRun = () => {
-    OnlineCompiler(userCode, userLang, 'run')
+    const data = OnlineCompiler(userCode, userLang, 'run')
+    setUserWrongAnswer((prev) => ({ ...prev, ...data }))
   }
   const handleOnSubmit = () => {
-    OnlineCompiler(userCode, userLang, 'submit')
+    const data = OnlineCompiler(userCode, userLang, 'submit')
+    setUserWrongAnswer((prev) => ({ ...prev, ...data }))
   }
   return (
     <>

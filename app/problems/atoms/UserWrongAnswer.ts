@@ -5,6 +5,7 @@ type UserWrongAnswerAtomProps = {
     correctOutput: string[]
     testCaseNumber: number
   }[]
+  type: string
 }
 
 export const userWrongAnswerAtom = atom<UserWrongAnswerAtomProps>({
@@ -17,5 +18,6 @@ export const userWrongAnswerAtom = atom<UserWrongAnswerAtomProps>({
         testCaseNumber: 0,
       },
     ],
+    type: '',
   },
 })
