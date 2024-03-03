@@ -54,10 +54,14 @@ export async function OnlineCompiler(
     console.log(status, 'after')
     const output = status.stdout
     const description = status.status.description
-    console.log('output: ', output, typeof output)
+    console.log('output: ', output, typeof output, 'description: ', description)
     let wrongAnswer = null
     if (description === 'Accepted') {
-      wrongAnswer = CheckArrayAnswer(output)
+      // key in json must be double quouted
+      const jsonString = output.replace(/'/g, '"')
+      const parsedOutput = JSON.parse(jsonString)
+      console.log(output, typeof output, 'from accept')
+      wrongAnswer = CheckArrayAnswer(parsedOutput)
     }
 
     console.log(wrongAnswer, 'wrongAnswer')

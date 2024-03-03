@@ -16,9 +16,9 @@ export function CheckArrayAnswer(UserOutput: CheckUserAnswer) {
 }
 function compareArrays(arr1: string[], arr2: string[]) {
   console.log('arr1, arr2', arr1, arr2)
-  // if (arr1.length !== arr2.length) return false
-  // for (let i = 0; i < arr1.length; i++) {
-  //   if (arr1[i] !== arr2[i]) return false
-  // }
+  if (arr1.length !== arr2.length) return false
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== arr2[i]) return false
+  }
   return true
 }
