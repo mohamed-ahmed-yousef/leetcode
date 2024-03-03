@@ -73,7 +73,7 @@ export async function OnlineCompiler(
       userWrongAnswer: wrongAnswer,
       type: type,
     }
-  } catch (error: { message: string }) {
+  } catch (error: any) {
     if (error?.message === 'Request failed with status code 429') {
       ErrorTopCenterAuth(
         'Daily submission limit reached! Please try again tomorrow'
