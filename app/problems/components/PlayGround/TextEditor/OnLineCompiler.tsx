@@ -57,11 +57,13 @@ export async function OnlineCompiler(
     console.log('output: ', output, typeof output, 'description: ', description)
     let wrongAnswer = null
     if (description === 'Accepted') {
-      // key in json must be double quouted
       const jsonString = output.replace(/'/g, '"')
       const parsedOutput = JSON.parse(jsonString)
       console.log(output, typeof output, 'from accept')
       wrongAnswer = CheckArrayAnswer(parsedOutput)
+      // } else if()  {
+      //   ErrorTopCenterAuth('The Submission for Current plan is exceeded. support me to upgrade the plan to be able submit unlimit for day')
+      // }
     } else {
       ErrorTopCenterAuth('please check your code and try again')
     }
@@ -71,8 +73,14 @@ export async function OnlineCompiler(
       userWrongAnswer: wrongAnswer,
       type: type,
     }
-  } catch (error) {
-    ErrorTopCenterAuth('please check your code and try again')
+  } catch (error: { message: string }) {
+    if (error?.message === 'Request failed with status code 429') {
+      ErrorTopCenterAuth(
+        'Daily submission limit reached! Please try again tomorrow'
+      )
+    } else {
+      ErrorTopCenterAuth('something went wrong please try again')
+    }
     console.error('Error:', error)
   }
 }

@@ -13,6 +13,7 @@ export default function Footer() {
   const handleOnRun = () => {
     const data = OnlineCompiler(userCode, userLang, 'run')
     setUserWrongAnswer((prev) => ({ ...prev, ...data }))
+    console.log('from run after run', data)
   }
   const handleOnSubmit = () => {
     const data = OnlineCompiler(userCode, userLang, 'submit')
