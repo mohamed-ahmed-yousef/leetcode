@@ -42,7 +42,8 @@ export default function TestCaseEditor({ components }: TestCaseEditorProps) {
     GetWrongTestCasesArray(userWrongAnswer)
   console.log(testCaseNumbers, correctOutputs, userOutputs, 'test 2')
   const [targetTest, setTargetTest] = useState(0)
-
+  let currentUserNumberAnswer = 0
+  console.log(components)
   return (
     <div className="">
       {type === 'run' &&
@@ -68,7 +69,15 @@ export default function TestCaseEditor({ components }: TestCaseEditorProps) {
         {components.map((item, indx) => (
           <div key={item[0]}>
             {indx === targetTest && (
-              <OneTestCase input={item[0]} output={item[1]} />
+              <OneTestCase
+                input={item[0]}
+                output={item[1]}
+                currUserOutput={
+                  testCaseNumbers.includes(indx + 1)
+                    ? userOutputs[currentUserNumberAnswer++]
+                    : ''
+                }
+              />
             )}
           </div>
         ))}
