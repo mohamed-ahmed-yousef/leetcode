@@ -40,12 +40,20 @@ export default function TestCaseEditor({ components }: TestCaseEditorProps) {
 
   return (
     <div className="">
+      {type === 'run' &&
+        (testCaseNumbers.length > 0 ? (
+          <p className="text-red-600 mb-3 font-semibold text-xl">
+            Wrong Answer
+          </p>
+        ) : (
+          <p className="text-green-600 mb-3 font-semibold text-xl">Accepted</p>
+        ))}
       <div className={`flex gap-x-2 mb-3  `}>
         {components.map((item, indx) => (
           <button
             key={item[0]}
             onClick={() => setTargetTest(indx)}
-            className={`${type === 'run' && testCaseNumbers.includes(indx + 1) ? 'bg-red-600' : 'bg-green-600'}`}
+            className={`${type === 'run' ? (testCaseNumbers.includes(indx + 1) ? 'bg-red-600 rounded-lg' : 'bg-green-600 rounded-lg') : ''}`}
           >
             <CaseButton number={indx + 1} selectedTest={targetTest === indx} />
           </button>

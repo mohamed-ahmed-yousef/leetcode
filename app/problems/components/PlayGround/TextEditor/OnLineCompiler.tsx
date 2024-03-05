@@ -43,7 +43,7 @@ export async function OnlineCompiler(
     // new code
     console.log(status, 'before')
     while (['In Queue', 'Processing'].includes(status.status.description)) {
-      await new Promise((resolve) => setTimeout(resolve, 1000)) // Wait for a second
+      await new Promise((resolve) => setTimeout(resolve, 1000))
       const updatedStatusResponse = await axios.get(
         `https://judge0-ce.p.rapidapi.com/submissions/${submissionId}`,
         { headers }
@@ -56,24 +56,22 @@ export async function OnlineCompiler(
     const description = status.status.description
     console.log('output: ', output, typeof output, 'description: ', description)
     let wrongAnswer = null
-    if (description === 'Accepted') {
-      const jsonString = output.replace(/'/g, '"')
-      const parsedOutput = JSON.parse(jsonString)
-      console.log(output, typeof output, 'from accept')
-      wrongAnswer = CheckArrayAnswer(parsedOutput)
-      // } else if()  {
-      //   ErrorTopCenterAuth('The Submission for Current plan is exceeded. support me to upgrade the plan to be able submit unlimit for day')
-      // }
-    } else {
+    const jsonString = output.replace(/'/g, '"')
+    const parsedOutput = JSON.parse(jsonString)
+    console.log(output, typeof output, 'from accept')
+    wrongAnswer = CheckArrayAnswer(parsedOutput)
+    if (description === 'Time Limit Exceeded') {
+      ErrorTopCenterAuth('Time Limit Exceeded')
+    } else if (description !== 'Accepted') {
       ErrorTopCenterAuth('please check your code and try again')
     }
-
     console.log(wrongAnswer, 'wrongAnswer')
     return {
       userWrongAnswer: wrongAnswer,
       type: type,
     }
   } catch (error: any) {
+    console.log(error.message)
     if (error?.message === 'Request failed with status code 429') {
       ErrorTopCenterAuth(
         'Daily submission limit reached! Please try again tomorrow'

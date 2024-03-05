@@ -27,9 +27,9 @@ export default function TextEditor() {
 
   return (
     <div>
-      <div className="overflow-y-auto">
+      <div className="w-full overflow-auto">
         <CodeMirror
-          height="h-full"
+          // height="100%"
           extensions={extensions}
           theme={vscodeDark}
           onChange={handleOnChange}

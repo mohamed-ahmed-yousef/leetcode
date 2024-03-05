@@ -41,7 +41,7 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
       <div className=" bg-dark-layer-2  ">
         <div className="bg-dark-layer-1  ">
           <Tabs text={'Description'} />
-          <div className="  pb-7 h-[calc(100vh-106px)] overflow-y-auto">
+          <div className="  pb-7 h-[calc(100vh-106px)] overflow-auto min-w-[180px]">
             <div className="max-w-[800px] p-2 lg:p-4">
               <h1 className="text-xl text-white font-bold">{title}</h1>
               <ProblemInfo problemId={id} />
