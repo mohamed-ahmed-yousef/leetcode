@@ -5,11 +5,16 @@ import CaseButton from './CaseButton'
 import OneTestCase from './OneTestCase'
 import { useRecoilValue } from 'recoil'
 import { userWrongAnswerAtom } from '@/app/problems/atoms/UserWrongAnswer'
-import { UserWrongAnswerAtomProps } from '@/app/problems/atoms/UserWrongAnswer'
+
 type TestCaseEditorProps = {
   components: string[][]
 }
-function GetWrongTestCasesArray(userData: UserWrongAnswerAtomProps) {
+type userDataProps = {
+  userOutput: string[]
+  correctOutput: string[]
+  testCaseNumber: number
+}[]
+function GetWrongTestCasesArray(userData: userDataProps) {
   let testCaseNumbers: number[] = []
   let correctOutputs: string[][] = []
   let userOutputs: string[][] = []
