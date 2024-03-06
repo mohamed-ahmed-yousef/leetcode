@@ -29,6 +29,7 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
   } = problem
   const setStarterCode = useSetRecoilState(starterCodeAtom)
   const steTestCase = useSetRecoilState(testCaseAtom)
+  // console.log(testCase)
   setStarterCode((prev) => ({
     ...prev,
     starterCode: starterCode,

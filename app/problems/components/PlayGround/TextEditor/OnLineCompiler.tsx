@@ -3,16 +3,19 @@ import axios from 'axios'
 import { GetWrapperCode } from '../problemsWrapper/two-sum'
 import { CheckArrayAnswer } from '../CheckUserAnswer/CheckArrayAnswer'
 import { ErrorTopCenterAuth } from '@/components/Toast/Toast'
+import { SetterOrUpdater } from 'recoil'
+import { defaultValuesProps } from '@/app/problems/atoms/RunAtom'
+
 export async function OnlineCompiler(
   sourceCode: string,
   lang: string,
-  type: string
+  type: string,
+  setIsLoading: SetterOrUpdater<defaultValuesProps>
 ) {
   const API_KEY = process.env.NEXT_PUBLIC_JUDGE0_API
   console.log(sourceCode, lang, 'before')
   sourceCode = GetWrapperCode(sourceCode, lang, type)
   console.log(sourceCode, lang, type, 'after')
-
   try {
     const url = 'https://judge0-ce.p.rapidapi.com/submissions'
     const data = {
@@ -27,6 +30,7 @@ export async function OnlineCompiler(
       'Content-Type': 'application/json',
     }
 
+    setIsLoading((prev) => ({ ...prev, isRun: true }))
     const response = await axios.post(url, data, { headers })
 
     if (!response.data.token) {
@@ -41,7 +45,7 @@ export async function OnlineCompiler(
     )
     let status = statusResponse.data
     // new code
-    console.log(status, 'before')
+    console.log(statusResponse, 'to show is there is loading')
     while (['In Queue', 'Processing'].includes(status.status.description)) {
       await new Promise((resolve) => setTimeout(resolve, 1000))
       const updatedStatusResponse = await axios.get(
@@ -51,27 +55,28 @@ export async function OnlineCompiler(
       status = updatedStatusResponse.data
     }
 
-    console.log(status, 'after')
+    // console.log(status, 'after')
     const output = status.stdout
     const description = status.status.description
-    console.log('output: ', output, typeof output, 'description: ', description)
+    // console.log('output: ', output, typeof output, 'description: ', description)
     let wrongAnswer = null
     const jsonString = output.replace(/'/g, '"')
     const parsedOutput = JSON.parse(jsonString)
-    console.log(output, typeof output, 'from accept')
+    setIsLoading((prev) => ({ ...prev, isRun: false }))
+    // console.log(output, typeof output, 'from accept')
     wrongAnswer = CheckArrayAnswer(parsedOutput)
     if (description === 'Time Limit Exceeded') {
       ErrorTopCenterAuth('Time Limit Exceeded')
     } else if (description !== 'Accepted') {
       ErrorTopCenterAuth('please check your code and try again')
     }
-    console.log(wrongAnswer, 'wrongAnswer')
+    // console.log(wrongAnswer, 'wrongAnswer')
     return {
       userWrongAnswer: wrongAnswer,
       type: type,
     }
   } catch (error: any) {
-    console.log(error.message)
+    setIsLoading((prev) => ({ ...prev, isRun: false }))
     if (error?.message === 'Request failed with status code 429') {
       ErrorTopCenterAuth(
         'Daily submission limit reached! Please try again tomorrow'

@@ -43,7 +43,7 @@ export default function TestCaseEditor({ components }: TestCaseEditorProps) {
   console.log(testCaseNumbers, correctOutputs, userOutputs, 'test 2')
   const [targetTest, setTargetTest] = useState(0)
   let currentUserNumberAnswer = 0
-  console.log(components)
+  console.log(components, 'our components')
   return (
     <div className="">
       {type === 'run' &&

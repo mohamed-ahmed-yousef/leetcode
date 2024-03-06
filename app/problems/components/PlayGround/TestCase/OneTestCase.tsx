@@ -9,6 +9,13 @@ export default function OneTestCase({
   output,
   currUserOutput,
 }: OneTestCaseProps) {
+  console.log(
+    input,
+    output,
+    currUserOutput,
+    typeof currUserOutput,
+    'from yousef'
+  )
   return (
     <div className="text-gray-300 ">
       <div>
@@ -21,13 +28,19 @@ export default function OneTestCase({
         <>
           <div className="mt-2">
             <h3 className="text-gray-100 font-medium text-base mb-1 ml-1">
-              {currUserOutput ? 'Correct Answer' : 'Output'}
+              {currUserOutput ||
+              currUserOutput == '0' ||
+              currUserOutput == 'false'
+                ? 'Correct Answer'
+                : 'Output'}
             </h3>
             <pre className="bg-dark-fill-2 rounded-md p-2 lg:p-3 whitespace-pre-wrap">
               {output}
             </pre>
           </div>
-          {currUserOutput && (
+          {(currUserOutput ||
+            currUserOutput == '0' ||
+            currUserOutput == 'false') && (
             <div className="mt-2">
               <h3 className="text-gray-100 font-medium text-base mb-1 ml-1">
                 Your Answer
