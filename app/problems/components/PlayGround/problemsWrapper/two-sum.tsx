@@ -56,7 +56,7 @@ export function GetWrapperCode(code: string, lang: string, type: string) {
   } else {
     testCase = TwoSum.allTestCase
   }
-  console.log(testCase, code)
+  console.log(testCase, lang, 'from twosum', code)
   switch (lang) {
     case 'python':
       return `
@@ -70,6 +70,19 @@ for i in all_test_case:
       {"testCaseNumber":i["order"], "correctOutput":i["output"], "userOutput":  slv.twoSum(i["input"][0],i["input"][1]) })
 print(solutionList)
 `
+    case 'javascript' || 'typescript':
+      return `
+            ${code}
+       
+        all_test_case = ${JSON.stringify(testCase)}
+        let solutionList = []
+        for(let i of all_test_case) {
+          solutionList.push(
+            {"testCaseNumber":i["order"], "correctOutput":i["output"], "userOutput":  twoSum(i["input"][0],i["input"][1]) })
+        
+        }
+        console.log(solutionList)
+        `
 
     default:
       return code

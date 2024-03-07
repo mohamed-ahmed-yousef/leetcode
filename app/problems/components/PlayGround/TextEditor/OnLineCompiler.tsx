@@ -32,7 +32,7 @@ export async function OnlineCompiler(
 
     setIsLoading((prev) => ({ ...prev, isRun: true }))
     const response = await axios.post(url, data, { headers })
-
+    console.log(getLanguage(lang), 'my current language')
     if (!response.data.token) {
       throw new Error('Submission creation failed.')
     }
@@ -54,16 +54,24 @@ export async function OnlineCompiler(
       )
       status = updatedStatusResponse.data
     }
+    console.log(statusResponse, 'After submission')
 
     // console.log(status, 'after')
     const output = status.stdout
     const description = status.status.description
     // console.log('output: ', output, typeof output, 'description: ', description)
     let wrongAnswer = null
-    const jsonString = output.replace(/'/g, '"')
+    // console.log(output)
+    let jsonString = null
+    if (lang == 'python') {
+      jsonString = output.replace(/'/g, '"')
+    } else if (lang === 'javascript' || lang === 'typescript') {
+      jsonString = output.replace(/(['"])?([a-zA-Z0-9_]+)(['"])?:/g, '"$2":')
+    }
     const parsedOutput = JSON.parse(jsonString)
+    console.log(parsedOutput)
     setIsLoading((prev) => ({ ...prev, isRun: false }))
-    // console.log(output, typeof output, 'from accept')
+    console.log(output, typeof output, 'from accept')
     wrongAnswer = CheckArrayAnswer(parsedOutput)
     if (description === 'Time Limit Exceeded') {
       ErrorTopCenterAuth('Time Limit Exceeded')
@@ -76,6 +84,7 @@ export async function OnlineCompiler(
       type: type,
     }
   } catch (error: any) {
+    console.log(error.message, error)
     setIsLoading((prev) => ({ ...prev, isRun: false }))
     if (error?.message === 'Request failed with status code 429') {
       ErrorTopCenterAuth(
@@ -84,7 +93,14 @@ export async function OnlineCompiler(
     } else {
       ErrorTopCenterAuth('something went wrong please try again')
     }
-    console.error('Error:', error)
+    const errorMessage =
+      error?.message === 'Request failed with status code 429'
+        ? 'Daily submission limit reached! Please try again tomorrow'
+        : 'something went wrong please try again'
+    return {
+      error: errorMessage,
+      type: type,
+    }
   }
 }
 

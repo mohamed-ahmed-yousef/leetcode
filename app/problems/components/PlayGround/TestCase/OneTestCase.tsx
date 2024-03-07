@@ -2,6 +2,7 @@ type OneTestCaseProps = {
   input: string
   output: string
   currUserOutput: string[] | string
+  error?: string
 }
 
 export default function OneTestCase({

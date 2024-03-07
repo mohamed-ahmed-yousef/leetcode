@@ -7,6 +7,7 @@ export type UserWrongAnswerAtomProps = {
     testCaseNumber: number
   }[]
   type: string
+  error?: string
 }
 
 export const userWrongAnswerAtom = atom<UserWrongAnswerAtomProps>({
@@ -20,5 +21,6 @@ export const userWrongAnswerAtom = atom<UserWrongAnswerAtomProps>({
       },
     ],
     type: '',
+    error: '',
   },
 })
