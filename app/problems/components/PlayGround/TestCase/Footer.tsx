@@ -6,12 +6,15 @@ import { OnlineCompiler } from '../TextEditor/OnLineCompiler'
 import { userWrongAnswerAtom } from '@/app/problems/atoms/UserWrongAnswer'
 import { useSetRecoilState } from 'recoil'
 import { isRunOnlineCompilerAtom } from '@/app/problems/atoms/RunAtom'
+import { useState } from 'react'
+import SubmitModal from '../Modal/SubmitModal'
 
 export default function Footer() {
   const { userLang, userCode } = useRecoilValue(textEditorAtom)
   const setUserWrongAnswer = useSetRecoilState(userWrongAnswerAtom)
   const setIsRunOnlineCompiler = useSetRecoilState(isRunOnlineCompilerAtom)
   const { isRun } = useRecoilValue(isRunOnlineCompilerAtom)
+  const [isOpen, setIsOpen] = useState(false)
   const handleOnRun = async () => {
     const data = await OnlineCompiler(
       userCode,
@@ -31,6 +34,7 @@ export default function Footer() {
       setIsRunOnlineCompiler
     )
     setUserWrongAnswer((prev) => ({ ...prev, ...data }))
+    setIsOpen(true)
   }
   return (
     <>
@@ -79,6 +83,7 @@ export default function Footer() {
           )}
         </div>
       </div>
+      {!isRun && isOpen && <SubmitModal />}
     </>
   )
 }
