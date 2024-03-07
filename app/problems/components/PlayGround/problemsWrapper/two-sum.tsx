@@ -70,15 +70,26 @@ for i in all_test_case:
       {"testCaseNumber":i["order"], "correctOutput":i["output"], "userOutput":  slv.twoSum(i["input"][0],i["input"][1]) })
 print(solutionList)
 `
-    case 'javascript' || 'typescript':
+    case 'javascript':
       return `
             ${code}
-       
-        all_test_case = ${JSON.stringify(testCase)}
+        let all_test_case = ${JSON.stringify(testCase)}
         let solutionList = []
         for(let i of all_test_case) {
           solutionList.push(
             {"testCaseNumber":i["order"], "correctOutput":i["output"], "userOutput":  twoSum(i["input"][0],i["input"][1]) })
+        
+        }
+        console.log(solutionList)
+        `
+    case 'typescript':
+      return `
+            ${code}
+        let all_test_case = ${JSON.stringify(testCase)}
+        let solutionList = []
+        for(let i of all_test_case) {
+          solutionList.push(
+            {"testCaseNumber":i["order"], "correctOutput":i["output"], "userOutput":   twoSum(i["input"][0] as number[],i["input"][1] as number) })
         
         }
         console.log(solutionList)

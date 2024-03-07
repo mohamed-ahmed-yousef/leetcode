@@ -13,7 +13,6 @@ export async function OnlineCompiler(
   setIsLoading: SetterOrUpdater<defaultValuesProps>
 ) {
   const API_KEY = process.env.NEXT_PUBLIC_JUDGE0_API
-  console.log(sourceCode, lang, 'before')
   sourceCode = GetWrapperCode(sourceCode, lang, type)
   console.log(sourceCode, lang, type, 'after')
   try {
@@ -54,14 +53,13 @@ export async function OnlineCompiler(
       )
       status = updatedStatusResponse.data
     }
-    console.log(statusResponse, 'After submission')
+    console.log(status, 'After submission')
 
-    // console.log(status, 'after')
     const output = status.stdout
     const description = status.status.description
-    // console.log('output: ', output, typeof output, 'description: ', description)
+    console.log(output)
+
     let wrongAnswer = null
-    // console.log(output)
     let jsonString = null
     if (lang == 'python') {
       jsonString = output.replace(/'/g, '"')
@@ -78,10 +76,10 @@ export async function OnlineCompiler(
     } else if (description !== 'Accepted') {
       ErrorTopCenterAuth('please check your code and try again')
     }
-    // console.log(wrongAnswer, 'wrongAnswer')
     return {
       userWrongAnswer: wrongAnswer,
       type: type,
+      error: '',
     }
   } catch (error: any) {
     console.log(error.message, error)
