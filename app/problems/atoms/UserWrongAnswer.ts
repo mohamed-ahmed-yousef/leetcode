@@ -4,6 +4,7 @@ export type UserWrongAnswerAtomProps = {
   userWrongAnswer: {
     userOutput: string[]
     correctOutput: string[]
+    input: string[]
     testCaseNumber: number
   }[]
   type: string
@@ -18,6 +19,7 @@ export const userWrongAnswerAtom = atom<UserWrongAnswerAtomProps>({
         userOutput: [],
         correctOutput: [],
         testCaseNumber: 0,
+        input: [],
       },
     ],
     type: '',

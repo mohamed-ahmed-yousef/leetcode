@@ -19,7 +19,7 @@
 - toastor
 - React split
 - react-codemirror
-- Assert
+- react-confetti
 
 ### Backend:
 

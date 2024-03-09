@@ -44,8 +44,8 @@ export const TwoSum = {
     },
     {
       order: 6,
-      input: [[3, -3, 6, 3], 6],
-      output: [0, 1],
+      input: [[3, -3, 3], 6],
+      output: [0, 2],
     },
   ],
 }
@@ -56,7 +56,6 @@ export function GetWrapperCode(code: string, lang: string, type: string) {
   } else {
     testCase = TwoSum.allTestCase
   }
-  console.log(testCase, lang, 'from twosum', code)
   switch (lang) {
     case 'python':
       return `
@@ -67,20 +66,20 @@ slv = Solution()
 all_test_case = ${JSON.stringify(testCase)}
 for i in all_test_case:
     solutionList.append(
-      {"testCaseNumber":i["order"], "correctOutput":i["output"], "userOutput":  slv.twoSum(i["input"][0],i["input"][1]) })
+      {"testCaseNumber":i["order"],"input":i["input"] , "correctOutput":i["output"], "userOutput":  slv.twoSum(i["input"][0],i["input"][1]) })
 print(solutionList)
 `
     case 'javascript':
       return `
-            ${code}
-        let all_test_case = ${JSON.stringify(testCase)}
-        let solutionList = []
-        for(let i of all_test_case) {
-          solutionList.push(
-            {"testCaseNumber":i["order"], "correctOutput":i["output"], "userOutput":  twoSum(i["input"][0],i["input"][1]) })
-        
-        }
-        console.log(solutionList)
+      ${code}
+      let all_test_case = ${JSON.stringify(testCase)}
+      let solutionList = []
+      for(let i of all_test_case) {
+        solutionList.push(
+    {"testCaseNumber":i["order"], "input": i["input"][0], "correctOutput":i["output"], "userOutput":  twoSum(i["input"][0],i["input"][1]) })
+
+      }
+      console.log(solutionList)
         `
     case 'typescript':
       return `
@@ -89,7 +88,7 @@ print(solutionList)
         let solutionList = []
         for(let i of all_test_case) {
           solutionList.push(
-            {"testCaseNumber":i["order"], "correctOutput":i["output"], "userOutput":   twoSum(i["input"][0] as number[],i["input"][1] as number) })
+            {"testCaseNumber":i["order"] ,"input":i["input"][0] , "correctOutput":i["output"], "userOutput":   twoSum(i["input"][0] as number[],i["input"][1] as number) })
         
         }
         console.log(solutionList)

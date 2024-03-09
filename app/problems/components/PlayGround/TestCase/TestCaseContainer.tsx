@@ -18,7 +18,7 @@ export default function TestCase() {
       <div className="px-4 py-1 min-w-[400px]">
         <TestCaseHeader />
         {isRun && type == 'run' && <TestCaseSkeleton />}
-        {(!isRun || type !== 'submit') && <TestCaseTab components={testCase} />}
+        {(!isRun || type === 'submit') && <TestCaseTab components={testCase} />}
         <Footer />
       </div>
     </div>

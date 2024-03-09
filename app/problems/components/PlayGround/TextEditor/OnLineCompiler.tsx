@@ -65,7 +65,11 @@ export async function OnlineCompiler(
       jsonString = output.replace(/'/g, '"')
     } else if (lang === 'javascript' || lang === 'typescript') {
       jsonString = output.replace(/(['"])?([a-zA-Z0-9_]+)(['"])?:/g, '"$2":')
+      // console.log(jsonString, "before second replace")
+      // jsonString = output.replace(/'/g, '"')
+      // console.log(jsonString, "after second replace")
     }
+    console.log(jsonString, 'before parse noted')
     const parsedOutput = JSON.parse(jsonString)
     console.log(parsedOutput)
     setIsLoading((prev) => ({ ...prev, isRun: false }))
@@ -76,6 +80,7 @@ export async function OnlineCompiler(
     } else if (description !== 'Accepted') {
       ErrorTopCenterAuth('please check your code and try again')
     }
+    console.log(wrongAnswer)
     return {
       userWrongAnswer: wrongAnswer,
       type: type,
@@ -96,6 +101,7 @@ export async function OnlineCompiler(
         ? 'Daily submission limit reached! Please try again tomorrow'
         : 'something went wrong please try again'
     return {
+      userWrongAnswer: '',
       error: errorMessage,
       type: type,
     }

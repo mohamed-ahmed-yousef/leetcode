@@ -22,19 +22,19 @@ export default function Footer() {
       'run',
       setIsRunOnlineCompiler
     )
-    console.log('after await ', data)
+
     setUserWrongAnswer((prev) => ({ ...prev, ...data }))
-    console.log('from run after run', data)
+    setIsOpen(false)
   }
-  const handleOnSubmit = () => {
-    const data = OnlineCompiler(
+  const handleOnSubmit = async () => {
+    const data = await OnlineCompiler(
       userCode,
       userLang,
       'submit',
       setIsRunOnlineCompiler
     )
     setUserWrongAnswer((prev) => ({ ...prev, ...data }))
-    setIsOpen(true)
+    if (!data.error) setIsOpen(true)
   }
   return (
     <>

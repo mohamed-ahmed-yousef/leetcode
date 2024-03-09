@@ -13,6 +13,7 @@ type userDataProps = {
   userOutput: string[]
   correctOutput: string[]
   testCaseNumber: number
+  input: string[]
 }[]
 function GetWrongTestCasesArray(userData: userDataProps) {
   let testCaseNumbers: number[] = []

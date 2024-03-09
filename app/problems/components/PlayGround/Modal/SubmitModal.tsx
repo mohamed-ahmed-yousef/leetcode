@@ -2,14 +2,15 @@ import { useState } from 'react'
 import { isRunOnlineCompilerAtom } from '@/app/problems/atoms/RunAtom'
 import { useRecoilValue } from 'recoil'
 import { IoClose } from 'react-icons/io5'
+import { userWrongAnswerAtom } from '@/app/problems/atoms/UserWrongAnswer'
+import ConfettiComponent from '@/app/problems/[problemid]/ConfettiComponent'
 
 export default function SubmitModal() {
   const [isModalOpen, setIsModalOpen] = useState(true)
   const { isRun } = useRecoilValue(isRunOnlineCompilerAtom)
-
-  const handleModalOpen = () => {
-    setIsModalOpen(true)
-  }
+  const { userWrongAnswer } = useRecoilValue(userWrongAnswerAtom)
+  console.log(userWrongAnswer, 'from submit modal')
+  const firstUserWrongAnswer = userWrongAnswer[0]
 
   const handleModalClose = () => {
     setIsModalOpen(false)
@@ -17,14 +18,14 @@ export default function SubmitModal() {
 
   return (
     <>
-      <button onClick={handleModalOpen}>Open Modal</button>
-      {/* isModalOpen && */}
-      {isModalOpen && (
+      {!firstUserWrongAnswer && isModalOpen && (
+        <ConfettiComponent setIsModalOpen={setIsModalOpen} />
+      )}
+      {isModalOpen && firstUserWrongAnswer && (
         <div className="fixed z-50 inset-0 overflow-y-auto ">
           <div className="flex items-center justify-center min-h-screen pt-4  pb-20 text-center sm:block sm:p-0">
             <div
               className="fixed inset-0 bg-dark-layer-2 bg-opacity-75 transition-opacity"
-              onClick={handleModalClose}
               aria-hidden="true"
             ></div>
 
@@ -41,7 +42,8 @@ export default function SubmitModal() {
                 <div className="sm:flex sm:items-start">
                   <div className="mt-3  sm:mt-0  flex items-center flex-col justify-center">
                     <h3 className="text-2xl leading-6 font-bold  text-red-500 mb-4">
-                      Wrong Answer
+                      Wrong Answer at test case{' '}
+                      {firstUserWrongAnswer?.testCaseNumber}
                     </h3>
                     <div className="mt-2 ml-4">
                       <div className="mb-4 text-gray-300 w-[min(93vw,550px)]">
@@ -49,7 +51,7 @@ export default function SubmitModal() {
                           Input
                         </p>
                         <pre className="bg-dark-fill-2  rounded-md p-2 lg:p-3 whitespace-pre-wrap">
-                          Input
+                          {JSON.stringify(firstUserWrongAnswer?.input)}
                         </pre>
                       </div>
                       <div className="mb-4 text-gray-300 w-[min(93vw,550px)]">
@@ -57,7 +59,7 @@ export default function SubmitModal() {
                           Correct Output
                         </p>
                         <pre className="bg-dark-fill-2  w-full rounded-md p-2 lg:p-3 whitespace-pre-wrap">
-                          Correct Output
+                          {JSON.stringify(firstUserWrongAnswer?.correctOutput)}
                         </pre>
                       </div>
                       <div className="mb-4 text-gray-300 w-[min(93vw,550px)]">
@@ -65,7 +67,7 @@ export default function SubmitModal() {
                           Your Answer
                         </p>
                         <pre className="bg-dark-fill-2  rounded-md p-2 lg:p-3 whitespace-pre-wrap">
-                          your answer
+                          {JSON.stringify(firstUserWrongAnswer?.userOutput)}
                         </pre>
                       </div>
                     </div>
