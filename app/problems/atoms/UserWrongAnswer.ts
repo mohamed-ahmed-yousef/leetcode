@@ -1,14 +1,12 @@
 import { atom } from 'recoil'
 
 export type UserWrongAnswerAtomProps = {
-  userWrongAnswer:
-    | {
-        userOutput: string[]
-        correctOutput: string[]
-        input: string[]
-        testCaseNumber: number
-      }[]
-    | string
+  userWrongAnswer: {
+    userOutput: string[]
+    correctOutput: string[]
+    input: string[]
+    testCaseNumber: number
+  }[]
   type: string
   error?: string
 }
