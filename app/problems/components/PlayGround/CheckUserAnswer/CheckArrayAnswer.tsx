@@ -2,12 +2,13 @@ type CheckUserAnswer = {
   testCaseNumber: number
   correctOutput: string[]
   userOutput: string[]
+  input: string[]
 }[]
-export function CheckArrayAnswer(UserOutput: CheckUserAnswer) {
+export function CheckArrayAnswer(UserOutput: CheckUserAnswer | string) {
   // console.log('from check array', UserOutput)
   let wrongAnswer = []
   for (let currentTest of UserOutput) {
-    const { testCaseNumber, correctOutput, userOutput } = currentTest
+    const { testCaseNumber, correctOutput, userOutput, input } = currentTest
     if (!compareArrays(userOutput, correctOutput)) {
       wrongAnswer.push(currentTest)
     }

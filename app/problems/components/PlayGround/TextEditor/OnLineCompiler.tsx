@@ -65,9 +65,6 @@ export async function OnlineCompiler(
       jsonString = output.replace(/'/g, '"')
     } else if (lang === 'javascript' || lang === 'typescript') {
       jsonString = output.replace(/(['"])?([a-zA-Z0-9_]+)(['"])?:/g, '"$2":')
-      // console.log(jsonString, "before second replace")
-      // jsonString = output.replace(/'/g, '"')
-      // console.log(jsonString, "after second replace")
     }
     console.log(jsonString, 'before parse noted')
     const parsedOutput = JSON.parse(jsonString)

@@ -22,7 +22,7 @@ export default function Footer() {
       'run',
       setIsRunOnlineCompiler
     )
-
+    // @ts-ignore
     setUserWrongAnswer((prev) => ({ ...prev, ...data }))
     setIsOpen(false)
   }
@@ -33,6 +33,7 @@ export default function Footer() {
       'submit',
       setIsRunOnlineCompiler
     )
+    // @ts-ignore
     setUserWrongAnswer((prev) => ({ ...prev, ...data }))
     if (!data.error) setIsOpen(true)
   }
