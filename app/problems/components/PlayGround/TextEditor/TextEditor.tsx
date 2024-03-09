@@ -26,16 +26,14 @@ export default function TextEditor() {
   }
 
   return (
-    <div>
-      <div className="w-full overflow-auto">
-        <CodeMirror
-          // height="100%"
-          extensions={extensions}
-          theme={vscodeDark}
-          onChange={handleOnChange}
-          value={starterCode[lang as keyof typeof starterCode] as string}
-        />
-      </div>
+    <div className="w-full overflow-auto">
+      <CodeMirror
+        height="100%"
+        extensions={extensions}
+        theme={vscodeDark}
+        onChange={handleOnChange}
+        value={starterCode[lang as keyof typeof starterCode] as string}
+      />
     </div>
   )
 }
