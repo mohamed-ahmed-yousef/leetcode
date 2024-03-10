@@ -29,7 +29,7 @@ export default function TextEditor() {
   const handleOnChange = (value: string) => {
     setTextEditor((prev) => ({ ...prev, userCode: value, userLang: lang }))
     console.log(starterCode, 'hi', problemId, 'this is problem id')
-    localStorage.setItem(`${lang}-${problemId}`, value)
+    if (user) localStorage.setItem(`${lang}-${problemId}`, value)
   }
 
   return (
