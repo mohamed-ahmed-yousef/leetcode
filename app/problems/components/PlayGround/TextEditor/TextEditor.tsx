@@ -6,24 +6,40 @@ import { vscodeDark } from '@uiw/codemirror-theme-vscode'
 import { useRecoilValue } from 'recoil'
 import { starterCodeAtom } from '@/app/problems/atoms/starterCodeAtom'
 import { selectedLanguageAtom } from '@/app/problems/atoms/selectedLanguage'
-
+import { textEditorAtom } from '../../../atoms/TextEditorAtom'
+import { useSetRecoilState } from 'recoil'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { auth } from '@/app/firebase/firebase'
 export default function TextEditor() {
-  const { starterCode } = useRecoilValue(starterCodeAtom)
+  const { starterCode, problemId } = useRecoilValue(starterCodeAtom)
   const { lang } = useRecoilValue(selectedLanguageAtom)
+  const setTextEditor = useSetRecoilState(textEditorAtom)
+  const [user] = useAuthState(auth)
+  let newStarterCode = null
+  if (user) newStarterCode = localStorage.getItem(`${lang}-${problemId}`)
+  let finalValue = starterCode[lang as keyof typeof starterCode] as string
+  if (newStarterCode) finalValue = newStarterCode
+
   const extensions =
     lang === 'python'
       ? [python()]
       : lang === 'javascript' || lang == 'typescript'
         ? [javascript()]
         : []
+  const handleOnChange = (value: string) => {
+    setTextEditor((prev) => ({ ...prev, userCode: value, userLang: lang }))
+    console.log(starterCode, 'hi', problemId, 'this is problem id')
+    localStorage.setItem(`${lang}-${problemId}`, value)
+  }
+
   return (
-    <div className="overflow-y-auto">
+    <div className="w-full overflow-auto">
       <CodeMirror
-        height="h-full"
+        height="100%"
         extensions={extensions}
         theme={vscodeDark}
-        // try to solve the type error here.
-        value={starterCode[lang as keyof typeof starterCode] as string}
+        onChange={handleOnChange}
+        value={finalValue}
       />
     </div>
   )

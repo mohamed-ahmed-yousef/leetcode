@@ -31,4 +31,25 @@ const notLogin = (message: string) => {
     autoClose: 2000,
   })
 }
-export { AuthToasterError, AuthToasterSuccess, AuthToastLoading, notLogin }
+const ErrorTopCenterAuth = (message: string) => {
+  return toast.error(message, {
+    theme: 'dark',
+    position: 'top-center',
+    autoClose: 2000,
+  })
+}
+const SuccessTopCenter = (message: string) => {
+  return toast.success(message, {
+    theme: 'dark',
+    position: 'top-center',
+    autoClose: 5000,
+  })
+}
+export {
+  AuthToasterError,
+  AuthToasterSuccess,
+  AuthToastLoading,
+  notLogin,
+  ErrorTopCenterAuth,
+  SuccessTopCenter,
+}

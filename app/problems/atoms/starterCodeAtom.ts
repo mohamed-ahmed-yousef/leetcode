@@ -3,6 +3,7 @@ import { atom } from 'recoil'
 import { StarterCode } from '@/types/problem'
 type defaultValue = {
   starterCode: StarterCode
+  problemId: string
 }
 
 export const starterCodeAtom = atom<defaultValue>({
@@ -13,5 +14,6 @@ export const starterCodeAtom = atom<defaultValue>({
       python: '',
       typescript: '',
     },
+    problemId: '',
   },
 })

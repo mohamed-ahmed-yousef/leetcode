@@ -8,7 +8,7 @@ export default function PlayGround() {
     <div className="bg-dark-layer-1">
       <PlayGroundNav />
       <Split
-        className="h-[calc(100vh-106px)]  overflow-y-hidden"
+        className="h-[calc(100vh-106px)]  overflow-x-hidden"
         direction="vertical"
         sizes={[60, 40]}
         minSize={100}

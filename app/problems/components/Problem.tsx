@@ -29,7 +29,12 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
   } = problem
   const setStarterCode = useSetRecoilState(starterCodeAtom)
   const steTestCase = useSetRecoilState(testCaseAtom)
-  setStarterCode((prev) => ({ ...prev, starterCode: starterCode }))
+  // console.log(testCase)
+  setStarterCode((prev) => ({
+    ...prev,
+    starterCode: starterCode,
+    problemId: id,
+  }))
   steTestCase((prev) => ({ ...prev, testCase: testCase }))
 
   return (
@@ -37,8 +42,8 @@ const ProblemDescription: React.FC<ProblemDescriptionProps> = ({ problem }) => {
       <div className=" bg-dark-layer-2  ">
         <div className="bg-dark-layer-1  ">
           <Tabs text={'Description'} />
-          <div className="  pb-7 h-[calc(100vh-106px)] overflow-y-auto">
-            <div className="max-w-[800px] p-2 lg:p-4">
+          <div className="  pb-7 h-[calc(100vh-106px)] overflow-auto ">
+            <div className="max-w-[800px] p-2 lg:p-4 min-w-[500px]">
               <h1 className="text-xl text-white font-bold">{title}</h1>
               <ProblemInfo problemId={id} />
               <div className="mt-5">

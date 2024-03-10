@@ -6,7 +6,7 @@ import TableHeader from './home/TableHeader'
 import ProblemContainer from './home/ProblemContainer'
 export default function Home() {
   return (
-    <div className="bg-dark-layer-2 min-h-screen relative">
+    <div className="bg-dark-layer-2 min-h-screen relative ">
       {/*nav height is 60px */}
       <HomeNavBar />
       <Title />
