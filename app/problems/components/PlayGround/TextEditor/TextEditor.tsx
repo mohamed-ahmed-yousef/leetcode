@@ -8,14 +8,15 @@ import { starterCodeAtom } from '@/app/problems/atoms/starterCodeAtom'
 import { selectedLanguageAtom } from '@/app/problems/atoms/selectedLanguage'
 import { textEditorAtom } from '../../../atoms/TextEditorAtom'
 import { useSetRecoilState } from 'recoil'
-
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { auth } from '@/app/firebase/firebase'
 export default function TextEditor() {
   const { starterCode, problemId } = useRecoilValue(starterCodeAtom)
   const { lang } = useRecoilValue(selectedLanguageAtom)
   const setTextEditor = useSetRecoilState(textEditorAtom)
-
-  // let newStarterCode = localStorage.getItem(`${lang}-${problemId}`)
+  const [user] = useAuthState(auth)
   let newStarterCode = null
+  if (user) newStarterCode = localStorage.getItem(`${lang}-${problemId}`)
   let finalValue = starterCode[lang as keyof typeof starterCode] as string
   if (newStarterCode) finalValue = newStarterCode
 
@@ -28,7 +29,7 @@ export default function TextEditor() {
   const handleOnChange = (value: string) => {
     setTextEditor((prev) => ({ ...prev, userCode: value, userLang: lang }))
     console.log(starterCode, 'hi', problemId, 'this is problem id')
-    // localStorage.setItem(`${lang}-${problemId}`, value)
+    localStorage.setItem(`${lang}-${problemId}`, value)
   }
 
   return (

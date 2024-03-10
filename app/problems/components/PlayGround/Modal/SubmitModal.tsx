@@ -1,12 +1,24 @@
+'use client'
 import { useState } from 'react'
 import { isRunOnlineCompilerAtom } from '@/app/problems/atoms/RunAtom'
-import { useRecoilValue } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { IoClose } from 'react-icons/io5'
 import { userWrongAnswerAtom } from '@/app/problems/atoms/UserWrongAnswer'
 import ConfettiComponent from '@/app/problems/[problemid]/ConfettiComponent'
 import { SuccessTopCenter } from '@/components/Toast/Toast'
+import { usePathname } from 'next/navigation'
+import { doc, updateDoc, arrayUnion } from 'firebase/firestore'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { fireStore, auth } from '@/app/firebase/firebase'
+import { useProblemIsSolved } from '@/app/problems/atoms/ProblemIsSolved'
 
 export default function SubmitModal() {
+  const pathname = usePathname()
+  console.log(pathname, 'from submit modal')
+  let ProblemId: string[] | string = pathname.split('/')
+  ProblemId = ProblemId[2]
+  const setIsSolved = useSetRecoilState(useProblemIsSolved)
+  const [user] = useAuthState(auth)
   const [isModalOpen, setIsModalOpen] = useState(true)
   const { isRun } = useRecoilValue(isRunOnlineCompilerAtom)
   const { userWrongAnswer } = useRecoilValue(userWrongAnswerAtom)
@@ -17,6 +29,12 @@ export default function SubmitModal() {
   const handleModalClose = () => {
     setIsModalOpen(false)
   }
+  const updateSolvedProblem = async () => {
+    const currentUser = doc(fireStore, 'users', user?.uid!)
+    await updateDoc(currentUser, {
+      solvedProblems: arrayUnion(ProblemId),
+    })
+  }
 
   return (
     <>
@@ -26,6 +44,8 @@ export default function SubmitModal() {
             <>
               {SuccessTopCenter('Congrats all tests pass')}
               {setIsToastedOpen(true)}
+              {updateSolvedProblem()}
+              {setIsSolved((prev) => ({ ...prev, isSolved: true }))}
             </>
           )}
           <ConfettiComponent setIsModalOpen={setIsModalOpen} />

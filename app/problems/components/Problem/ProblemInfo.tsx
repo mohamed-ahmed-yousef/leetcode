@@ -17,6 +17,8 @@ import { auth, fireStore } from '@/app/firebase/firebase'
 import { doc, getDoc } from 'firebase/firestore'
 import { notLogin } from '@/components/Toast/Toast'
 import Spinner from './skeleton/Spinner'
+// import { LuCheckCircle } from 'react-icons/lu'
+import { useProblemIsSolved } from '@/app/problems/atoms/ProblemIsSolved'
 
 type ProblemInfoProps = {
   problemId: string
@@ -28,6 +30,8 @@ export default function ProblemInfo({ problemId }: ProblemInfoProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [isChangingState, setIsChangingState] = useState(false)
   const [user] = useAuthState(auth)
+  const { isSolved } = useRecoilValue(useProblemIsSolved)
+
   console.log(user)
   const [userProblemInfo, setUserProblemInfo] = useState({
     liked: false,
@@ -276,7 +280,7 @@ export default function ProblemInfo({ problemId }: ProblemInfoProps) {
             <CircleSkeleton />
           </div>
         )}
-        {userProblemInfo.solved && !isLoading && (
+        {!isLoading && (userProblemInfo.solved || isSolved) && (
           <LuCheckCircle className="text-dark-green-s w-5" />
         )}
       </div>
