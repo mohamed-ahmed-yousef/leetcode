@@ -4,11 +4,13 @@ import { useRecoilValue } from 'recoil'
 import { IoClose } from 'react-icons/io5'
 import { userWrongAnswerAtom } from '@/app/problems/atoms/UserWrongAnswer'
 import ConfettiComponent from '@/app/problems/[problemid]/ConfettiComponent'
+import { SuccessTopCenter } from '@/components/Toast/Toast'
 
 export default function SubmitModal() {
   const [isModalOpen, setIsModalOpen] = useState(true)
   const { isRun } = useRecoilValue(isRunOnlineCompilerAtom)
   const { userWrongAnswer } = useRecoilValue(userWrongAnswerAtom)
+  const [isToastedOpen, setIsToastedOpen] = useState(false)
   console.log(userWrongAnswer, 'from submit modal')
   const firstUserWrongAnswer = userWrongAnswer[0]
 
@@ -19,7 +21,15 @@ export default function SubmitModal() {
   return (
     <>
       {!firstUserWrongAnswer && isModalOpen && (
-        <ConfettiComponent setIsModalOpen={setIsModalOpen} />
+        <>
+          {!isToastedOpen && (
+            <>
+              {SuccessTopCenter('Congrats all tests pass')}
+              {setIsToastedOpen(true)}
+            </>
+          )}
+          <ConfettiComponent setIsModalOpen={setIsModalOpen} />
+        </>
       )}
       {isModalOpen && firstUserWrongAnswer && (
         <div className="fixed z-50 inset-0 overflow-y-auto ">

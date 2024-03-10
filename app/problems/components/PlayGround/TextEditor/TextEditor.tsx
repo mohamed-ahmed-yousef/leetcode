@@ -13,7 +13,9 @@ export default function TextEditor() {
   const { starterCode, problemId } = useRecoilValue(starterCodeAtom)
   const { lang } = useRecoilValue(selectedLanguageAtom)
   const setTextEditor = useSetRecoilState(textEditorAtom)
-  let newStarterCode = localStorage.getItem(`${lang}-${problemId}`)
+
+  // let newStarterCode = localStorage.getItem(`${lang}-${problemId}`)
+  let newStarterCode = null
   let finalValue = starterCode[lang as keyof typeof starterCode] as string
   if (newStarterCode) finalValue = newStarterCode
 
@@ -26,7 +28,7 @@ export default function TextEditor() {
   const handleOnChange = (value: string) => {
     setTextEditor((prev) => ({ ...prev, userCode: value, userLang: lang }))
     console.log(starterCode, 'hi', problemId, 'this is problem id')
-    localStorage.setItem(`${lang}-${problemId}`, value)
+    // localStorage.setItem(`${lang}-${problemId}`, value)
   }
 
   return (
