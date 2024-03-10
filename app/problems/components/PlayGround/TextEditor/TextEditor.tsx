@@ -13,7 +13,10 @@ export default function TextEditor() {
   const { starterCode, problemId } = useRecoilValue(starterCodeAtom)
   const { lang } = useRecoilValue(selectedLanguageAtom)
   const setTextEditor = useSetRecoilState(textEditorAtom)
-  console.log(starterCode)
+  let newStarterCode = localStorage.getItem(`${lang}-${problemId}`)
+  let finalValue = starterCode[lang as keyof typeof starterCode] as string
+  if (newStarterCode) finalValue = newStarterCode
+
   const extensions =
     lang === 'python'
       ? [python()]
@@ -23,6 +26,7 @@ export default function TextEditor() {
   const handleOnChange = (value: string) => {
     setTextEditor((prev) => ({ ...prev, userCode: value, userLang: lang }))
     console.log(starterCode, 'hi', problemId, 'this is problem id')
+    localStorage.setItem(`${lang}-${problemId}`, value)
   }
 
   return (
@@ -32,7 +36,7 @@ export default function TextEditor() {
         extensions={extensions}
         theme={vscodeDark}
         onChange={handleOnChange}
-        value={starterCode[lang as keyof typeof starterCode] as string}
+        value={finalValue}
       />
     </div>
   )
