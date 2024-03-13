@@ -29,6 +29,8 @@ export default function ProblemContainer() {
           const { solvedProblems } = docSnap.data()
           setSolvedProblems(solvedProblems)
         }
+      } else {
+        setSolvedProblems([])
       }
       setProblems(curr)
     }
