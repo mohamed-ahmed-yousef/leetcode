@@ -40,7 +40,7 @@ export default function TimerComponent() {
 
   return (
     <div>
-      <div className=" cursor-pointer h-[35px] flex items-center">
+      <div className=" cursor-pointer h-[35px] flex items-center hidden md:block">
         {!isShow ? (
           <div
             onClick={() => setIsShow(true)}

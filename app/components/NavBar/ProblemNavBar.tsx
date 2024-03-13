@@ -39,7 +39,7 @@ export default function ProblemNavBar({ problemId }: ProblemNavBarProps) {
   }
 
   return (
-    <div className="flex items-center justify-center h-[35px]">
+    <div className=" items-center justify-center h-[35px] hidden md:flex">
       <div
         className="flex items-center cursor-pointer px-2 py-1 h-full  bg-dark-fill-3 hover:bg-dark-fill-2 rounded-l-md mr-[2px] text-slate-300 hover:text-slate-50"
         onClick={() => handleNextAndPrev(false)}
