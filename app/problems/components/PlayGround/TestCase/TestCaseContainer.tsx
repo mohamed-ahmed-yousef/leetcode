@@ -12,7 +12,7 @@ export default function TestCase() {
   const { testCase } = useRecoilValue(testCaseAtom)
   const { isRun } = useRecoilValue(isRunOnlineCompilerAtom)
   const { type } = useRecoilValue(userWrongAnswerAtom)
-  // console.log
+  console.log('is Run', isRun, 'type', type, 'importatn')
   return (
     <div className="overflow-auto  w-full">
       <div className="px-4 py-1 min-w-[400px]">

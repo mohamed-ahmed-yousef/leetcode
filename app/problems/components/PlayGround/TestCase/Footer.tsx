@@ -16,6 +16,7 @@ export default function Footer() {
   const { isRun } = useRecoilValue(isRunOnlineCompilerAtom)
   const [isOpen, setIsOpen] = useState(false)
   const handleOnRun = async () => {
+    setUserWrongAnswer((prev) => ({ ...prev, type: 'run' }))
     const data = await OnlineCompiler(
       userCode,
       userLang,
@@ -27,6 +28,8 @@ export default function Footer() {
     setIsOpen(false)
   }
   const handleOnSubmit = async () => {
+    setUserWrongAnswer((prev) => ({ ...prev, type: 'submit' }))
+
     const data = await OnlineCompiler(
       userCode,
       userLang,

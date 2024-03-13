@@ -10,9 +10,9 @@ export default function ConfettiComponent({
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setIsModalOpen(false)
-    }, 10000)
+    }, 5000)
     return () => clearTimeout(timeoutId)
   }, [])
   const { width, height } = useScreenDimensions()
-  return <Confetti width={width} height={height} tweenDuration={10000} />
+  return <Confetti width={width} height={height} tweenDuration={5000} />
 }
