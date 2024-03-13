@@ -5,13 +5,14 @@ import Link from 'next/link'
 import { AiFillYoutube } from 'react-icons/ai'
 import YoutubeModal from './YoutubeModal'
 import { useState } from 'react'
-
 import { DBProblems } from '@/types/problem'
 
 export default function TableContent({
   problems,
+  solvedProblems,
 }: {
   problems: DBProblems | null
+  solvedProblems: string[] | null
 }) {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -20,6 +21,7 @@ export default function TableContent({
     setVideoId(videoId)
     setIsOpen(true)
   }
+
   return (
     <div className="pb-8">
       {Array.isArray(problems) &&
@@ -39,7 +41,9 @@ export default function TableContent({
             >
               <p className="col-span-2 md:col-span-1">
                 {' '}
-                <LuCheckCircle className="text-dark-green-s" />{' '}
+                {solvedProblems?.includes(problem?.id) && (
+                  <LuCheckCircle className="text-dark-green-s" />
+                )}{' '}
               </p>
               <Link
                 href={`/problems/${problem?.id}`}
