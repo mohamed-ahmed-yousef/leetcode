@@ -34,16 +34,16 @@ export default function TableContent({
           return (
             <div
               key={problem?.id}
-              className={`grid grid-cols-11
+              className={`grid grid-cols-12 md:grid-cols-11 text-[12px]  md:text-[16px] lg:text-[20px]
                   ${indx % 2 == 1 ? 'bg-dark-layer-1' : ''} rounded-lg px-2 py-4`}
             >
-              <p className="col-span-1">
+              <p className="col-span-2 md:col-span-1">
                 {' '}
                 <LuCheckCircle className="text-dark-green-s" />{' '}
               </p>
               <Link
                 href={`/problems/${problem?.id}`}
-                className="col-span-3 text-[14px] hover:text-blue-500"
+                className="col-span-3  hover:text-blue-500"
               >
                 {problem.title}
               </Link>

@@ -43,10 +43,14 @@ export default function HomeNavBar({ homePage, problemId }: HomeNavBarProps) {
         </div>
       )}
       <div className="flex items-center">
-        <Link href="https://github.com/mohamedahmed-cloud" target="_blank">
+        <Link
+          href="https://github.com/mohamedahmed-cloud"
+          target="_blank"
+          className="hidden sm:block"
+        >
           <Button
             name="support me"
-            className="bg-dark-fill-3  hover:bg-zinc-950 text-brand-orange px-3 py-1.5"
+            className="bg-dark-fill-3  hover:bg-zinc-950 text-brand-orange px-3 py-1.5 "
             type="button"
           />
         </Link>
