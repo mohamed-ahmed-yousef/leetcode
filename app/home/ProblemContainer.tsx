@@ -15,7 +15,6 @@ export default function ProblemContainer() {
   const [solvedProblems, setSolvedProblems] = useState<string[] | null>(null)
   const [user] = useAuthState(auth)
   const [isLoading, setIsLoading] = useState(true)
-  console.log(user, 'user')
   useEffect(() => {
     const getData = async () => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -23,9 +22,8 @@ export default function ProblemContainer() {
       if (user) {
         const docRef = doc(fireStore, 'users', user?.uid!)
         const docSnap = await getDoc(docRef)
-        console.log(docSnap, 'from user')
+
         if (docSnap.exists()) {
-          console.log('Document data:', docSnap.data())
           const { solvedProblems } = docSnap.data()
           setSolvedProblems(solvedProblems)
         }

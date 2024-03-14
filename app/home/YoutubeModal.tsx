@@ -19,13 +19,14 @@ export default function YoutubeModal({
     event.target.pauseVideo()
   }
   useEffect(() => {
-    const ListenToEvent = (e: { key: string }) => {
+    const ListenToEvent = () => {
       handleCloseModal()
     }
     addEventListener('keydown', ListenToEvent)
     return () => {
       removeEventListener('keydown', ListenToEvent)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const opts: YouTubeProps['opts'] = {

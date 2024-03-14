@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form'
 import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth'
 import { auth } from '@/app/firebase/firebase'
 import { useEffect } from 'react'
-import { toast } from 'react-toastify'
+// import { toast } from 'react-toastify'
 import { AuthToasterError, AuthToasterSuccess } from '@/components/Toast/Toast'
 
 export default function ForgetPassword() {
@@ -20,7 +20,6 @@ export default function ForgetPassword() {
     register,
     handleSubmit,
     formState: { errors },
-    control,
   } = useForm({
     resolver: zodResolver(scheme),
   })

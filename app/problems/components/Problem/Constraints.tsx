@@ -1,4 +1,3 @@
-import { text } from 'stream/consumers'
 import Code from './Code'
 type ConstraintsProps = {
   rangeConstraints: string[]

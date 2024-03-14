@@ -21,7 +21,6 @@ function GetWrongTestCasesArray(userData: userDataProps) {
   let userOutputs: string[][] = []
   Array.isArray(userData) &&
     userData.forEach(function (item) {
-      console.log(item, 'item')
       testCaseNumbers.push(item.testCaseNumber)
       correctOutputs.push(item.correctOutput)
       userOutputs.push(item.userOutput)
@@ -36,15 +35,11 @@ function GetWrongTestCasesArray(userData: userDataProps) {
 
 export default function TestCaseEditor({ components }: TestCaseEditorProps) {
   const WrongAnswerData = useRecoilValue(userWrongAnswerAtom)
-  console.log('wrong answer from tabs', WrongAnswerData)
   const { type, userWrongAnswer, error } = WrongAnswerData
-  console.log('type:', type, userWrongAnswer)
-  const { testCaseNumbers, correctOutputs, userOutputs } =
+  const { testCaseNumbers, userOutputs } =
     GetWrongTestCasesArray(userWrongAnswer)
-  console.log(WrongAnswerData, 'WrongAnswerData')
   const [targetTest, setTargetTest] = useState(0)
   let currentUserNumberAnswer = 0
-  console.log(components, 'our components', error, 'Error is here.')
   const isTestCasesRun = () => {
     return !error
   }

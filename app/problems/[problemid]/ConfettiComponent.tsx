@@ -12,7 +12,7 @@ export default function ConfettiComponent({
       setIsModalOpen(false)
     }, 5000)
     return () => clearTimeout(timeoutId)
-  }, [])
+  }, [setIsModalOpen])
   const { width, height } = useScreenDimensions()
   return <Confetti width={width} height={height} tweenDuration={5000} />
 }

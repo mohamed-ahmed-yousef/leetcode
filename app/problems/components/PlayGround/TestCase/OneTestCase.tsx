@@ -10,13 +10,6 @@ export default function OneTestCase({
   output,
   currUserOutput,
 }: OneTestCaseProps) {
-  console.log(
-    input,
-    output,
-    currUserOutput,
-    typeof currUserOutput,
-    'from yousef'
-  )
   return (
     <div className="text-gray-300 ">
       <div>

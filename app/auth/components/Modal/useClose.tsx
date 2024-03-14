@@ -17,6 +17,7 @@ export const HandleCloseModal = () => {
     return () => {
       removeEventListener('keydown', handleESC)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   return handleCloseModal
 }

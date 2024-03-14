@@ -1,5 +1,5 @@
 'use client'
-import { AiOutlineFullscreen, AiOutlineSetting } from 'react-icons/ai'
+import { AiOutlineSetting } from 'react-icons/ai'
 import { useState } from 'react'
 import SettingModal from './SettingModal'
 

@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { isRunOnlineCompilerAtom } from '@/app/problems/atoms/RunAtom'
+
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { IoClose } from 'react-icons/io5'
 
@@ -15,16 +15,16 @@ import { useProblemIsSolved } from '@/app/problems/atoms/ProblemIsSolved'
 
 export default function SubmitModal() {
   const pathname = usePathname()
-  console.log(pathname, 'from submit modal')
+
   let ProblemId: string[] | string = pathname.split('/')
   ProblemId = ProblemId[2]
   const setIsSolved = useSetRecoilState(useProblemIsSolved)
   const [user] = useAuthState(auth)
   const [isModalOpen, setIsModalOpen] = useState(true)
-  const { isRun } = useRecoilValue(isRunOnlineCompilerAtom)
+
   const { userWrongAnswer } = useRecoilValue(userWrongAnswerAtom)
   const [isToastedOpen, setIsToastedOpen] = useState(false)
-  console.log(userWrongAnswer, 'from submit modal')
+
   const firstUserWrongAnswer = userWrongAnswer[0]
 
   const handleModalClose = () => {

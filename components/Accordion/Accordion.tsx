@@ -15,6 +15,7 @@ export default function Accordion({ header, content, Icon }: AccordionProps) {
   const HintRef = useRef(null)
   useEffect(() => {
     setRef((prev) => ({ ...prev, hintRef: HintRef?.current }))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [HintRef?.current])
 
   const [isActive, setIsActive] = useState(-1)

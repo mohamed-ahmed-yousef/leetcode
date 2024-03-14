@@ -15,6 +15,7 @@ import { toast } from 'react-toastify'
 export default function Register() {
   const [authAtom, setAuthAtom] = useRecoilState(useAuthAtom)
 
+  // eslint-disable-next-line no-unused-vars
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth)
 
@@ -42,7 +43,6 @@ export default function Register() {
     resolver: zodResolver(scheme),
   })
   const handleRegisterSubmit = async (data: any) => {
-    console.log(data.email, data.password)
     try {
       const newUser = await createUserWithEmailAndPassword(
         data.email,
@@ -65,7 +65,6 @@ export default function Register() {
       })
     } catch (error: any) {
       toast.dismiss('loading')
-      console.log(error.message)
     } finally {
       toast.dismiss('loading')
     }

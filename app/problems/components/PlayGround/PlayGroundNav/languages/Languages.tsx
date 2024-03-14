@@ -5,7 +5,6 @@ export default function SupportedLanguage() {
   const { lang } = useRecoilValue(selectedLanguageAtom)
   const setLanguage = useSetRecoilState(selectedLanguageAtom)
   const handleOnChange = (value: string) => {
-    console.log(value)
     setLanguage((prev) => ({ ...prev, lang: value }))
   }
   return (
