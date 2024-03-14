@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, Dispatch, SetStateAction } from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { IoClose } from 'react-icons/io5'
 import { useRecoilState } from 'recoil'
 import { useFontSize } from '@/app/problems/atoms/FontSizeAtom'
@@ -13,8 +13,7 @@ const Modal = ({
   const [AtomValue, setFontSize] = useRecoilState(useFontSize)
   const handleOnChange = (val: any) => {
     setFontSize((prev) => ({ ...prev, fontSize: Number(val.target.value) }))
-    console.log('from setting modal', Number(val.target.value))
-    console.log(AtomValue)
+
     localStorage.setItem(`font-size`, val.target.value)
   }
   const handleOnClose = () => {

@@ -21,11 +21,10 @@ type HomeNavBarProps = {
 export default function HomeNavBar({ homePage, problemId }: HomeNavBarProps) {
   const [user] = useAuthState(auth)
   const router = useRouter()
-  const [authAtoms, setAuthAtoms] = useRecoilState(useAuthAtom)
+  // eslint-disable-next-line no-unused-vars
+  const [_authAtoms, setAuthAtoms] = useRecoilState(useAuthAtom)
   const handleOnGoToLogin = () => {
-    console.log(authAtoms)
     setAuthAtoms((prev) => ({ ...prev, targetPage: 'login', isOpen: true }))
-    console.log(authAtoms)
     router.push('/auth')
   }
 

@@ -11,6 +11,7 @@ import { useSetRecoilState } from 'recoil'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth } from '@/app/firebase/firebase'
 import { useFontSize } from '@/app/problems/atoms/FontSizeAtom'
+import { useEffect } from 'react'
 
 export default function TextEditor() {
   const { starterCode, problemId } = useRecoilValue(starterCodeAtom)
@@ -31,6 +32,9 @@ export default function TextEditor() {
     finalFontSize = newFontSize
     setFontSizeAtom((prev) => ({ ...prev, fontSize: newFontSize }))
   }
+  useEffect(() => {
+    setTextEditor((prev) => ({ ...prev, userCode: finalValue, userLang: lang }))
+  }, [finalValue, lang, setTextEditor])
 
   const extensions =
     lang === 'python'
@@ -40,12 +44,10 @@ export default function TextEditor() {
         : []
   const handleOnChange = (value: string) => {
     setTextEditor((prev) => ({ ...prev, userCode: value, userLang: lang }))
-    console.log(starterCode, 'hi', problemId, 'this is problem id')
     if (user) {
       localStorage.setItem(`${lang}-${problemId}`, value)
     }
   }
-  // console.log("fRom text: size", fontSize)
   const TextEditorStyle = {
     fontSize: `${finalFontSize}px`,
   }

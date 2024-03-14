@@ -7,7 +7,7 @@ import { useRecoilValue } from 'recoil'
 import { FaTag } from 'react-icons/fa'
 import { FaRegLightbulb } from 'react-icons/fa6'
 import { useEffect, useState } from 'react'
-import useGetOneProblem from './hooks/getOneProblem'
+
 import { DBProblems } from '@/types/problem'
 import CircleSkeleton from './skeleton/Circle'
 import Rectangle from './skeleton/Rectangle'
@@ -32,7 +32,6 @@ export default function ProblemInfo({ problemId }: ProblemInfoProps) {
   const [user] = useAuthState(auth)
   const { isSolved } = useRecoilValue(useProblemIsSolved)
 
-  console.log(user)
   const [userProblemInfo, setUserProblemInfo] = useState({
     liked: false,
     disliked: false,
@@ -99,9 +98,7 @@ export default function ProblemInfo({ problemId }: ProblemInfoProps) {
       const userDoc = await transaction.get(userRef)
       const problemDoc = await transaction.get(problemRef)
       if (userDoc.exists() && problemDoc.exists()) {
-        console.log(userDoc.data())
         if (userProblemInfo?.liked) {
-          console.log('enterer here')
           transaction.update(userRef, {
             likedProblems: userDoc
               .data()
@@ -171,7 +168,6 @@ export default function ProblemInfo({ problemId }: ProblemInfoProps) {
       const problemDoc = await transaction.get(problemRef)
 
       if (userDoc.exists() && problemDoc.exists()) {
-        console.log(userDoc.data())
         if (userProblemInfo?.liked) {
           transaction.update(userRef, {
             likedProblems: userDoc

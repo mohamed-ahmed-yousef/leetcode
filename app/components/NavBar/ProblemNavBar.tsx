@@ -14,7 +14,6 @@ export default function ProblemNavBar({ problemId }: ProblemNavBarProps) {
     const currProblem = getProblems[problemId as keyof typeof getProblems]
     const currOrder = currProblem?.order
 
-    // console.log("enter here now", currProblem, currOrder)
     if (next) {
       const nextProblemOrder = (currOrder + 1) % problemLength || 1
       const nextProblem = Object.keys(getProblems).find(
@@ -23,7 +22,6 @@ export default function ProblemNavBar({ problemId }: ProblemNavBarProps) {
           nextProblemOrder
       )
 
-      console.log(nextProblem, nextProblemOrder)
       router.push(nextProblem!)
     } else {
       let previousProblemOrder = currOrder - 1
@@ -33,7 +31,6 @@ export default function ProblemNavBar({ problemId }: ProblemNavBarProps) {
           getProblems[item as keyof typeof getProblems].order ==
           previousProblemOrder
       )
-      console.log(previousProblem, previousProblemOrder)
       router.push(previousProblem!)
     }
   }

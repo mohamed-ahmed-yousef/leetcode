@@ -14,7 +14,7 @@ export default function FullScreen() {
   }
   // to handle if user press ESC
   useEffect(() => {
-    function exitHandler(e: any) {
+    function exitHandler() {
       if (!document.fullscreenElement) {
         setIsFullScreen(false)
         return
