@@ -14,13 +14,14 @@
 
 - `NextJS`: The primary library for building dynamic and interactive user interfaces.
 - `Tailwind CSS`: A utility-first CSS framework providing rapid styling based on pre-defined classes.
-- `React Hook Form`: A library for handling forms and validation, built specifically for React hooks. -`Zod`: A powerful validation library for ensuring data integrity and preventing runtime errors.
+- `React Hook Form`: A library for handling forms and validation, built specifically for React hooks.
+- `Zod`: A powerful validation library for ensuring data integrity and preventing runtime errors.
 - `Recoil`: Recoil provides a lightweight and reactive approach to managing application state in React.
-- `react youtube`: embeds YouTube videos within React applications
+- `react youtube`: embeds YouTube videos within applications
 - `toastor`: Displays user-friendly notification popups
-- `React split`: Enables flexible window splitting within React applications
-- `react-codemirror`: Integrates the powerful CodeMirror code editor component into React applications.
-- `react-confetti`: Adds a celebratory confetti effect to React applications.
+- `React split`: Enables flexible window splitting within applications
+- `react-codemirror`: Integrates the powerful CodeMirror code editor component into applications.
+- `react-confetti`: Adds a celebratory confetti effect to applications.
 
 ### Backend:
 
