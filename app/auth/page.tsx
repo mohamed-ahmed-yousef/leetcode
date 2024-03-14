@@ -5,12 +5,15 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth } from '@/app/firebase/firebase'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-
+import { useRecoilValue } from 'recoil'
+import { useAuthAtom } from '@/app/auth/atoms/authAtom'
 type AuthProps = {}
 export default function Auth({}: AuthProps) {
   const [user, loading] = useAuthState(auth)
   const [isloading, setIsLoading] = useState(true)
   const router = useRouter()
+  const value = useRecoilValue(useAuthAtom)
+  console.log(value)
 
   useEffect(() => {
     if (user) router.push('/')

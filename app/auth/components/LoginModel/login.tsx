@@ -14,7 +14,7 @@ import { AuthToasterError } from '@/components/Toast/Toast'
 export default function Login() {
   const [authAtom, setAuthAtom] = useRecoilState(useAuthAtom)
   const router = useRouter()
-  const [signInWithEmailAndPassword, loading, error] =
+  const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth)
   const handleClick = (targetPage: 'login' | 'register' | 'forgetPassword') => {
     setAuthAtom({ ...authAtom, targetPage })
@@ -36,6 +36,7 @@ export default function Login() {
     resolver: zodResolver(scheme),
   })
   const handleSubmitLogin = async (data: any) => {
+    console.log(data)
     const singup = await signInWithEmailAndPassword(data.email, data.password)
     if (!singup) return
     router.push('/')

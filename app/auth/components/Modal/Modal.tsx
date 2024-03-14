@@ -1,8 +1,9 @@
+import { useEffect } from 'react'
 import { MdClose } from 'react-icons/md'
 import Login from '../LoginModel/login'
 import Register from '../RegisterModel/Register'
 import ForgetPassword from '../ForgetModel/ForgetPassword'
-import { useRecoilValue } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { useAuthAtom } from '../../atoms/authAtom'
 import { HandleCloseModal } from './useClose'
 
